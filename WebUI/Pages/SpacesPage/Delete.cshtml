@@ -1,0 +1,31 @@
+﻿@page
+@model WebUI.Pages.SpacesPage.DeleteModel
+
+<div class="bg-light">
+	<form method="post">
+		<input hidden asp-for="Id" />
+		<div class="row pl-3">
+			<div class="col-6 mx-3">
+				<div class="fs-1 mb-5">
+					Vymazanie priestoru
+				</div>
+			</div>
+		</div>
+		<div class="p-5">
+			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
+				<div class="fs-4 m-3">Podlažie:</div>
+				<div disabled class="form-control fs-4 py-3">@Model.SpaceyWithStorey.StoreysName</div>
+			</div>
+			<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
+				<div class="fs-4 m-3">Názov&nbsp;priestoru:</div>
+				<div class="form-control fs-4 py-3">@Model.SpaceyWithStorey.Name</div>
+			</div>
+			<div class="my-3" style="display:flex; flex-direction: row; width:25%">
+				<div class="fs-4 m-3">Teplota&nbsp;v&nbsp;priestore:</div>
+				<div class="form-control fs-4 py-3">@Model.SpaceyWithStorey.Temperature</div>
+				<div class="fs-4 my-3">°C</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-secondary float-sm-start m-3">Potvrď</button>
+	</form>
+</div>

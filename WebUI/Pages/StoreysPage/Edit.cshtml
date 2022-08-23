@@ -1,0 +1,22 @@
+﻿@page
+@model WebUI.Pages.StoreysPage.EditModel
+
+<div class="bg-light">
+<form method="post">
+	<input hidden asp-for="StoreyDto.Id" />
+	<div class="row pl-5">
+		<div class="col-6 px-3">
+			<div class="fs-1 mb-5">
+				Zmena názvu podlažia
+			</div>
+		</div>
+	</div>
+	<div class="p-5">
+			<div style="display:flex; flex-direction: row; justify-content: center; align-items: center; width:50%">
+			<label class="fs-4 m-3">Názov:</label>
+			<input asp-for="StoreyDto.Name" class="form-control fs-4" autofocus />
+		</div>
+	</div>
+	<button type="submit" class="btn btn-secondary float-sm-start m-3">Potvrď</button>
+</form>
+</div>

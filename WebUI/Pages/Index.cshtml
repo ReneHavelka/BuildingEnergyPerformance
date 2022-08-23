@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<div class="container p-3 bg-light border">
+
+	<div class="row py-0">
+		<div class="col-6 px-3">
+			<div class="display-4 mb-5">Výpočet tepelných strát</div>
+		</div>
+	</div>
+
+	<table class="table table-bordered table-striped" style="width:100%">
+		<thead>
+			<tr>
+				<th class="fs-4 text-black text-decoration-none px-6">Kategórie</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var issue in Model.IssueKeyValue)
+			{
+				<tr>
+					<td>
+						<a asp-page=@issue.Key class="fs-4 text-black text-decoration-none px-2">@issue.Value</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
