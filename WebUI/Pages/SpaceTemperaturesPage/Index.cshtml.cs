@@ -1,6 +1,7 @@
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.SpacesCQR.Queries;
+using Application.SpaceTemperaturesCQR.Queries;
 using AutoMapper;
 using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace WebUI.Pages.SpaceTemperaturesPage
 {
     public class IndexModel : PageModel
     {
-        public IEnumerable<SpaceTemperaturesDto> SpaceTemperatureList { get; set; }
+        public IList<SpaceTemperaturesDto> SpaceTemperatureList { get; set; }
         
-        private readonly IApplicationDbContext _context;
+        private IApplicationDbContext _context;
         private IMapper _mapper;
         public IndexModel(ApplicationDbContext context, IMapper mapper)
         {
@@ -22,8 +23,8 @@ namespace WebUI.Pages.SpaceTemperaturesPage
 
         public void OnGet()
         {
-            var getSpacesTemperatures = new GetSpacesTemperatures();
-            SpaceTemperatureList = getSpacesTemperatures.GetSpacesWithStoreys(_context);
+            var getSpacesTemperatures = new GetSpaceTemperatures(_context, _mapper);
+            SpaceTemperatureList = getSpacesTemperatures.SpaceTemperaturesDto;
         }
     }
 }
