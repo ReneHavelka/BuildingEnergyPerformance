@@ -1,29 +1,30 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models;
+using Application.StoreysCQR.Queries;
 using AutoMapper;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace Application.StoreysCQR.Commands
 {
     public class EditStorey
     {
-        private StoreysDto _storeyDto;
         private IMapper _mapper;
         IApplicationDbContext _context;
-        public EditStorey(StoreysDto storeyDto, IMapper mapper, IApplicationDbContext context)
+        public EditStorey(IApplicationDbContext context, IMapper mapper)
         {
-            _storeyDto = storeyDto;
             _mapper = mapper;
             _context = context;
         }
 
-
-        public async void ModifyStorey(StoreysDto storeyDto)
+        public StoreysDto GetStorey(int id)
+        {
+            var getStoreys = new GetStoreys(_context, _mapper);
+            var storeyList = getStoreys.StoreysDto;
+            StoreysDto storeyDto = storeyList.FirstOrDefault(x => x.Id == id);
+            return storeyDto;
+        }
+        public void ModifyStorey(StoreysDto storeyDto)
         {
             Storeys storey = _mapper.Map<Storeys>(storeyDto);
             _context.Storeys.Update(storey);

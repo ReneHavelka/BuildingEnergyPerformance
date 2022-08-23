@@ -15,8 +15,6 @@ namespace WebUI.Pages.StoreysPage
         private ApplicationDbContext _context;
         private IMapper _mapper;
 
-        public int _id;
-
         public EditModel(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
@@ -24,15 +22,13 @@ namespace WebUI.Pages.StoreysPage
         }
         public void OnGet(int id)
         {
-            var getStoreys = new GetStoreys(_context, _mapper);
-            var storeyList = getStoreys.StoreysDto;
-            _id = id;
-            StoreyDto = storeyList.FirstOrDefault(x => x.Id == _id);
+            var storeyDtoList = new EditStorey(_context, _mapper);
+            StoreyDto = storeyDtoList.GetStorey(id);
         }
 
         public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
         {
-            var createStoreys = new EditStorey(StoreyDto, _mapper, _context);
+            var createStoreys = new EditStorey(_context, _mapper);
             createStoreys.ModifyStorey(StoreyDto);
             await _context.SaveChangesAsync();
 

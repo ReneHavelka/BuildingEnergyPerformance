@@ -22,17 +22,16 @@ namespace WebUI.Pages.StoreysPage
             _context = context;
             _mapper = mapper;
         }
+
         public void OnGet(int id)
         {
-            var getStoreys = new GetStoreys(_context, _mapper);
-            var storeyList = getStoreys.StoreysDto;
-            _id = id;
-            StoreyDto = storeyList.FirstOrDefault(x => x.Id == _id);
+            var storeyDtoList = new DeleteStorey(_context, _mapper);
+            StoreyDto = storeyDtoList.GetStorey(id);
         }
 
         public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
         {
-            var createStoreys = new DeleteStorey(StoreyDto, _mapper, _context);
+            var createStoreys = new DeleteStorey(_context, _mapper);
             createStoreys.RemoveStorey(StoreyDto);
             await _context.SaveChangesAsync();
 
