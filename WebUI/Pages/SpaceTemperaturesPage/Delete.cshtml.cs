@@ -1,14 +1,16 @@
 using Application.Common.Models;
+using Application.SpacesCQR.Commands;
+using Application.SpacesCQR.Queries;
 using Application.SpaceTemperaturesCQR.Commands;
-using Application.StoreysCQR.Commands;
 using AutoMapper;
 using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace WebUI.Pages.SpaceTemperaturesPage
 {
-    public class EditModel : PageModel
+    public class DeleteModel : PageModel
     {
         [BindProperty]
         public SpaceTemperaturesDto SpaceTemperatureDto { get; set; }
@@ -16,8 +18,7 @@ namespace WebUI.Pages.SpaceTemperaturesPage
         ApplicationDbContext _context;
         IMapper _mapper;
 
-
-        public EditModel(ApplicationDbContext context, IMapper mapper)
+        public DeleteModel(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -25,14 +26,14 @@ namespace WebUI.Pages.SpaceTemperaturesPage
 
         public void OnGet(int id)
         {
-            var spaceTemperatureList = new EditSpaceTemperature(_context, _mapper);
+            var spaceTemperatureList = new DeleteSpaceTemperature(_context, _mapper);
             SpaceTemperatureDto = spaceTemperatureList.GetSpaceTemperatureDto(id);
         }
 
-        public async Task<IActionResult> OnPost(SpaceTemperaturesDto SpaceTemperatureDto)
+        public async Task<IActionResult> OnPost()
         {
-            var editSpaceTemperature = new EditSpaceTemperature(_context, _mapper);
-            editSpaceTemperature.ModifySpaceTemperature(SpaceTemperatureDto);
+            var deleteSpaceTemperature = new DeleteSpaceTemperature(_context, _mapper);
+            deleteSpaceTemperature.RemoveSpaceTemperature(SpaceTemperatureDto);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");

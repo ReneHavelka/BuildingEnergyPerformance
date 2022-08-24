@@ -10,7 +10,8 @@ namespace Application.SpacesCQR.Commands
     {
         private IMapper _mapper;
         IApplicationDbContext _context;
-        public DeleteSpace(IMapper mapper, IApplicationDbContext context)
+
+        public DeleteSpace(IApplicationDbContext context, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;

@@ -25,15 +25,14 @@ namespace WebUI.Pages.SpacesPage
         }
         public void OnGet(int id)
         {
-            var getSpaces = new DeleteSpace(_mapper, _context);
+            var getSpaces = new DeleteSpace(_context, _mapper);
             SpaceyWithStorey = getSpaces.GetSpace(id);
             Id = id;
         }
 
         public async Task<IActionResult> OnPost()
         {
-            Debug.WriteLine($"somar: {Id}");
-            var createSpaces = new DeleteSpace(_mapper, _context);
+            var createSpaces = new DeleteSpace(_context, _mapper);
             createSpaces.RemoveSpace(Id);
             await _context.SaveChangesAsync();
 

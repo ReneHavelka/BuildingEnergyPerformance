@@ -1,5 +1,4 @@
-﻿using Application.Common.Interfaces;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Application.Common.Models
 {
