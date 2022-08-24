@@ -3,14 +3,13 @@ using Application.Common.Models;
 using Application.StoreysCQR.Queries;
 using AutoMapper;
 using Domain.Entities;
-using System.Security.Cryptography;
 
 namespace Application.StoreysCQR.Commands
 {
     public class EditStorey
     {
-        private IMapper _mapper;
         IApplicationDbContext _context;
+        IMapper _mapper;
         public EditStorey(IApplicationDbContext context, IMapper mapper)
         {
             _mapper = mapper;
@@ -24,6 +23,7 @@ namespace Application.StoreysCQR.Commands
             StoreysDto storeyDto = storeyList.FirstOrDefault(x => x.Id == id);
             return storeyDto;
         }
+        
         public void ModifyStorey(StoreysDto storeyDto)
         {
             Storeys storey = _mapper.Map<Storeys>(storeyDto);

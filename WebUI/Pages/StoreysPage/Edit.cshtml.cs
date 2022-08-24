@@ -28,8 +28,8 @@ namespace WebUI.Pages.StoreysPage
 
         public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
         {
-            var createStoreys = new EditStorey(_context, _mapper);
-            createStoreys.ModifyStorey(StoreyDto);
+            var editStoreys = new EditStorey(_context, _mapper);
+            editStoreys.ModifyStorey(StoreyDto);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");
