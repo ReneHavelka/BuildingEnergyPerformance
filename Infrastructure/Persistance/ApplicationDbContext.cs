@@ -15,8 +15,14 @@ namespace Infrastructure.Persistance
         public DbSet<ThermalResistanceTable> ThermalResistanceTable { get; set; }
         public DbSet<ThermalConductivityTable> ThermalConductivityTables { get; set; }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSqlServer(
+                @"Server=(localdb)\mssqllocaldb;Database=BuildingEnergyPeformance;Trusted_Connection=True");
         }
+
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        //{
+        //}
     }
 }
