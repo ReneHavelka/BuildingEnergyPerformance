@@ -25,10 +25,11 @@ namespace Application.SpaceTemperaturesCQR.Commands
             return spaceTemperatureDto;
         }
 
-        public void ModifySpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
+        public async Task ModifySpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
         {
             SpaceTemperatures spaceTemperature = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
             _context.SpaceTemperatures.Update(spaceTemperature);
+            await _context.SaveChangesAsync();
         }
     }
 }

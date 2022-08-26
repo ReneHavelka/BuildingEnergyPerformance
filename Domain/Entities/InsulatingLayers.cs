@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    public class Layers : IdName
+    public class InsulatingLayers : IdName
     {
         public float? Thickness { get; set; }
 

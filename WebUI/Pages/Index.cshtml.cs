@@ -16,9 +16,5 @@ namespace WebUI.Pages
             IIndex getIssues = new GetIssues();
             IssueKeyValue = getIssues.IssueKeyValue.Select(x => new KeyValuePair<string, string>("./" + x.Key + "Page/Index", x.Value));
         }
-
-        public void OnGet()
-        {
-        }
     }
 }

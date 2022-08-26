@@ -1,3 +1,4 @@
+using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using AutoMapper;
@@ -11,7 +12,7 @@ namespace WebUI.Pages.StoreysPage
     {
         [BindProperty]
         public StoreysDto StoreyDto { get; set; }
-        private ApplicationDbContext _context;
+        private IApplicationDbContext _context;
         private IMapper _mapper;
 
         public CreateModel(ApplicationDbContext context, IMapper mapper)
@@ -19,15 +20,11 @@ namespace WebUI.Pages.StoreysPage
             _context = context;
             _mapper = mapper;
         }
-        public void OnGet()
-        {
-        }
 
         public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
         {
-            var createStoreys = new CreateStorey(StoreyDto, _mapper, _context);
-            createStoreys.AddStorey();
-            await _context.SaveChangesAsync();
+            var createStoreys = new CreateStorey(StoreyDto, _context, _mapper);
+            await createStoreys.AddStorey();
 
             return RedirectToPage("Index");
         }

@@ -42,8 +42,7 @@ namespace WebUI.Pages.SpacesPage
         public async Task<IActionResult> OnPost()
         {
             var editSpace = new EditSpace(_mapper, _context);
-            editSpace.ModifySpace(SpaceDto);
-            await _context.SaveChangesAsync();
+            await editSpace.ModifySpace(SpaceDto);
 
             return RedirectToPage("Index");
         }

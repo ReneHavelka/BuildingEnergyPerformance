@@ -1,14 +1,8 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.SpaceTemperaturesCQR.Queries;
-using Application.StoreysCQR.Queries;
 using AutoMapper;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.SpaceTemperaturesCQR.Commands
 {
@@ -32,10 +26,11 @@ namespace Application.SpaceTemperaturesCQR.Commands
             return spaceTemperatureDto;
         }
 
-        public void RemoveSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
+        public async Task RemoveSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
         {
             SpaceTemperatures spaceTemperature = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
             _context.SpaceTemperatures.Remove(spaceTemperature);
+            await _context.SaveChangesAsync();
         }
     }
 }

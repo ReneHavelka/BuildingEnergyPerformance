@@ -32,9 +32,8 @@ namespace WebUI.Pages.SpacesPage
 
         public async Task<IActionResult> OnPost()
         {
-            var createSpaces = new DeleteSpace(_context, _mapper);
-            createSpaces.RemoveSpace(Id);
-            await _context.SaveChangesAsync();
+            var deleteSpace = new DeleteSpace(_context, _mapper);
+            await deleteSpace.RemoveSpace(Id);
 
             return RedirectToPage("Index");
         }

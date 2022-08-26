@@ -24,10 +24,11 @@ namespace Application.StoreysCQR.Commands
             return storeyDto;
         }
         
-        public void ModifyStorey(StoreysDto storeyDto)
+        public async Task ModifyStorey(StoreysDto storeyDto)
         {
             Storeys storey = _mapper.Map<Storeys>(storeyDto);
             _context.Storeys.Update(storey);
+            await _context.SaveChangesAsync();
         }
     }
 }

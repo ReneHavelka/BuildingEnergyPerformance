@@ -32,8 +32,7 @@ namespace WebUI.Pages.StoreysPage
         public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
         {
             var deleteStoreys = new DeleteStorey(_context, _mapper);
-            deleteStoreys.RemoveStorey(StoreyDto);
-            await _context.SaveChangesAsync();
+            await deleteStoreys.RemoveStorey(StoreyDto);
 
             return RedirectToPage("Index");
         }

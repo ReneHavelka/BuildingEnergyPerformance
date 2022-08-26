@@ -12,6 +12,7 @@ namespace WebUI.Pages.StoreysPage
     {
         private readonly IApplicationDbContext _context;
         private IMapper _mapper;
+
         public IEnumerable<StoreysDto> StoreyList { get; set; }
         public IndexModel(ApplicationDbContext context, IMapper mapper)
         {

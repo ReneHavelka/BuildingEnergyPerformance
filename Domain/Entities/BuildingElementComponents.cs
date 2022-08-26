@@ -10,7 +10,7 @@ namespace Domain.Entities
         public float? Resistance { get; set; }
 
 
-        public List<Layers>? Layers { get; set; }
+        public List<InsulatingLayers>? Layers { get; set; }
 
         public int BuildingElementId { get; set; }
         public BuildingElements BuildingElements { get; set; }

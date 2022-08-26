@@ -8,9 +8,10 @@ namespace Application.StoreysCQR.Commands
     public class CreateStorey
     {
         private StoreysDto _storeyDto;
-        private IMapper _mapper;
         IApplicationDbContext _context;
-        public CreateStorey(StoreysDto storeyDto, IMapper mapper, IApplicationDbContext context)
+        private IMapper _mapper;
+        
+        public CreateStorey(StoreysDto storeyDto, IApplicationDbContext context, IMapper mapper)
         {
             _storeyDto = storeyDto;
             _mapper = mapper;
@@ -18,10 +19,11 @@ namespace Application.StoreysCQR.Commands
         }
 
 
-        public async void AddStorey()
+        public async Task AddStorey()
         {
             Storeys storey = _mapper.Map<Storeys>(_storeyDto);
             await _context.Storeys.AddAsync(storey);
+            await _context.SaveChangesAsync();
         }
     }
 }

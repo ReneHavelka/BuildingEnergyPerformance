@@ -24,10 +24,11 @@ namespace Application.SpacesCQR.Commands
             spaceDto = _mapper.Map<SpacesDto>(space);
             return spaceDto;
         }
-        public async void ModifySpace(SpacesDto spaceDto)
+        public async Task ModifySpace(SpacesDto spaceDto)
         {
             Spaces space = _mapper.Map<Spaces>(spaceDto);
             _context.Spaces.Update(space);
+            await _context.SaveChangesAsync();
         }
     }
 }

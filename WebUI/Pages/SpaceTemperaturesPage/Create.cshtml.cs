@@ -32,8 +32,7 @@ namespace WebUI.Pages.SpaceTemperaturesPage
         public async Task<IActionResult> OnPost(SpaceTemperaturesDto SpaceTemperatureDto)
         {
             var createSpaceTemperature = new CreateSpaceTemperature(SpaceTemperatureDto, _mapper, _context);
-            createSpaceTemperature.AddSpaceTemperature();
-            await _context.SaveChangesAsync();
+            await createSpaceTemperature.AddSpaceTemperature();
 
             return RedirectToPage("Index");
         }

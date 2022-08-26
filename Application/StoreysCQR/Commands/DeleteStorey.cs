@@ -3,11 +3,6 @@ using Application.Common.Models;
 using Application.StoreysCQR.Queries;
 using AutoMapper;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.StoreysCQR.Commands
 {
@@ -31,10 +26,12 @@ namespace Application.StoreysCQR.Commands
             return storeyDto;
         }
 
-        public async void RemoveStorey(StoreysDto storeyDto)
+        public async Task RemoveStorey(StoreysDto storeyDto)
         {
-            Storeys storey = _mapper.Map<Storeys>(storeyDto);
+            int id = storeyDto.Id;
+            var storey = _context.Storeys.Find(id);
             _context.Storeys.Remove(storey);
+            await _context.SaveChangesAsync();
         }
     }
 }

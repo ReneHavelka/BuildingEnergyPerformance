@@ -24,10 +24,11 @@ namespace Application.SpacesCQR.Commands
             return getSpace;
         }
 
-        public async void RemoveSpace(int id)
+        public async Task RemoveSpace(int id)
         {
             var space = _context.Spaces.Find(id);
             _context.Spaces.Remove(space);
+            await _context.SaveChangesAsync();
         }
     }
 }
