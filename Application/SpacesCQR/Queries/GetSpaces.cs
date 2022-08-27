@@ -1,9 +1,4 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Models;
-using AutoMapper;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Application.SpacesCQR.Queries
 {
@@ -12,7 +7,7 @@ namespace Application.SpacesCQR.Queries
         public int Id;
         public string Name;
         public float Temperature;
-        public string StoreysName;
+        public string StoreyName;
 
         public IApplicationDbContext _context;
 
@@ -24,7 +19,7 @@ namespace Application.SpacesCQR.Queries
             var spacesEnumerable = from sp in listSpaces
                                    join st in listStoreys
                                    on sp.StoreysId equals st.Id
-                                   select new GetSpaces { Id = sp.Id, Name = sp.Name, Temperature = sp.Temperature, StoreysName = st.Name };
+                                   select new GetSpaces { Id = sp.Id, Name = sp.Name, Temperature = sp.Temperature, StoreyName = st.Name };
 
             IList<GetSpaces> spacesDto = spacesEnumerable.ToList();
 

@@ -8,6 +8,9 @@ namespace Application.Common.Models
 {
     internal class BuildingElementsDto : IdNameDto
     {
-
+        public int? ContiguousSpaceId { get; set; }
+        public float Dimension1 { get; set; }
+        public float Dimension2 { get; set; }
+        public int SpacesId { get; set; }
     }
 }

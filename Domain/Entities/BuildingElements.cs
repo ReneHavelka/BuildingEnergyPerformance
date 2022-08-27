@@ -5,7 +5,7 @@ namespace Domain.Entities
 {
     public class BuildingElements : IdName
     {
-        public int ContiguousSpaceId { get; set; }
+        public int? ContiguousSpaceId { get; set; }
         public float Dimension1 { get; set; }
         public float Dimension2 { get; set; }
 
