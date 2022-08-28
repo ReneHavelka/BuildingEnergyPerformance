@@ -9,13 +9,13 @@ namespace Application.SpacesCQR.Commands
     public class EditSpace
     {
         SpacesDto spaceDto;
-        IMapper _mapper;
         IApplicationDbContext _context;
+        IMapper _mapper;
 
-        public EditSpace(IMapper mapper, IApplicationDbContext context)
+        public EditSpace(IApplicationDbContext context, IMapper mapper)
         {
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
         public SpacesDto GetSpace(int id)

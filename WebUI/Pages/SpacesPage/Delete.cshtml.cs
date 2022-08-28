@@ -10,7 +10,7 @@ namespace WebUI.Pages.SpacesPage
 {
     public class DeleteModel : PageModel
     {
-        public GetSpaces SpaceyWithStorey { get; set; }
+        public GetSpacesWithStoreys SpaceyWithStorey { get; set; }
 
         ApplicationDbContext _context;
         IMapper _mapper;

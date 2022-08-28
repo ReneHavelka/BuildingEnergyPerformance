@@ -12,8 +12,8 @@ namespace Application.StoreysCQR.Commands
         IMapper _mapper;
         public EditStorey(IApplicationDbContext context, IMapper mapper)
         {
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
         public StoreysDto GetStorey(int id)

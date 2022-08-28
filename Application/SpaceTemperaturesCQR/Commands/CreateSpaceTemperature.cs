@@ -13,19 +13,17 @@ namespace Application.SpaceTemperaturesCQR.Commands
     public class CreateSpaceTemperature
 
     {
-        private SpaceTemperaturesDto _spaceTemperatureDto;
-        private IMapper _mapper;
         IApplicationDbContext _context;
-        public CreateSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto, IMapper mapper, IApplicationDbContext context)
+        private IMapper _mapper;
+        public CreateSpaceTemperature(IApplicationDbContext context, IMapper mapper)
         {
-            _spaceTemperatureDto = spaceTemperatureDto;
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task AddSpaceTemperature()
+        public async Task AddSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
         {
-            SpaceTemperatures spaceTemperatures = _mapper.Map<SpaceTemperatures>(_spaceTemperatureDto);
+            SpaceTemperatures spaceTemperatures = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
             await _context.SpaceTemperatures.AddAsync(spaceTemperatures);
             await _context.SaveChangesAsync();
         }

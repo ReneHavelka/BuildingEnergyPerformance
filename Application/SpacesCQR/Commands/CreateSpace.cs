@@ -8,20 +8,18 @@ namespace Application.SpacesCQR.Commands
 {
     public class CreateSpace
     {
-        SpacesDto _spaceDto;
-        IMapper _mapper;
         IApplicationDbContext _context;
+        IMapper _mapper;
 
-        public CreateSpace(SpacesDto spaceDto, IMapper mapper, IApplicationDbContext context)
+        public CreateSpace( IApplicationDbContext context, IMapper mapper)
         {
-            _spaceDto = spaceDto;
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
-        public async Task AddSpace()
+        public async Task AddSpace(SpacesDto spaceDto)
         {
-            Spaces space = _mapper.Map<Spaces>(_spaceDto);
+            Spaces space = _mapper.Map<Spaces>(spaceDto);
             await _context.Spaces.AddAsync(space);
             await _context.SaveChangesAsync();
         }

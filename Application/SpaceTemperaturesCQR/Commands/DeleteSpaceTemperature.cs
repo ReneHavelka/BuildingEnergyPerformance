@@ -9,8 +9,8 @@ namespace Application.SpaceTemperaturesCQR.Commands
     public class DeleteSpaceTemperature
     {
         SpaceTemperaturesDto _spaceTemperatureDto;
-        private IMapper _mapper;
         IApplicationDbContext _context;
+        private IMapper _mapper;
 
         public DeleteSpaceTemperature(IApplicationDbContext context, IMapper mapper)
         {

@@ -1,28 +1,24 @@
 ﻿using Application.Common.Interfaces;
+using Application.Common.Models;
+using AutoMapper;
 
 namespace Application.SpacesCQR.Queries
 {
     public class GetSpaces
     {
-        public int Id;
-        public string Name;
-        public float Temperature;
-        public string StoreyName;
+        IApplicationDbContext _context;
+        IMapper _mapper;
 
-        public IApplicationDbContext _context;
-
-        public IList<GetSpaces> GetSpacesWithStoreys(IApplicationDbContext context)
+        public GetSpaces(IApplicationDbContext context, IMapper mapper)
         {
-            var listSpaces = context.Spaces.ToList();
-            var listStoreys = context.Storeys.ToList();
-
-            var spacesEnumerable = from sp in listSpaces
-                                   join st in listStoreys
-                                   on sp.StoreysId equals st.Id
-                                   select new GetSpaces { Id = sp.Id, Name = sp.Name, Temperature = sp.Temperature, StoreyName = st.Name };
-
-            IList<GetSpaces> spacesDto = spacesEnumerable.ToList();
-
+            _context = context;
+            _mapper = mapper;
+        } 
+        public IList<SpacesDto> GetSpaceList()
+        {
+            var spaces = _context.Spaces;
+            var spacesDto = _mapper.Map<IList<SpacesDto>>(spaces);
+            
             return spacesDto;
         }
 

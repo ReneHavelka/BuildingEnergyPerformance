@@ -1,8 +1,9 @@
 using Application.Common.Interfaces;
 using Application.SpacesCQR.Queries;
+using AutoMapper;
 using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using System.Diagnostics;
 
 namespace WebUI.Pages.SpacesPage
 {
@@ -10,16 +11,16 @@ namespace WebUI.Pages.SpacesPage
     {
         private readonly IApplicationDbContext _context;
 
-        public IEnumerable<GetSpaces> SpaceysList { get; set; }
-        public IndexModel(ApplicationDbContext context)
+        public IEnumerable<GetSpacesWithStoreys> SpaceysList { get; set; }
+        public IndexModel(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
         }
 
         public void OnGet()
         {
-            var getSpaces = new GetSpaces();
-            SpaceysList = getSpaces.GetSpacesWithStoreys(_context);
+            var getSpaces = new GetSpacesWithStoreys();
+            SpaceysList = getSpaces.GetSpacesWithStoreysList(_context);
         }
     }
 }

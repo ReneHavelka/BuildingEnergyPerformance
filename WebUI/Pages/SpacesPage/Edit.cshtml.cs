@@ -34,14 +34,14 @@ namespace WebUI.Pages.SpacesPage
             var spaceTemperaturesDtoList = new GetSpaceTemperatures(_context, _mapper).SpaceTemperaturesDto;
             for (int i = 0; i < spaceTemperaturesDtoList.Count; i++) { spaceTemperaturesDtoList[i].Name += ": " + spaceTemperaturesDtoList[i].Temperature + "°C"; }
             SpaceTemperaturesSelectList = new SelectList(spaceTemperaturesDtoList, "Temperature", "Name", 1);
-            SpaceDto = new EditSpace(_mapper, _context).GetSpace(id);
+            SpaceDto = new EditSpace(_context, _mapper).GetSpace(id);
             var storeysDtoList = new GetStoreys(_context, _mapper).StoreysDto;
             StoreysSelectList = new SelectList(storeysDtoList, "Id", "Name", SpaceDto.StoreysId);
         }
 
         public async Task<IActionResult> OnPost()
         {
-            var editSpace = new EditSpace(_mapper, _context);
+            var editSpace = new EditSpace(_context, _mapper);
             await editSpace.ModifySpace(SpaceDto);
 
             return RedirectToPage("Index");

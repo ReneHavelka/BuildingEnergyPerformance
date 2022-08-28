@@ -8,19 +8,19 @@ namespace Application.SpacesCQR.Commands
 {
     public class DeleteSpace
     {
-        private IMapper _mapper;
         IApplicationDbContext _context;
+        private IMapper _mapper;
 
         public DeleteSpace(IApplicationDbContext context, IMapper mapper)
         {
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
-        public GetSpaces GetSpace(int id)
+        public GetSpacesWithStoreys GetSpace(int id)
         {
-            var getSpaceInst = new GetSpaces();
-            GetSpaces getSpace = getSpaceInst.GetSpacesWithStoreys(_context).FirstOrDefault(x => x.Id == id);
+            var getSpaceInst = new GetSpacesWithStoreys();
+            GetSpacesWithStoreys getSpace = getSpaceInst.GetSpacesWithStoreysList(_context).FirstOrDefault(x => x.Id == id);
             return getSpace;
         }
 

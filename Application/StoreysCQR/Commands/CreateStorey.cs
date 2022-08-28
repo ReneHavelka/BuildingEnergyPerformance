@@ -7,21 +7,19 @@ namespace Application.StoreysCQR.Commands
 {
     public class CreateStorey
     {
-        private StoreysDto _storeyDto;
         IApplicationDbContext _context;
-        private IMapper _mapper;
+        IMapper _mapper;
         
-        public CreateStorey(StoreysDto storeyDto, IApplicationDbContext context, IMapper mapper)
+        public CreateStorey(IApplicationDbContext context, IMapper mapper)
         {
-            _storeyDto = storeyDto;
             _mapper = mapper;
             _context = context;
         }
 
 
-        public async Task AddStorey()
+        public async Task AddStorey(StoreysDto storeyDto)
         {
-            Storeys storey = _mapper.Map<Storeys>(_storeyDto);
+            Storeys storey = _mapper.Map<Storeys>(storeyDto);
             await _context.Storeys.AddAsync(storey);
             await _context.SaveChangesAsync();
         }

@@ -8,14 +8,13 @@ namespace Application.StoreysCQR.Commands
 {
     public class DeleteStorey
     {
-        private StoreysDto _storeyDto;
-        private IMapper _mapper;
         IApplicationDbContext _context;
+        IMapper _mapper;
 
         public DeleteStorey(IApplicationDbContext context, IMapper mapper)
         {
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
         public StoreysDto GetStorey(int id)

@@ -12,8 +12,8 @@ namespace Application.StoreysCQR.Queries
 
         public GetStoreys(IApplicationDbContext context, IMapper mapper)
         {
-            var list = context.Storeys.ToList();
-            StoreysDto = mapper.Map<IList<StoreysDto>>(list);
+            var storeys = context.Storeys;
+            StoreysDto = mapper.Map<IList<StoreysDto>>(storeys);
         }
 
     }

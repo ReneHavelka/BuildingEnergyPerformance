@@ -38,8 +38,8 @@ namespace WebUI.Pages.SpacesPage
 
         public async Task<IActionResult> OnPost(SpacesDto SpaceDto)
         {
-            var createSpace = new CreateSpace(SpaceDto, _mapper, _context);
-            await createSpace.AddSpace();
+            var createSpace = new CreateSpace(_context, _mapper);
+            await createSpace.AddSpace(SpaceDto);
 
             return RedirectToPage("Index");
         }
