@@ -14,7 +14,7 @@ namespace WebUI.Pages
         {
             _logger = logger;
             IIndex getIssues = new GetIssues();
-            IssueKeyValue = getIssues.IssueKeyValue.Select(x => new KeyValuePair<string, string>("./" + x.Key + "Page/Index", x.Value));
+            IssueKeyValue = getIssues.IssueKeyValue.Select(x => new KeyValuePair<string, string>("./" + x.Key + "Pages/Index", x.Value));
         }
     }
 }

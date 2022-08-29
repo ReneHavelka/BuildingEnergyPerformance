@@ -1,0 +1,22 @@
+﻿@page
+@model WebUI.Pages.StoreysPages.DeleteModel
+
+<div class="bg-light">
+	<form method="post">
+		<input hidden asp-for="StoreyDto.Id" />
+		<div class="row pl-3">
+			<div class="col-6 mx-3">
+				<div class="fs-1 mb-5">
+					Vymazanie názvu podlažia
+				</div>
+			</div>
+		</div>
+		<div class="p-5">
+			<div style="display:flex; flex-direction: row; justify-content: center; align-items: center; width:50%">
+				<label class="fs-4 m-3">Názov:</label>
+				<input asp-for="StoreyDto.Name" disabled class="form-control fs-4" />
+			</div>
+		</div>
+		<button type="submit" class="btn btn-secondary float-sm-start m-3">Vymaž</button>
+	</form>
+</div>

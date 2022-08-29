@@ -12,6 +12,7 @@ namespace Application.Common.Mappings
             CreateMap<Spaces, SpacesDto>().ReverseMap();
             CreateMap<BuildingElements, BuildingElementsDto>().ReverseMap();
             CreateMap<SpaceTemperatures, SpaceTemperaturesDto>().ReverseMap();
+            CreateMap<BuildingElements, BuildingElementsDto>().ReverseMap();
         }
     }
 }

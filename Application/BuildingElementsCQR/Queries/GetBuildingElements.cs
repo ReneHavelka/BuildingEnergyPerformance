@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,6 @@ namespace Application.BuildingElementsCQR.Queries
 {
     public class GetBuildingElements
     {
-        public int Id;
-        public string Name;
-        public float Dimension1;
-        public float Dimension2;
-        public string SpaceName;
+
     }
 }

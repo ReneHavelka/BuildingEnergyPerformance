@@ -9,7 +9,7 @@ namespace Application.SpacesCQR.Commands
     public class DeleteSpace
     {
         IApplicationDbContext _context;
-        private IMapper _mapper;
+        IMapper _mapper;
 
         public DeleteSpace(IApplicationDbContext context, IMapper mapper)
         {
@@ -19,8 +19,9 @@ namespace Application.SpacesCQR.Commands
 
         public GetSpacesWithStoreys GetSpace(int id)
         {
-            var getSpaceInst = new GetSpacesWithStoreys();
-            GetSpacesWithStoreys getSpace = getSpaceInst.GetSpacesWithStoreysList(_context).FirstOrDefault(x => x.Id == id);
+            var getSpacesWithStoreys = new GetSpacesWithStoreys();
+            var getSpaces = getSpacesWithStoreys.GetSpacesWithStoreysList(_context);
+            var getSpace = getSpaces.FirstOrDefault(x => x.Id == id);
             return getSpace;
         }
 

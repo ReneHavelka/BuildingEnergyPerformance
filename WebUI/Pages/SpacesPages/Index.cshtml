@@ -1,0 +1,42 @@
+﻿@page
+@model WebUI.Pages.SpacesPages.IndexModel
+
+<div class="conainer p-3 bg-light border">
+	<div class="row py-0">
+		<div class="col-6 px-3">
+			<div class="display-4 mb-5">
+				Priestory
+			</div>
+		</div>
+		<div class="col-6">
+			<a asp-page="Create" class="btn btn-secondary">
+				Ďalší priestor
+			</a>
+		</div>
+	</div>
+
+	<table class="table table-bordered table-striped" style="width:100%">
+		<thead>
+			<tr>
+				<th class="fs-4 text-decoration-none px-6">Podlažie</th>
+				<th class="fs-4 text-decoration-none px-6">Priestor</th>
+				<th class="fs-4 text-decoration-none px-6">Teplota</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var space in Model.SpaceysList)
+			{
+				<tr>
+					<td class="fs-4 text-black text-decoration-none px-2">@space.StoreyName</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@space.Name</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@space.Temperature °C</td>
+					<td class="fs-5 text-decoration-none px-2">
+						<a asp-page="Edit" asp-route-id="@space.Id" class="btn text-black bg-light border-dark mx-2">Uprav</a>
+						<a asp-page="Delete" asp-route-id="@space.Id" class="btn text-black bg-light border-dark mx-2">Vymaž</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

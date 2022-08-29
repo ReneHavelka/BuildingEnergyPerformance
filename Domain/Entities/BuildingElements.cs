@@ -6,10 +6,11 @@ namespace Domain.Entities
     public class BuildingElements : IdName
     {
         public int? ContiguousSpaceId { get; set; }
-        public float Dimension1 { get; set; }
-        public float Dimension2 { get; set; }
+        public float EffectiveArea { get; set; }
+        public float? ThermalResistance { get; set; }
+        public int EmbededIn {get; set; }
 
-        public List<BuildingElementComponents> BuildingElementComponents { get; set; }
+        public List<Layers> Layers { get; set; }
 
         public int SpacesId { get; set; }
         public Spaces Spaces { get; set; }
