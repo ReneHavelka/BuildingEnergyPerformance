@@ -1,4 +1,7 @@
 ﻿using Application.Common.Interfaces;
+using AutoMapper;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.SpacesCQR.Queries
 {
@@ -12,15 +15,15 @@ namespace Application.SpacesCQR.Queries
 
         public IList<GetSpacesWithStoreys> GetSpacesWithStoreysList(IApplicationDbContext context)
         {
-            var listSpaces = context.Spaces.ToList();
-            var listStoreys = context.Storeys.ToList();
+            var spaces = context.Spaces;
+            var storeys = context.Storeys;
 
-            var spacesEnumerable = from sp in listSpaces
-                                   join st in listStoreys
-                                   on sp.StoreysId equals st.Id
-                                   select new GetSpacesWithStoreys() { Id = sp.Id, Name = sp.Name, Temperature = sp.Temperature, StoreyName = st.Name };
+            var spacesQueryable = from sp in spaces
+                                  join st in storeys
+                                  on sp.StoreysId equals st.Id
+                                  select new GetSpacesWithStoreys() { Id = sp.Id, Name = sp.Name, Temperature = sp.Temperature, StoreyName = st.Name };
 
-            IList<GetSpacesWithStoreys> spacesDto = spacesEnumerable.ToList();
+            IList<GetSpacesWithStoreys> spacesDto = spacesQueryable.ToList();
 
             return spacesDto;
         }
