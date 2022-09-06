@@ -17,14 +17,6 @@ namespace Application.SpacesCQR.Commands
             _mapper = mapper;
         }
 
-        public GetSpacesWithStoreys GetSpace(int id)
-        {
-            var getSpacesWithStoreys = new GetSpacesWithStoreys();
-            var getSpaces = getSpacesWithStoreys.GetSpacesWithStoreysList(_context);
-            var getSpace = getSpaces.FirstOrDefault(x => x.Id == id);
-            return getSpace;
-        }
-
         public async Task RemoveSpace(int id)
         {
             var space = _context.Spaces.Find(id);

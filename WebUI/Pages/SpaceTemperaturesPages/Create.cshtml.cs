@@ -25,10 +25,6 @@ namespace WebUI.Pages.SpaceTemperaturesPages
             _mapper = mapper;
         }
 
-        public void OnGet()
-        {
-        }
-
         public async Task<IActionResult> OnPost(SpaceTemperaturesDto SpaceTemperatureDto)
         {
             var createSpaceTemperature = new CreateSpaceTemperature(_context, _mapper);

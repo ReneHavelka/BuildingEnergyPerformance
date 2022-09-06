@@ -48,8 +48,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\BuildingElementsPages\" />
-  </ItemGroup>
-
 </Project>

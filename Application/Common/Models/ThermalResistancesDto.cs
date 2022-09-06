@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Common
+namespace Application.Common.Models
 {
-    public abstract class ThermalProperties : IdName
+	public class ThermalResistancesDto : ThermalPropertiesDto
     {
-        public float Value { get; set; }
-    }
+	}
 }

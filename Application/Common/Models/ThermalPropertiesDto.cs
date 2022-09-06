@@ -2,7 +2,7 @@
 
 namespace Application.Common.Models
 {
-    public abstract class IdNameDto : IdName
-    {
+	public class ThermalPropertiesDto : ThermalProperties
+	{
     }
 }

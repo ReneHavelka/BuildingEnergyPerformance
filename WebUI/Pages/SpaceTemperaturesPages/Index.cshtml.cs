@@ -24,7 +24,7 @@ namespace WebUI.Pages.SpaceTemperaturesPages
         public void OnGet()
         {
             var getSpacesTemperatures = new GetSpaceTemperatures(_context, _mapper);
-            SpaceTemperatureList = getSpacesTemperatures.SpaceTemperaturesDto;
+            SpaceTemperatureList = getSpacesTemperatures.GetSpaceTemperaturesDtoList();
         }
     }
 }

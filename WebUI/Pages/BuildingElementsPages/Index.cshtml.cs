@@ -1,17 +1,16 @@
+using Application.BuildingElementsCQR.Queries;
 using Application.Common.Interfaces;
-using Application.SpacesCQR.Queries;
-using AutoMapper;
 using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
 
-namespace WebUI.Pages.SpacesPages
+namespace WebUI.Pages.BuildingElementsPages
 {
     public class IndexModel : PageModel
     {
         private readonly IApplicationDbContext _context;
 
-        public IList<GetSpacesWithStoreys> SpaceysList { get; set; }
+        public IList<GetBuildingElementsWithSpaces> BuildingElementsList { get; set; }
+
         public IndexModel(ApplicationDbContext context)
         {
             _context = context;
@@ -19,8 +18,8 @@ namespace WebUI.Pages.SpacesPages
 
         public void OnGet()
         {
-            var getSpaces = new GetSpacesWithStoreys();
-            SpaceysList = getSpaces.GetSpacesWithStoreysList(_context);
+            var getBuildingElements = new GetBuildingElementsWithSpaces();
+            BuildingElementsList = getBuildingElements.GetBuildingElementsWithSpacesList(_context);
         }
     }
 }

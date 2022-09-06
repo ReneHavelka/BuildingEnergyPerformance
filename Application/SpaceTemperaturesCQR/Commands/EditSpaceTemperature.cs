@@ -17,14 +17,6 @@ namespace Application.SpaceTemperaturesCQR.Commands
             _mapper = mapper;
         }
 
-        public SpaceTemperaturesDto GetSpaceTemperatureDto(int id)
-        {
-            var getSpaceTemperatures = new GetSpaceTemperatures(_context, _mapper);
-            var spaceTemperatureList = getSpaceTemperatures.SpaceTemperaturesDto;
-            SpaceTemperaturesDto spaceTemperatureDto = spaceTemperatureList.FirstOrDefault(x => x.Id == id);
-            return spaceTemperatureDto;
-        }
-
         public async Task ModifySpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
         {
             SpaceTemperatures spaceTemperature = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);

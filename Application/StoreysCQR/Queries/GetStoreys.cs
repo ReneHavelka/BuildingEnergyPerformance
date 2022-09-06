@@ -8,13 +8,20 @@ namespace Application.StoreysCQR.Queries
 {
     public class GetStoreys
     {
-        public IList<StoreysDto> StoreysDto { get; set; }
+        IApplicationDbContext _context;
+        IMapper _mapper;
 
         public GetStoreys(IApplicationDbContext context, IMapper mapper)
         {
-            var storeys = context.Storeys;
-            StoreysDto = mapper.Map<IList<StoreysDto>>(storeys);
+            _context = context;
+            _mapper = mapper;
         }
 
+        public IList<StoreysDto> GetStoreyDtoList()
+        {
+            var storeys = _context.Storeys;
+            var storeysDto = _mapper.Map<IList<StoreysDto>>(storeys);
+            return storeysDto;
+        }
     }
 }

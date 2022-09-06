@@ -6,12 +6,12 @@ namespace Application.BuildingElementsCQR.Queries
 {
     public class GetBuildingElementsWithSpaces : IdNameDto
     {
-        public int? ContiguousSpaceId { get; set; }
+        public string StoreyName { get; set; }
+        public string SpaceName { get; set; }
+        public string EmbededInName { get; set; }
         public float EffectiveArea { get; set; }
         public float? ThermalResistance { get; set; }
-        public int EmbededIn { get; set; }
-        public string SpacesName { get; set; }
-        public string StoreysName { get; set; }
+        public string? ContiguousSpaceName { get; set; }
 
         public IList<GetBuildingElementsWithSpaces> GetBuildingElementsWithSpacesList(IApplicationDbContext context)
         {
@@ -22,19 +22,23 @@ namespace Application.BuildingElementsCQR.Queries
             var buildingElementsQueryable = from be in buildingElements
                                             join sp in spaces on be.SpacesId equals sp.Id
                                             join st in storeys on sp.StoreysId equals st.Id
+                                            join ebi in buildingElements on be.EmbededIn equals ebi.Id
+                                            join csp in spaces on be.ContiguousSpaceId equals csp.Id into cspj
+                                            from cspItem in cspj.DefaultIfEmpty()
                                             select new GetBuildingElementsWithSpaces
                                             {
                                                 Id = be.Id,
                                                 Name = be.Name,
-                                                ContiguousSpaceId = be.ContiguousSpaceId,
+                                                StoreyName = st.Name,
+                                                SpaceName = sp.Name,
+                                                EmbededInName = ebi.Name,
                                                 EffectiveArea = be.EffectiveArea,
-                                                EmbededIn = be.EmbededIn,
-                                                SpacesName = sp.Name,
-                                                StoreysName = st.Name
+                                                ThermalResistance = be.ThermalResistance,
+                                                ContiguousSpaceName = cspItem == null ? string.Empty : cspItem.Name
                                             };
 
             IList<GetBuildingElementsWithSpaces> getBuildingElementsWithSpaces = buildingElementsQueryable.ToList();
-            
+
             return getBuildingElementsWithSpaces;
         }
     }

@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Application.Common.Models
+﻿namespace Application.Common.Models
 {
     public class SpacesDto : IdNameDto
     {

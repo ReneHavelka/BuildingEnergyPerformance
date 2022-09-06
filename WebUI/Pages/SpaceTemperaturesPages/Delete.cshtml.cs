@@ -2,6 +2,7 @@ using Application.Common.Models;
 using Application.SpacesCQR.Commands;
 using Application.SpacesCQR.Queries;
 using Application.SpaceTemperaturesCQR.Commands;
+using Application.SpaceTemperaturesCQR.Queries;
 using AutoMapper;
 using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace WebUI.Pages.SpaceTemperaturesPages
 
         public void OnGet(int id)
         {
-            var spaceTemperatureList = new DeleteSpaceTemperature(_context, _mapper);
+            var spaceTemperatureList = new GetSpaceTemperature(_context, _mapper);
             SpaceTemperatureDto = spaceTemperatureList.GetSpaceTemperatureDto(id);
         }
 

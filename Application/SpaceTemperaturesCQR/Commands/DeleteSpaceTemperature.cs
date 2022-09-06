@@ -8,7 +8,6 @@ namespace Application.SpaceTemperaturesCQR.Commands
 {
     public class DeleteSpaceTemperature
     {
-        SpaceTemperaturesDto _spaceTemperatureDto;
         IApplicationDbContext _context;
         private IMapper _mapper;
 
@@ -16,14 +15,6 @@ namespace Application.SpaceTemperaturesCQR.Commands
         {
             _mapper = mapper;
             _context = context;
-        }
-
-        public SpaceTemperaturesDto GetSpaceTemperatureDto(int id)
-        {
-            var getSpaceTemperatures = new GetSpaceTemperatures(_context, _mapper);
-            var spaceTemperatureList = getSpaceTemperatures.SpaceTemperaturesDto;
-            SpaceTemperaturesDto spaceTemperatureDto = spaceTemperatureList.FirstOrDefault(x => x.Id == id);
-            return spaceTemperatureDto;
         }
 
         public async Task RemoveSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)

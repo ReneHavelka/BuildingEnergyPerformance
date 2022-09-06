@@ -1,31 +1,30 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.SpacesCQR.Queries
+namespace Application.StoreysCQR.Queries
 {
-	public class GetSpaces
-	{
+    public class GetStorey
+    {
         IApplicationDbContext _context;
         IMapper _mapper;
 
-        public GetSpaces(IApplicationDbContext context, IMapper mapper)
+        public GetStorey(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public IList<SpacesDto> GetSpaceDtoList()
+        public StoreysDto GetStoreyDto(int id)
         {
-            var spaces = _context.Spaces;
-            var spacesDto = _mapper.Map<IList<SpacesDto>>(spaces);
-            return spacesDto;
+            var storey = _context.Storeys.Find(id);
+            var storeyDto = _mapper.Map<StoreysDto>(storey);
+            return storeyDto;
         }
     }
 }

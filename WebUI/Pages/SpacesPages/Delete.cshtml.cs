@@ -10,7 +10,7 @@ namespace WebUI.Pages.SpacesPages
 {
     public class DeleteModel : PageModel
     {
-        public GetSpacesWithStoreys SpaceyWithStorey { get; set; }
+        public GetSpacesWithStoreys SpaceWithStorey { get; set; }
 
         ApplicationDbContext _context;
         IMapper _mapper;
@@ -25,9 +25,9 @@ namespace WebUI.Pages.SpacesPages
         }
         public void OnGet(int id)
         {
-            var getSpaces = new DeleteSpace(_context, _mapper);
-            SpaceyWithStorey = getSpaces.GetSpace(id);
-            Id = id;
+            var getSpaces = new GetSpaceWithStorey(_context, id);
+            SpaceWithStorey = getSpaces.GetSpaceWithStoreyDto();
+            Id = SpaceWithStorey.Id;
         }
 
         public async Task<IActionResult> OnPost()

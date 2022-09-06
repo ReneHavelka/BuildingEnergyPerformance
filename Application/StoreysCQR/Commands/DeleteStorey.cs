@@ -17,14 +17,6 @@ namespace Application.StoreysCQR.Commands
             _mapper = mapper;
         }
 
-        public StoreysDto GetStorey(int id)
-        {
-            var getStoreys = new GetStoreys(_context, _mapper);
-            var storeyList = getStoreys.StoreysDto;
-            StoreysDto storeyDto = storeyList.FirstOrDefault(x => x.Id == id);
-            return storeyDto;
-        }
-
         public async Task RemoveStorey(StoreysDto storeyDto)
         {
             int id = storeyDto.Id;

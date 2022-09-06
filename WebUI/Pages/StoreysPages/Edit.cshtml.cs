@@ -22,8 +22,8 @@ namespace WebUI.Pages.StoreysPages
         }
         public void OnGet(int id)
         {
-            var storeyDtoList = new EditStorey(_context, _mapper);
-            StoreyDto = storeyDtoList.GetStorey(id);
+            var storeyDtoList = new GetStorey(_context, _mapper);
+            StoreyDto = storeyDtoList.GetStoreyDto(id);
         }
 
         public async Task<IActionResult> OnPost(StoreysDto StoreysDto)

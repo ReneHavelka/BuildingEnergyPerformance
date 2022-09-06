@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace Application.SpacesCQR.Queries
 {
-	public class GetSpaces
-	{
+    public class GetSpace
+    {
         IApplicationDbContext _context;
         IMapper _mapper;
 
-        public GetSpaces(IApplicationDbContext context, IMapper mapper)
+        public GetSpace(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public IList<SpacesDto> GetSpaceDtoList()
+        public SpacesDto GetSpaceDto(int id)
         {
-            var spaces = _context.Spaces;
-            var spacesDto = _mapper.Map<IList<SpacesDto>>(spaces);
-            return spacesDto;
+            var space = _context.Spaces.Find(id);
+            var spaceDto = _mapper.Map<SpacesDto>(space);
+            return spaceDto;
         }
     }
 }

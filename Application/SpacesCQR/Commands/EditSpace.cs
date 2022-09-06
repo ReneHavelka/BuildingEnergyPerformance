@@ -8,7 +8,6 @@ namespace Application.SpacesCQR.Commands
 {
     public class EditSpace
     {
-        SpacesDto spaceDto;
         IApplicationDbContext _context;
         IMapper _mapper;
 
@@ -18,12 +17,6 @@ namespace Application.SpacesCQR.Commands
             _mapper = mapper;
         }
 
-        public SpacesDto GetSpace(int id)
-        {
-            var space = _context.Spaces.Find(id);
-            spaceDto = _mapper.Map<SpacesDto>(space);
-            return spaceDto;
-        }
         public async Task ModifySpace(SpacesDto spaceDto)
         {
             Spaces space = _mapper.Map<Spaces>(spaceDto);

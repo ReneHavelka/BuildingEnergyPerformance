@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Common
+namespace Application.BuildingElementsCQR.Queries
 {
-    public abstract class ThermalProperties : IdName
+    internal class GetBuildingElement
     {
-        public float Value { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace WebUI.Pages.StoreysPages
         public void OnGet()
         {
             var getStoreys = new GetStoreys(_context, _mapper);
-            StoreyList = getStoreys.StoreysDto;
+            StoreyList = getStoreys.GetStoreyDtoList();
         }
     }
 }

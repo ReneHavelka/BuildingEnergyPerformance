@@ -1,5 +1,6 @@
 using Application.Common.Models;
 using Application.SpaceTemperaturesCQR.Commands;
+using Application.SpaceTemperaturesCQR.Queries;
 using Application.StoreysCQR.Commands;
 using AutoMapper;
 using Infrastructure.Persistance;
@@ -25,7 +26,7 @@ namespace WebUI.Pages.SpaceTemperaturesPages
 
         public void OnGet(int id)
         {
-            var spaceTemperatureList = new EditSpaceTemperature(_context, _mapper);
+            var spaceTemperatureList = new GetSpaceTemperature(_context, _mapper);
             SpaceTemperatureDto = spaceTemperatureList.GetSpaceTemperatureDto(id);
         }
 
