@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace WebUI.Pages.BuildingElementsPages
 {
@@ -18,7 +19,6 @@ namespace WebUI.Pages.BuildingElementsPages
         public BuildingElementsDto BuildingElementDto { get; set; }
         public SelectList StoreySelectList { get; set; }
         [BindProperty]
-        public SelectList SpaceSelectList { get; set; }
         public SelectList EmbededInSelectList { get; set; }
         public SelectList ThermalResistanceSelectList { get; set; }
         public SelectList ContiguousSpaceSelectList { get; set; }
@@ -37,19 +37,31 @@ namespace WebUI.Pages.BuildingElementsPages
         {
             var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
             StoreySelectList = new SelectList(storeysDtoList, "Id", "Name");
-            var embededInDtoList = new GetBuildingElements(_context, _mapper).GetBuildingElementDtoList();
-            EmbededInSelectList = new SelectList(embededInDtoList, "Id", "Name");
             var thermalResistanceDtoList = new GetThermalResistances(_context, _mapper).GetThermalResistanceDtoList();
             ThermalResistanceSelectList = new SelectList(thermalResistanceDtoList, "Id", "Name");
-            ContiguousSpaceSelectList = SpaceSelectList;
+            //ContiguousSpaceSelectList = SpaceSelectList;
         }
 
-        public JsonResult OnGetTest()
+        public JsonResult OnGetCollection(string selectedCategory, int selectedValue)
         {
-            var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
-            var SpaceSelectCollection = spacesDtoList.Select(x => new { x.Id, x.Name });
+            object selectedCollection = null;
 
-            return new JsonResult(SpaceSelectCollection);
+            Debug.WriteLine(selectedCategory);
+
+            switch (selectedCategory)
+            {
+                case "spaces":
+                    var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
+                    selectedCollection = spacesDtoList.Where(x => x.StoreysId == selectedValue).Select(x => new { x.Id, x.Name });
+                    break;
+                case "mainBuildingElements":
+                    var embededInDtoList = new GetBuildingElements(_context, _mapper).GetBuildingElementDtoList();
+                    selectedCollection = embededInDtoList.Where(x => x.SpacesId == selectedValue).Select(x => new { x.Id, x.Name });
+                    break;
+            }
+
+
+            return new JsonResult(selectedCollection);
         }
     }
 }

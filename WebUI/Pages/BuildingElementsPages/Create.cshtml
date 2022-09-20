@@ -9,29 +9,29 @@
 		<div class="p-5">
 			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 m-3">Podlažie:</label>
-				<select asp-items="Model.StoreySelectList" class="fs-4 px-2" autofocus onchange="getStoreys('spaceSelect')">
+				<select id="storeys" asp-items="Model.StoreySelectList" class="fs-4 px-2" autofocus onchange="getCollection(1, this.value)">
 					<option value="">-- Podlažia --</option>
 				</select>
 			</div>
 			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 m-3">Názov&nbsp;priestoru:</label>
-				<select id="spaceSelect" asp-for="BuildingElementDto.SpacesId" disabled class="fs-4 px-2">
+				<select id="spaces" asp-for="BuildingElementDto.SpacesId" disabled class="fs-4 px-2" onchange="getCollection(2, this.value)">
 					<option value="">-- Priestory --</option>
 				</select>
 			</div>
 			<div classs="my-5" style="display:flex; flex-direction: row; width:50%">
-				<label class="fs-4 m-3">Stavebná&nbsp;konštrukcia:</label>
-				<input asp-for="BuildingElementDto.Name" disabled class="form-control fs-4 my-3" />
+				<label class="fs-4 mx-3 my-4">Stavebná&nbsp;konštrukcia:</label>
+				<input id="name" asp-for="BuildingElementDto.Name" disabled class="form-control fs-4 my-3" />
 			</div>
 			<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 m-3">Súčasťou&nbsp;stavebnej&nbsp;konštrukcie:</label>
-				<select asp-for="BuildingElementDto.EmbededIn" asp-items="Model.EmbededInSelectList" disabled class="fs-4 px-2">
-					<option value="">-- Hlavná konštrukcia --</option>
+				<select id="mainBuildingElements" asp-for="BuildingElementDto.EmbededIn" asp-items="Model.EmbededInSelectList" disabled class="fs-4 px-2">
+					<option value="">-- Stena a pod. --</option>
 				</select>
 			</div>
 			<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
-				<label class="fs-4 m-3">Účinná&nbsp;plocha:</label>
-				<input asp-for="BuildingElementDto.EffectiveArea" class="form-control fs-4 my-3" />
+				<label class="fs-4 mx-3 my-4">Účinná&nbsp;plocha:</label>
+				<input id="area" "BuildingElementDto.EffectiveArea" disabled class="form-control fs-4 my-3" />
 				<div class="fs-4 m-3">m<sup>2</sup></div>
 			</div>
 			<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
@@ -44,7 +44,7 @@
 			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 m-3">Vedľajší&nbsp;priestor:</label>
 				<select asp-for="BuildingElementDto.ContiguousSpaceId" asp-items="Model.ContiguousSpaceSelectList" disabled class="fs-4 px-2">
-					<option value="">-- Vedľajší priestor --</option>
+					<option value="">-- Vonkajší priestor --</option>
 				</select>
 			</div>
 		</div>
@@ -54,21 +54,42 @@
 
 
 <script>
-	function getStoreys(selectId) {
+	function getCollection(categoryNo, selectedValue) {
+		var categoryArray = ["storeys", "spaces", "name", "mainBuildingElements", "area", "thermalResistances", "contiguousSpaces"];
+		var selectedCategory = categoryArray[categoryNo];
 		$.ajax({
 			type: "GET",
 			dataType: "JSON",
-			url: "?handler=Test",
+			url: "?handler=Collection",
+			data: { selectedCategory: selectedCategory, selectedValue: selectedValue },
 			success: function (response) {
-				addOptions(selectId, response);
+				addOptions(response);
 			},
 			failure: function () { },
 			error: function () { }
 		});
-		function addOptions(selectId, response) {
+
+		async function addOptions(response) {
+			var firstOptions = ["", "-- Priestory --", "", "-- Stena a pod. --", "", "-- Tepelný odpor --", "-- Vonkajší priestor --"];
+			var firstOption = firstOptions[categoryNo];
+			await $("#" + selectedCategory).empty();
+			$('<option value="">' + firstOption + '</option>').appendTo("#" + selectedCategory);
 			$.each(response, function (i, v) {
-				$('<option value="' + v.id + '">' + v.name + '</option>').appendTo("#" + selectId);
+				$('<option value="' + v.id + '">' + v.name + '</option>').appendTo("#" + selectedCategory);
 			});
+		}
+
+		var selectedOption = document.getElementById(categoryArray[categoryNo - 1]).selectedIndex;
+
+		if (selectedOption != 0) { document.getElementById(selectedCategory).disabled = false; }
+		else { 
+			document.getElementById(selectedCategory).disabled = true;
+			categoryNo -= 1;
+		}
+
+		for (var i = categoryNo + 1; i < categoryArray.length; i++) {
+			var elementId = categoryArray[i];
+			document.getElementById(elementId).disabled = true;
 		}
 	}
 </script>
