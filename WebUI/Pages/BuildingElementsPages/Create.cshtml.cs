@@ -46,8 +46,6 @@ namespace WebUI.Pages.BuildingElementsPages
         {
             object selectedCollection = null;
 
-            Debug.WriteLine(selectedCategory);
-
             switch (selectedCategory)
             {
                 case "spaces":
@@ -59,7 +57,6 @@ namespace WebUI.Pages.BuildingElementsPages
                     selectedCollection = embededInDtoList.Where(x => x.SpacesId == selectedValue).Select(x => new { x.Id, x.Name });
                     break;
             }
-
 
             return new JsonResult(selectedCollection);
         }
