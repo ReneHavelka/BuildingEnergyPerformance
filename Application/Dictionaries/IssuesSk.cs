@@ -14,7 +14,7 @@ namespace Application.Dictionaries
             {"Storeys", "Podlažia" },
             {"Spaces", "Priestory" },
             {"BuildingElements", "Stavebné konštrukcie" },
-            { "BuildingElementComponents", "Prvky stavebných konštrukcií"},
+            {"BuildingElementComponents", "Prvky stavebných konštrukcií"},
             {"Layers", "Vrstvy" },
             {"SpaceTemperatures", "Teploty v priestoroch" },
             {"ThermalResistanceTable", "Tabuľka tepelných odporov" },
