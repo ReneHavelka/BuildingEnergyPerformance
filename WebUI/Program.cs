@@ -1,6 +1,8 @@
 using Application;
+using Application.Common.Interfaces;
 using Application.Common.Mappings;
 using Infrastructure;
+using Infrastructure.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
 var app = builder.Build();
 

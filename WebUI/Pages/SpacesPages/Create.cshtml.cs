@@ -1,3 +1,4 @@
+using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.SpacesCQR.Commands;
 using Application.SpaceTemperaturesCQR.Queries;
@@ -17,11 +18,11 @@ namespace WebUI.Pages.SpacesPages
         public SelectList SpaceTemperaturesSelectList { get; set; }
         public SelectList StoreysSelectList { get; set; }
 
-        ApplicationDbContext _context;
+        IApplicationDbContext _context;
         IMapper _mapper;
 
 
-        public CreateModel(ApplicationDbContext context, IMapper mapper)
+        public CreateModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
