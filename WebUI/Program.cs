@@ -11,7 +11,6 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
 var app = builder.Build();
 
