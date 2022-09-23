@@ -11,7 +11,7 @@ namespace WebUI.Pages.BuildingElementsPages
 
         public IList<GetBuildingElementsWithSpaces> BuildingElementsList { get; set; }
 
-        public IndexModel(ApplicationDbContext context)
+        public IndexModel(IApplicationDbContext context)
         {
             _context = context;
         }

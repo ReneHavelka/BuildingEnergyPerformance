@@ -14,7 +14,7 @@ namespace WebUI.Pages.StoreysPages
         private IMapper _mapper;
 
         public IEnumerable<StoreysDto> StoreyList { get; set; }
-        public IndexModel(ApplicationDbContext context, IMapper mapper)
+        public IndexModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

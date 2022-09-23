@@ -19,12 +19,12 @@ namespace WebUI.Pages.SpacesPages
         public SelectList SpaceTemperaturesSelectList { get; set; }
         public SelectList StoreysSelectList { get; set; }
 
-        ApplicationDbContext _context;
+        IApplicationDbContext _context;
         IMapper _mapper;
 
         public int _id;
 
-        public EditModel(ApplicationDbContext context, IMapper mapper)
+        public EditModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

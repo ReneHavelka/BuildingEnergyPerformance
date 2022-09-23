@@ -15,7 +15,7 @@ namespace WebUI.Pages.SpaceTemperaturesPages
         
         private IApplicationDbContext _context;
         private IMapper _mapper;
-        public IndexModel(ApplicationDbContext context, IMapper mapper)
+        public IndexModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

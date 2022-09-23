@@ -12,7 +12,7 @@ namespace WebUI.Pages.SpacesPages
         private readonly IApplicationDbContext _context;
 
         public IList<GetSpacesWithStoreys> SpaceysList { get; set; }
-        public IndexModel(ApplicationDbContext context)
+        public IndexModel(IApplicationDbContext context)
         {
             _context = context;
         }

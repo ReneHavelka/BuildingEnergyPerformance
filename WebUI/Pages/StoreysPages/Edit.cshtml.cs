@@ -1,3 +1,4 @@
+using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using Application.StoreysCQR.Queries;
@@ -12,10 +13,10 @@ namespace WebUI.Pages.StoreysPages
     {
         [BindProperty]
         public StoreysDto StoreyDto { get; set; }
-        private ApplicationDbContext _context;
+        private IApplicationDbContext _context;
         private IMapper _mapper;
 
-        public EditModel(ApplicationDbContext context, IMapper mapper)
+        public EditModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

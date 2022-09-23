@@ -15,7 +15,7 @@ namespace WebUI.Pages.StoreysPages
         private IApplicationDbContext _context;
         private IMapper _mapper;
 
-        public CreateModel(ApplicationDbContext context, IMapper mapper)
+        public CreateModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

@@ -1,3 +1,4 @@
+using Application.Common.Interfaces;
 using Application.SpacesCQR.Commands;
 using Application.SpacesCQR.Queries;
 using AutoMapper;
@@ -12,13 +13,13 @@ namespace WebUI.Pages.SpacesPages
     {
         public GetSpacesWithStoreys SpaceWithStorey { get; set; }
 
-        ApplicationDbContext _context;
+        IApplicationDbContext _context;
         IMapper _mapper;
 
         [BindProperty]
         public int Id { get; set; }
 
-        public DeleteModel(ApplicationDbContext context, IMapper mapper)
+        public DeleteModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

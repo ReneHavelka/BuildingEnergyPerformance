@@ -1,3 +1,4 @@
+using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.SpacesCQR.Commands;
 using Application.SpacesCQR.Queries;
@@ -16,10 +17,10 @@ namespace WebUI.Pages.SpaceTemperaturesPages
         [BindProperty]
         public SpaceTemperaturesDto SpaceTemperatureDto { get; set; }
 
-        ApplicationDbContext _context;
+        IApplicationDbContext _context;
         IMapper _mapper;
 
-        public DeleteModel(ApplicationDbContext context, IMapper mapper)
+        public DeleteModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
