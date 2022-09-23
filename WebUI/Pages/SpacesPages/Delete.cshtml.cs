@@ -2,10 +2,8 @@ using Application.Common.Interfaces;
 using Application.SpacesCQR.Commands;
 using Application.SpacesCQR.Queries;
 using AutoMapper;
-using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
 
 namespace WebUI.Pages.SpacesPages
 {

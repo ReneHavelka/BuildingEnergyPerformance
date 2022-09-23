@@ -5,12 +5,9 @@ using Application.SpacesCQR.Queries;
 using Application.StoreysCQR.Queries;
 using Application.ThermalResistancesCQR.Queries;
 using AutoMapper;
-using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
-using System.Xml.Linq;
 
 namespace WebUI.Pages.BuildingElementsPages
 {

@@ -4,11 +4,9 @@ using Application.SpacesCQR.Commands;
 using Application.SpaceTemperaturesCQR.Queries;
 using Application.StoreysCQR.Queries;
 using AutoMapper;
-using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 
 namespace WebUI.Pages.SpacesPages
 {

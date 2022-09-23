@@ -1,6 +1,5 @@
 using Application.BuildingElementsCQR.Queries;
 using Application.Common.Interfaces;
-using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.BuildingElementsPages

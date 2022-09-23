@@ -1,13 +1,9 @@
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.SpaceTemperaturesCQR.Commands;
-using Application.SpaceTemperaturesCQR.Queries;
-using Application.StoreysCQR.Commands;
 using AutoMapper;
-using Infrastructure.Persistance;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace WebUI.Pages.SpaceTemperaturesPages
 {
