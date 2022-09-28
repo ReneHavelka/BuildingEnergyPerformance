@@ -22,7 +22,6 @@ namespace Application.BuildingElementsCQR.Queries
             var buildingElementsQueryable = from be in buildingElements
                                             join sp in spaces on be.SpacesId equals sp.Id
                                             join st in storeys on sp.StoreysId equals st.Id
-                                            join ebi in buildingElements on be.EmbededIn equals ebi.Id
                                             join csp in spaces on be.ContiguousSpaceId equals csp.Id into cspj
                                             from cspItem in cspj.DefaultIfEmpty()
                                             select new GetBuildingElementsWithSpaces
@@ -31,9 +30,7 @@ namespace Application.BuildingElementsCQR.Queries
                                                 Name = be.Name,
                                                 StoreyName = st.Name,
                                                 SpaceName = sp.Name,
-                                                EmbededInName = ebi.Name,
                                                 EffectiveArea = be.EffectiveArea,
-                                                ThermalResistance = be.ThermalResistance,
                                                 ContiguousSpaceName = cspItem == null ? string.Empty : cspItem.Name
                                             };
 

@@ -10,8 +10,6 @@ namespace Application.Common.Models
     {
         public int? ContiguousSpaceId { get; set; }
         public float EffectiveArea { get; set; }
-        public float? ThermalResistance { get; set; }
-        public int EmbededIn { get; set; }
         public int SpacesId { get; set; }
     }
 }

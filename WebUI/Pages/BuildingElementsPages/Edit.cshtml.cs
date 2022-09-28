@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace WebUI.Pages.BuildingElementsPages
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         public BuildingElementsDto BuildingElementDto { get; set; }
         public SelectList StoreySelectList { get; set; }
@@ -25,7 +25,7 @@ namespace WebUI.Pages.BuildingElementsPages
         IMapper _mapper;
 
 
-        public CreateModel(IApplicationDbContext context, IMapper mapper)
+        public EditModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -52,16 +52,16 @@ namespace WebUI.Pages.BuildingElementsPages
             return new JsonResult(selectedCollection);
         }
 
-        public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
-        {
+        //public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
+        //{
             
-                Debug.WriteLine(BuildingElementDto.Name);
+        //        Debug.WriteLine(BuildingElementDto.Name);
             
             
-            var createBuildingElement = new CreateBuildingElement(_context, _mapper);
-            await createBuildingElement.AddBuildingElement(BuildingElementDto);
+        //    var editBuildingElement = new EditBuildingElement(_context, _mapper);
+        //    await editBuildingElement.AddBuildingElement(BuildingElementDto);
 
-            return RedirectToPage("Index");
-        }
+        //    return RedirectToPage("Index");
+        //}
     }
 }

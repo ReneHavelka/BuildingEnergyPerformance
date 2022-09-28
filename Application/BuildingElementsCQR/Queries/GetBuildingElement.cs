@@ -1,12 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.Common.Interfaces;
+using Application.Common.Models;
+using AutoMapper;
 
 namespace Application.BuildingElementsCQR.Queries
 {
-    internal class GetBuildingElement
+    public class GetBuildingElement
     {
+        IApplicationDbContext _context;
+        IMapper _mapper;
+
+        public GetBuildingElement(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+
+        public BuildingElementsDto GetBuildingElementDto(int id)
+        {
+            var buildingElement = _context.BuildingElements.Find(id);
+            var buildingElementDto = _mapper.Map<BuildingElementsDto>(buildingElement);
+            return buildingElementDto;
+        }
     }
 }

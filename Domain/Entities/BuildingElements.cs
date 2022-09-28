@@ -7,8 +7,6 @@ namespace Domain.Entities
     {
         public int? ContiguousSpaceId { get; set; }
         public float EffectiveArea { get; set; }
-        public float? ThermalResistance { get; set; }
-        public int EmbededIn {get; set; }
 
         public List<Layers> Layers { get; set; }
 

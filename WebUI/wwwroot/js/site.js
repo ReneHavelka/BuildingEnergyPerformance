@@ -3,63 +3,61 @@
 
 // Write your JavaScript code.
 
+
 function spaceTemperature(value) {
     document.getElementById('SpaceTemperature').value = value;
 }
 
 
-function getCollection(categoryNo, selectedValue) {
-    var categoryArray = ["storeys", "spaces", "name", "mainBuildingElements", "area", "thermalResistances", "contiguousSpaces"];
-    var selectedCategory = categoryArray[categoryNo];
-    var selectedOption = document.getElementById(categoryArray[categoryNo - 1]).selectedIndex;
+$("select").change(function () {
+    var selectorDependencies = ["layers", "spaces", "storeys"];
+    var firstOptions = ["-- Vrstvy --", "-- Priestory --", "-- Poschodia --"];
 
-    if (selectedCategory == "name") {
+    var selectedValue = $('option:selected', this).val();
+    var elementId = $(this).attr("id");
+    var nextElementIdx = selectorDependencies.indexOf(elementId) - 1;
+    var selectedCategory = selectorDependencies[nextElementIdx];
+
+    if (selectedValue != "") {
+
+        $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            url: "?handler=Collection",
+            data: { selectedCategory: selectedCategory, selectedValue: selectedValue },
+            success: function (response) {
+                addOptions(response);
+            },
+            failure: function () { },
+            error: function () { }
+        });
         document.getElementById(selectedCategory).disabled = false;
-        categoryNo++;
-        selectedCategory = categoryArray[categoryNo];
+    }
+    else {
+        addOptions(null);
+        document.getElementById(selectedCategory).disabled = true;
     }
 
-    $.ajax({
-        type: "GET",
-        dataType: "JSON",
-        url: "?handler=Collection",
-        data: { selectedCategory: selectedCategory, selectedValue: selectedValue },
-        success: function (response) {
-            addOptions(response);
-        },
-        failure: function () { },
-        error: function () { }
-    });
-
-    var firstOptions = ["", "-- Priestory --", "", "-- Stena a pod. --", "", "-- Tepelný odpor --", "-- Vonkajší priestor --"];
-
     async function addOptions(response) {
-        var firstOption = firstOptions[categoryNo];
+        var firstOption = firstOptions[nextElementIdx];
         await $("#" + selectedCategory).empty();
         await $('<option value="">' + firstOption + '</option>').appendTo("#" + selectedCategory);
         $.each(response, function (i, v) {
             $('<option value="' + v.id + '">' + v.name + '</option>').appendTo("#" + selectedCategory);
         });
+    }
 
-        if (selectedOption != 0) { document.getElementById(selectedCategory).disabled = false; }
-        else {
-            document.getElementById(selectedCategory).disabled = true;
-            categoryNo--;
-            if (selectedCategory == "mainBuildingElements") { categoryNo--; }
-        }
+});
 
-        for (var i = categoryNo + 1; i < categoryArray.length; i++) {
-            var elementId = categoryArray[i];
-            var firstOption = firstOptions[i];
-            var tag_Name = $("#" + elementId)[0].tagName;
-            if (tag_Name == "INPUT") {
-                $("#" + elementId).val("");
-            }
-            else {
-                await $("#" + elementId).empty();
-                $('<option value="">' + firstOption + '</option>').appendTo("#" + elementId);
-            }
-            document.getElementById(elementId).disabled = true;
-        }
+
+function realNumberValidation(el) {
+    if (typeof el.oldValue == 'undefined') {
+        el.oldValue = null;
+    }
+    if (!isNaN(el.value)) {
+        el.oldValue = el.value;
+    }
+    else {
+        el.value = el.oldValue;
     }
 }
