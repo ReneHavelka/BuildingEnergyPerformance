@@ -11,10 +11,9 @@ namespace Application.StoreysCQR.Commands
         IApplicationDbContext _context;
         IMapper _mapper;
 
-        public DeleteStorey(IApplicationDbContext context, IMapper mapper)
+        public DeleteStorey(IApplicationDbContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task RemoveStorey(StoreysDto storeyDto)

@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
 
 namespace WebUI.Pages.SpacesPages
 {
@@ -21,7 +22,6 @@ namespace WebUI.Pages.SpacesPages
         IApplicationDbContext _context;
         IMapper _mapper;
 
-        public int _id;
 
         public EditModel(IApplicationDbContext context, IMapper mapper)
         {
@@ -38,7 +38,7 @@ namespace WebUI.Pages.SpacesPages
             SpaceDto = getSpace.GetSpaceDto(id);
 
             var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
-            StoreysSelectList = new SelectList(storeysDtoList, "Id", "Name", SpaceDto.StoreysId);
+            StoreysSelectList = new SelectList(storeysDtoList, "Id", "Name");
         }
 
         public async Task<IActionResult> OnPost()

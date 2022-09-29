@@ -17,8 +17,10 @@ namespace WebUI.Pages.BuildingElementsPages
 {
     public class EditModel : PageModel
     {
+        [BindProperty]
         public BuildingElementsDto BuildingElementDto { get; set; }
         public SelectList StoreySelectList { get; set; }
+        public SelectList SpaceSelectList { get; set; }
         public SelectList ContiguousSpaceSelectList { get; set; }
 
         IApplicationDbContext _context;
@@ -31,10 +33,14 @@ namespace WebUI.Pages.BuildingElementsPages
             _mapper = mapper;
         }
 
-        public void OnGet()
+        public void OnGet(int id)
         {
+            var buildingElement = new GetBuildingElement(_context, _mapper);
+            BuildingElementDto = buildingElement.GetBuildingElementDto(id);
             var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
-            StoreySelectList = new SelectList(storeysDtoList, "Id", "Name");
+            StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", buildingElement.StoreyId);
+            var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
+            SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);
         }
 
         public JsonResult OnGetCollection(string selectedCategory, int selectedValue)
@@ -52,16 +58,14 @@ namespace WebUI.Pages.BuildingElementsPages
             return new JsonResult(selectedCollection);
         }
 
-        //public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
-        //{
-            
-        //        Debug.WriteLine(BuildingElementDto.Name);
-            
-            
-        //    var editBuildingElement = new EditBuildingElement(_context, _mapper);
-        //    await editBuildingElement.AddBuildingElement(BuildingElementDto);
+        public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
+        {
 
-        //    return RedirectToPage("Index");
-        //}
+
+            var editBuildingElement = new EditBuildingElement(_context, _mapper);
+            await editBuildingElement.ModifyBuildingElement(BuildingElementDto);
+
+            return RedirectToPage("Index");
+        }
     }
 }

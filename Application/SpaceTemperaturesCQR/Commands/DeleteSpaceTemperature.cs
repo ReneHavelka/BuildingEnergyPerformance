@@ -9,17 +9,16 @@ namespace Application.SpaceTemperaturesCQR.Commands
     public class DeleteSpaceTemperature
     {
         IApplicationDbContext _context;
-        private IMapper _mapper;
 
-        public DeleteSpaceTemperature(IApplicationDbContext context, IMapper mapper)
+        public DeleteSpaceTemperature(IApplicationDbContext context)
         {
-            _mapper = mapper;
             _context = context;
         }
 
         public async Task RemoveSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
         {
-            SpaceTemperatures spaceTemperature = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
+            int id = spaceTemperatureDto.Id;
+            var spaceTemperature = _context.SpaceTemperatures.Find(id);
             _context.SpaceTemperatures.Remove(spaceTemperature);
             await _context.SaveChangesAsync();
         }

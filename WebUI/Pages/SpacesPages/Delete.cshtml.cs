@@ -9,13 +9,11 @@ namespace WebUI.Pages.SpacesPages
 {
     public class DeleteModel : PageModel
     {
+        [BindProperty]
         public GetSpacesWithStoreys SpaceWithStorey { get; set; }
 
         IApplicationDbContext _context;
         IMapper _mapper;
-
-        [BindProperty]
-        public int Id { get; set; }
 
         public DeleteModel(IApplicationDbContext context, IMapper mapper)
         {
@@ -26,13 +24,12 @@ namespace WebUI.Pages.SpacesPages
         {
             var getSpaces = new GetSpaceWithStorey(_context, id);
             SpaceWithStorey = getSpaces.GetSpaceWithStoreyDto();
-            Id = SpaceWithStorey.Id;
         }
 
         public async Task<IActionResult> OnPost()
         {
-            var deleteSpace = new DeleteSpace(_context, _mapper);
-            await deleteSpace.RemoveSpace(Id);
+            var deleteSpace = new DeleteSpace(_context);
+            await deleteSpace.RemoveSpace(SpaceWithStorey);
 
             return RedirectToPage("Index");
         }

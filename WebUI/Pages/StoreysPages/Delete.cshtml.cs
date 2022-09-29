@@ -15,8 +15,6 @@ namespace WebUI.Pages.StoreysPages
         private IApplicationDbContext _context;
         private IMapper _mapper;
 
-        public int _id;
-
         public DeleteModel(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
@@ -29,9 +27,9 @@ namespace WebUI.Pages.StoreysPages
             StoreyDto = storeyDtoList.GetStoreyDto(id);
         }
 
-        public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
+        public async Task<IActionResult> OnPost()
         {
-            var deleteStoreys = new DeleteStorey(_context, _mapper);
+            var deleteStoreys = new DeleteStorey(_context);
             await deleteStoreys.RemoveStorey(StoreyDto);
 
             return RedirectToPage("Index");

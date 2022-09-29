@@ -30,7 +30,7 @@ namespace WebUI.Pages.SpaceTemperaturesPages
 
         public async Task<IActionResult> OnPost()
         {
-            var deleteSpaceTemperature = new DeleteSpaceTemperature(_context, _mapper);
+            var deleteSpaceTemperature = new DeleteSpaceTemperature(_context);
             await deleteSpaceTemperature.RemoveSpaceTemperature(SpaceTemperatureDto);
 
             return RedirectToPage("Index");

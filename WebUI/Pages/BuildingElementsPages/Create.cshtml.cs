@@ -17,6 +17,7 @@ namespace WebUI.Pages.BuildingElementsPages
 {
     public class CreateModel : PageModel
     {
+        [BindProperty]
         public BuildingElementsDto BuildingElementDto { get; set; }
         public SelectList StoreySelectList { get; set; }
         public SelectList ContiguousSpaceSelectList { get; set; }
@@ -54,10 +55,6 @@ namespace WebUI.Pages.BuildingElementsPages
 
         public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
         {
-            
-                Debug.WriteLine(BuildingElementDto.Name);
-            
-            
             var createBuildingElement = new CreateBuildingElement(_context, _mapper);
             await createBuildingElement.AddBuildingElement(BuildingElementDto);
 

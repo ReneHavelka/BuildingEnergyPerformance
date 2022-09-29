@@ -1,25 +1,20 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Models;
 using Application.SpacesCQR.Queries;
-using AutoMapper;
-using Domain.Entities;
 
 namespace Application.SpacesCQR.Commands
 {
     public class DeleteSpace
     {
         IApplicationDbContext _context;
-        IMapper _mapper;
 
-        public DeleteSpace(IApplicationDbContext context, IMapper mapper)
+        public DeleteSpace(IApplicationDbContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
-        public async Task RemoveSpace(int id)
+        public async Task RemoveSpace(GetSpacesWithStoreys spaceWithStorey)
         {
-            var space = _context.Spaces.Find(id);
+            var space = _context.Spaces.Find(spaceWithStorey.Id);
             _context.Spaces.Remove(space);
             await _context.SaveChangesAsync();
         }

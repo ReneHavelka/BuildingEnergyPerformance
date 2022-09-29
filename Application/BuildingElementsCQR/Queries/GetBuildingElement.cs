@@ -8,6 +8,7 @@ namespace Application.BuildingElementsCQR.Queries
     {
         IApplicationDbContext _context;
         IMapper _mapper;
+        public int StoreyId { get; set; }
 
         public GetBuildingElement(IApplicationDbContext context, IMapper mapper)
         {
@@ -19,6 +20,8 @@ namespace Application.BuildingElementsCQR.Queries
         {
             var buildingElement = _context.BuildingElements.Find(id);
             var buildingElementDto = _mapper.Map<BuildingElementsDto>(buildingElement);
+            var space = _context.Spaces.Find(buildingElementDto.SpacesId);
+            StoreyId = space.StoreysId;
             return buildingElementDto;
         }
     }

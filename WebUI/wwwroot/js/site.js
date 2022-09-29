@@ -61,3 +61,21 @@ function realNumberValidation(el) {
         el.value = el.oldValue;
     }
 }
+
+$("select")
+    .attr("required", true)
+    .on('invalid', function () {
+        return this.setCustomValidity('Výber je povinný.');
+    })
+    .on('input', function () {
+        return this.setCustomValidity('');
+    });
+
+
+$("input")
+    .attr("required", true)
+    .on('invalid', function () {
+        return this.setCustomValidity('Toto pole je povinné.');
+    }).on('input', function () {
+        return this.setCustomValidity('');
+    });
