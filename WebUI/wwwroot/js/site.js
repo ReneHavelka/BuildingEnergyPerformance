@@ -4,8 +4,9 @@
 // Write your JavaScript code.
 
 
-function spaceTemperature(value) {
-    document.getElementById('SpaceTemperature').value = value;
+function fSpaceTemperature(value) {
+    document.getElementById('spaceTemperature').value = value;
+    document.getElementById('spaceTemperature').text = value;
 }
 
 
@@ -79,3 +80,5 @@ $("input")
     }).on('input', function () {
         return this.setCustomValidity('');
     });
+
+$("#spaceTemperatures").attr("required", false);

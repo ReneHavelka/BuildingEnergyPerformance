@@ -1,7 +1,5 @@
 ﻿using Application.Common.Mappings;
-using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Application
 {

@@ -1,0 +1,35 @@
+﻿@page
+@model WebUI.Pages.BuildingElementsPages.DeleteModel
+
+<div class="bg-light">
+	<form method="post">
+		<input hidden asp-for="BuildingElementWithSpace.Id" />
+		<div class="row fs-1 mx-5 py-5">
+			Stavebná konštrukcia
+		</div>
+		<div class="p-5">
+			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
+				<div class="fs-4 m-3">Podlažie:</div>
+				<div class="form-control fs-4 py-3">@Model.BuildingElementWithSpace.StoreyName</div>
+			</div>
+		</div>
+		<div class="my-3" style="display:flex; flex-direction: row; width:50%">
+			<div class="fs-4 m-3">Názov&nbsp;priestoru:</div>
+			<div class="form-control fs-4 py-3">@Model.BuildingElementWithSpace.SpaceName</div>
+		</div>
+		<div classs="my-5" style="display:flex; flex-direction: row; width:50%">
+			<div class="fs-4 mx-3 my-4">Stavebná&nbsp;konštrukcia:</div>
+			<div class="form-control fs-4 py-3">@Model.BuildingElementWithSpace.Name</div>
+		</div>
+		<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
+			<div class="fs-4 mx-3 my-4">Účinná&nbsp;plocha:</div>
+			<div class="form-control fs-4 py-3">@Model.BuildingElementWithSpace.EffectiveArea</div>
+			<div class="fs-4 m-3">m<sup>2</sup></div>
+		</div>
+		<div class="my-3" style="display:flex; flex-direction: row; width:50%">
+			<div class="fs-4 m-3">Vedľajší&nbsp;priestor:</div>
+			<div class="form-control fs-4 py-3">@Model.BuildingElementWithSpace.ContiguousSpaceName</div>
+		</div>
+		<button id="confirm" type="submit" class="btn btn-secondary float-sm-start m-3">Potvrď</button>
+	</form>
+</div>

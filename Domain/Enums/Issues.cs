@@ -5,7 +5,6 @@
         Storeys,
         Spaces,
         BuildingElements,
-        BuildingElementComponents,
         Layers,
         SpaceTemperatures,
         ThermalResistanceTable,

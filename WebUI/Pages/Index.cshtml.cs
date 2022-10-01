@@ -1,5 +1,4 @@
-﻿using Application;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
 using Application.MainIndex;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
