@@ -8,9 +8,7 @@ namespace Application.BuildingElementsCQR.Queries
     {
         public string StoreyName { get; set; }
         public string SpaceName { get; set; }
-        public string EmbededInName { get; set; }
         public float EffectiveArea { get; set; }
-        public float? ThermalResistance { get; set; }
         public string? ContiguousSpaceName { get; set; }
 
         public IList<GetBuildingElementsWithSpaces> GetBuildingElementsWithSpacesList(IApplicationDbContext context)

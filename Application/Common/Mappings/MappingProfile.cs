@@ -11,7 +11,8 @@ namespace Application.Common.Mappings
             CreateMap<Storeys, StoreysDto>().ReverseMap();
             CreateMap<Spaces, SpacesDto>().ReverseMap();
             CreateMap<BuildingElements, BuildingElementsDto>().ReverseMap();
-            CreateMap<SpaceTemperatures, SpaceTemperaturesDto>().ReverseMap();
+			CreateMap<Layers, LayersDto>().ReverseMap();
+			CreateMap<SpaceTemperatures, SpaceTemperaturesDto>().ReverseMap();
             CreateMap<BuildingElements, BuildingElementsDto>().ReverseMap();
             CreateMap<ThermalResistancesDto, ThermalResistanceTable>().ReverseMap();
         }

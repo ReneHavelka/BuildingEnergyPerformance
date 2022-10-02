@@ -15,4 +15,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="LayersCQR\Commands\" />
+    <Folder Include="LayersCQR\Queries\" />
+  </ItemGroup>
+
 </Project>

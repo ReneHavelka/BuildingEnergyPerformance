@@ -1,0 +1,66 @@
+﻿@page
+@model WebUI.Pages.LayersPages.IndexModel
+
+<div class="conainer py-3 bg-light border" style="position:absolute; left:300px;">
+	<div class="row py-0">
+		<div class="col-6 px-3">
+			<div class="display-4 mb-5">
+				Vrstvy stavebnej konštrukcie
+			</div>
+		</div>
+		<div class="col-6">
+			<a asp-page="Create" class="btn btn-secondary">
+				Ďalšia vrstva
+			</a>
+		</div>
+	</div>
+
+	<table align:"left" class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th class="fs-4 text-decoration-none px-6">Podlažie</th>
+				<th class="fs-4 text-decoration-none px-6">Priestor</th>
+				<th class="fs-4 text-decoration-none px-6">Stav. konštrukcia</th>
+				<th class="fs-4 text-decoration-none px-6">Teplota</th>
+				<th class="fs-4 text-decoration-none px-6">Účinná plocha</th>
+				<th class="fs-4 text-decoration-none px-6">Vedľ. priestor</th>
+				<th class="fs-4 text-decoration-none px-6">Názov vrstvy</th>
+				<th class="fs-4 text-decoration-none px-6">Hrúbka</th>
+				<th class="fs-4 text-decoration-none px-6">Tep. vodivosť</th>
+				<th class="fs-4 text-decoration-none px-6">Tep. odpor</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var layer in Model.LayersList)
+			{
+				<tr>
+					<td class="fs-4 text-black text-decoration-none px-2">@layer.StoreyName</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@layer.SpaceName</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@layer.BuildingElementName</td>
+						<td class="fs-4 text-black text-decoration-none px-2">@layer.Temperature °C</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@layer.EffectiveArea m2</td>
+					<td class="fs-4 text-black text-decoration-none px-2">-- Vonkajší priestor --</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@layer.Name</td>
+					@{
+						if (@layer.ThermalConductivity != null)
+						{
+							<td class="fs-4 text-black text-decoration-none px-2">@layer.Thickness m</td>
+							<td class="fs-4 text-black text-decoration-none px-2">@layer.ThermalConductivity W/mK</td>
+							<td></td>
+						}
+						else
+						{
+							<td></td>
+							<td></td>
+							<td class="fs-4 text-black text-decoration-none px-2">@layer.ThermalResistance m<sup>2</sup>K/W</td>
+						}
+					}
+					<td class="fs-5 text-decoration-none px-2">
+						<a asp-page="Edit" asp-route-id="@layer.Id" class="btn text-black bg-light border-dark mx-2">Uprav</a>
+						<a asp-page="Delete" asp-route-id="@layer.Id" class="btn text-black bg-light border-dark mx-2">Vymaž</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
