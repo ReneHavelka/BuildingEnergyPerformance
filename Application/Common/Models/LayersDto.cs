@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Common.Models
 {
-    internal class LayersDto : IdNameDto
+    public class LayersDto : IdNameDto
     {
         public float? Thickness { get; set; }
         public float? ThermalConductivity { get; set; }

@@ -8,7 +8,8 @@ namespace Application.BuildingElementsCQR.Queries
     {
         public string StoreyName { get; set; }
         public string SpaceName { get; set; }
-        public float EffectiveArea { get; set; }
+		public float Temperature { get; set; }
+		public float EffectiveArea { get; set; }
         public string? ContiguousSpaceName { get; set; }
 
         public IList<GetBuildingElementsWithSpaces> GetBuildingElementsWithSpacesList(IApplicationDbContext context)
@@ -28,8 +29,9 @@ namespace Application.BuildingElementsCQR.Queries
                                                 Name = be.Name,
                                                 StoreyName = st.Name,
                                                 SpaceName = sp.Name,
+                                                Temperature = sp.Temperature,
                                                 EffectiveArea = be.EffectiveArea,
-                                                ContiguousSpaceName = cspItem == null ? string.Empty : cspItem.Name
+                                                ContiguousSpaceName = cspItem == null ? "Vonkajší priestor" : cspItem.Name
                                             };
 
             IList<GetBuildingElementsWithSpaces> getBuildingElementsWithSpaces = buildingElementsQueryable.ToList();

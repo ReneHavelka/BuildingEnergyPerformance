@@ -1,5 +1,6 @@
 using Application.BuildingElementsCQR.Commands;
 using Application.BuildingElementsCQR.Queries;
+using Application.Common.HandlerServices;
 using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.SpacesCQR.Commands;
@@ -21,7 +22,8 @@ namespace WebUI.Pages.BuildingElementsPages
         public BuildingElementsDto BuildingElementDto { get; set; }
         public SelectList StoreySelectList { get; set; }
         public SelectList SpaceSelectList { get; set; }
-        public SelectList ContiguousSpaceSelectList { get; set; }
+       
+        public float temperature;
 
         IApplicationDbContext _context;
         IMapper _mapper;
@@ -41,24 +43,26 @@ namespace WebUI.Pages.BuildingElementsPages
             StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", buildingElement.StoreyId);
             var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
             SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);
+            temperature = spacesDtoList.FirstOrDefault(x => x.Id == BuildingElementDto.SpacesId).Temperature;
         }
 
-        public JsonResult OnGetCollection(string selectedCategory, int selectedValue)
+        public JsonResult OnGetCollection(string nextCategory, int selectedValue)
         {
-            object selectedCollection = null;
+			var selectCollection = new SelectCollection(_context, _mapper);
+			var selectedCollection = selectCollection.GetCollection(nextCategory, selectedValue);
 
-            switch (selectedCategory)
-            {
-                case "spaces":
-                    var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
-                    selectedCollection = spacesDtoList.Where(x => x.StoreysId == selectedValue).Select(x => new { x.Id, x.Name });
-                    break;
-            }
-
-            return new JsonResult(selectedCollection);
+			return new JsonResult(selectedCollection);
         }
 
-        public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
+		public JsonResult OnGetTemperature(int spaceValue)
+		{
+			var selectSpaceTemperature = new SelectSpaceTemperature(_context, _mapper);
+			var temperature = selectSpaceTemperature.GetSpaceTemperature(spaceValue);
+
+			return new JsonResult(temperature);
+		}
+
+		public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
         {
 
 

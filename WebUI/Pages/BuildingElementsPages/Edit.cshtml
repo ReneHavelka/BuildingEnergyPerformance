@@ -16,9 +16,13 @@
 			</div>
 			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 m-3">Názov&nbsp;priestoru:</label>
-				<select id="spaces" asp-for="BuildingElementDto.SpacesId" asp-items="Model.SpaceSelectList" class="fs-4 px-2" onchange="getCollection(2, this.value)">
+				<select id="spaces" asp-for="BuildingElementDto.SpacesId" asp-items="Model.SpaceSelectList" class="fs-4 px-2">
 					<option value="">-- Priestory --</option>
 				</select>
+			</div>
+			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
+				<label class="fs-4 m-3">Teplota:</label>
+				<p id="temperature" class="fs-4 text-right w-auto px-2 my-3">@Model.temperature °C</p>
 			</div>
 			<div classs="my-5" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 mx-3 my-4">Stavebná&nbsp;konštrukcia:</label>
@@ -26,7 +30,7 @@
 			</div>
 			<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 mx-3 my-4">Účinná&nbsp;plocha:</label>
-				<input id="area" asp-for="BuildingElementDto.EffectiveArea" class="form-control fs-4 my-3" oninput="realNumberValidation(this)" />
+				<input id="area" asp-for="BuildingElementDto.EffectiveArea" class="form-control fs-4 text-right w-auto my-3" oninput="realNumberValidation(this)" />
 				<div class="fs-4 m-3">m<sup>2</sup></div>
 			</div>
 			<div class="my-3" style="display:flex; flex-direction: row; width:50%">

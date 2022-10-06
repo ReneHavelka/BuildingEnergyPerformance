@@ -15,9 +15,13 @@
 			</div>
 			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 m-3">Názov&nbsp;priestoru:</label>
-				<select id="spaces" asp-for="BuildingElementDto.SpacesId" disabled class="fs-4 px-2" onchange="getCollection(2, this.value)">
+				<select id="spaces" asp-for="BuildingElementDto.SpacesId" disabled class="fs-4 px-2">
 					<option value="">-- Priestory --</option>
 				</select>
+			</div>
+			<div class="my-3" style="display:flex; flex-direction: row; width:50%">
+				<label class="fs-4 m-3">Teplota:</label>
+				<p id="temperature" class="fs-4 px-2 my-3" />
 			</div>
 			<div classs="my-5" style="display:flex; flex-direction: row; width:50%">
 				<label class="fs-4 mx-3 my-4">Stavebná&nbsp;konštrukcia:</label>

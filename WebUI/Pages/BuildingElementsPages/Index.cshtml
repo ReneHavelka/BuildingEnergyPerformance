@@ -20,6 +20,7 @@
 			<tr>
 				<th class="fs-4 text-decoration-none px-6">Podlažie</th>
 				<th class="fs-4 text-decoration-none px-6">Priestor</th>
+				<th class="fs-4 text-decoration-none px-6">Teplota</th>
 				<th class="fs-4 text-decoration-none px-6">Stavebná konštrukcia</th>
 				<th class="fs-4 text-decoration-none px-6">Účinná plocha</th>
 				<th class="fs-4 text-decoration-none px-6">Vedľajší priestor</th>
@@ -31,9 +32,10 @@
 				<tr>
 					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.StoreyName</td>
 					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.SpaceName</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.Temperature °C</td>
 					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.Name</td>
-					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.EffectiveArea m2</td>
-					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.ContiguousSpaceName m2K/W</td>
+					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.EffectiveArea m<sup>2</sup></td>
+					<td class="fs-4 text-black text-decoration-none px-2">@buildingElement.ContiguousSpaceName</td>
 					<td class="fs-5 text-decoration-none px-2">
 						<a asp-page="Edit" asp-route-id="@buildingElement.Id" class="btn text-black bg-light border-dark mx-2">Uprav</a>
 						<a asp-page="Delete" asp-route-id="@buildingElement.Id" class="btn text-black bg-light border-dark mx-2">Vymaž</a>
