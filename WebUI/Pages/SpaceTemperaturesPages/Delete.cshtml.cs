@@ -22,10 +22,17 @@ namespace WebUI.Pages.SpaceTemperaturesPages
 			_mapper = mapper;
 		}
 
-		public void OnGet(int id)
+		public IActionResult OnGet(int id)
 		{
 			var spaceTemperatureList = new GetSpaceTemperature(_context, _mapper);
 			SpaceTemperatureDto = spaceTemperatureList.GetSpaceTemperatureDto(id);
+
+			if (SpaceTemperatureDto == null)
+			{
+				return RedirectToPage("Index");
+			}
+
+			return Page();
 		}
 
 		public async Task<IActionResult> OnPost()
