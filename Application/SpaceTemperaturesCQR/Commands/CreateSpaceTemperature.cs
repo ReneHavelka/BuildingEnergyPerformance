@@ -5,22 +5,22 @@ using Domain.Entities;
 
 namespace Application.SpaceTemperaturesCQR.Commands
 {
-    public class CreateSpaceTemperature
+	public class CreateSpaceTemperature
 
-    {
-        IApplicationDbContext _context;
-        private IMapper _mapper;
-        public CreateSpaceTemperature(IApplicationDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
+	{
+		IApplicationDbContext _context;
+		private IMapper _mapper;
+		public CreateSpaceTemperature(IApplicationDbContext context, IMapper mapper)
+		{
+			_context = context;
+			_mapper = mapper;
+		}
 
-        public async Task AddSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
-        {
-            SpaceTemperatures spaceTemperatures = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
-            await _context.SpaceTemperatures.AddAsync(spaceTemperatures);
-            await _context.SaveChangesAsync();
-        }
-    }
+		public async Task AddSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
+		{
+			SpaceTemperatures spaceTemperatures = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
+			await _context.SpaceTemperatures.AddAsync(spaceTemperatures);
+			await _context.SaveChangesAsync();
+		}
+	}
 }

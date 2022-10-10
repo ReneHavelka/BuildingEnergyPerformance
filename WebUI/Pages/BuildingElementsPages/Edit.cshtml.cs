@@ -3,56 +3,52 @@ using Application.BuildingElementsCQR.Queries;
 using Application.Common.HandlerServices;
 using Application.Common.Interfaces;
 using Application.Common.Models;
-using Application.SpacesCQR.Commands;
 using Application.SpacesCQR.Queries;
 using Application.StoreysCQR.Queries;
-using Application.ThermalResistancesCQR.Queries;
 using AutoMapper;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 
 namespace WebUI.Pages.BuildingElementsPages
 {
-    public class EditModel : PageModel
-    {
-        [BindProperty]
-        public BuildingElementsDto BuildingElementDto { get; set; }
-        public SelectList StoreySelectList { get; set; }
-        public SelectList SpaceSelectList { get; set; }
-       
-        public float temperature;
+	public class EditModel : PageModel
+	{
+		[BindProperty]
+		public BuildingElementsDto BuildingElementDto { get; set; }
+		public SelectList StoreySelectList { get; set; }
+		public SelectList SpaceSelectList { get; set; }
 
-        IApplicationDbContext _context;
-        IMapper _mapper;
+		public float temperature;
+
+		IApplicationDbContext _context;
+		IMapper _mapper;
 
 
-        public EditModel(IApplicationDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
+		public EditModel(IApplicationDbContext context, IMapper mapper)
+		{
+			_context = context;
+			_mapper = mapper;
+		}
 
-        public void OnGet(int id)
-        {
-            var buildingElement = new GetBuildingElement(_context, _mapper);
-            BuildingElementDto = buildingElement.GetBuildingElementDto(id);
-            var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
-            StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", buildingElement.StoreyId);
-            var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
-            SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);
-            temperature = spacesDtoList.FirstOrDefault(x => x.Id == BuildingElementDto.SpacesId).Temperature;
-        }
+		public void OnGet(int id)
+		{
+			var buildingElement = new GetBuildingElement(_context, _mapper);
+			BuildingElementDto = buildingElement.GetBuildingElementDto(id);
+			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
+			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", buildingElement.StoreyId);
+			var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
+			SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);
+			temperature = spacesDtoList.FirstOrDefault(x => x.Id == BuildingElementDto.SpacesId).Temperature;
+		}
 
-        public JsonResult OnGetCollection(string nextCategory, int selectedValue)
-        {
+		public JsonResult OnGetCollection(string nextCategory, int selectedValue)
+		{
 			var selectCollection = new SelectCollection(_context, _mapper);
 			var selectedCollection = selectCollection.GetCollection(nextCategory, selectedValue);
 
 			return new JsonResult(selectedCollection);
-        }
+		}
 
 		public JsonResult OnGetTemperature(int spaceValue)
 		{
@@ -63,13 +59,13 @@ namespace WebUI.Pages.BuildingElementsPages
 		}
 
 		public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
-        {
+		{
 
 
-            var editBuildingElement = new EditBuildingElement(_context, _mapper);
-            await editBuildingElement.ModifyBuildingElement(BuildingElementDto);
+			var editBuildingElement = new EditBuildingElement(_context, _mapper);
+			await editBuildingElement.ModifyBuildingElement(BuildingElementDto);
 
-            return RedirectToPage("Index");
-        }
-    }
+			return RedirectToPage("Index");
+		}
+	}
 }

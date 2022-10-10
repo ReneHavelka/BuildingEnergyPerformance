@@ -2,14 +2,14 @@
 
 namespace Domain.Entities
 {
-    public class Layers : IdName
-    {
-        
-        public float? Thickness { get; set; }
-        public float? ThermalConductivity { get; set; }
-        public float? ThermalResistance { get; set; }
+	public class Layers : IdName
+	{
 
-        public int BuildingElementsId { get; set; }
-        public BuildingElements BuildingElements { get; set; }
-    }
+		public float? Thickness { get; set; }
+		public float? ThermalConductivity { get; set; }
+		public float? ThermalResistance { get; set; }
+
+		public int BuildingElementsId { get; set; }
+		public BuildingElements BuildingElements { get; set; }
+	}
 }

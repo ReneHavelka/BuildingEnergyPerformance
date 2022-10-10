@@ -4,11 +4,16 @@
 // Write your JavaScript code.
 
 
-function fSpaceTemperature(value) {
-    $("#spaceTemperature").val(value);
-    //document.getElementById('spaceTemperature').value = value;
-    //document.getElementById('spaceTemperature').text = value;
-}
+$("#spaceTemperatures")
+    .on('change', function () {
+        $("#spaceTemperature").val(this.value);
+    })
+    .on('click', function () {
+        $("#spaceTemperature").val(this.value);
+    })
+    .on('mouseout', function () {
+        $("#spaceTemperature").focus();
+    });
 
 
 function addOptions(response, firstOption, nextCategory) {
@@ -60,6 +65,7 @@ function getSpaceTemperature(listCategoryId, spaceValue) {
         if ($("#spaces").length > 0 && spaceValue == "") { $("#temperature").html(""); }
     }
 }
+
 
 function getBuildingElementArea(listCategoryId, buildingElementValue) {
     if ($("#buildingElementArea").length > 0) {
@@ -119,7 +125,10 @@ function realNumberValidation(el) {
 
 
 $("select")
-    .attr("required", true)
+    .attr("required", function () {
+        if (this.id == "spaceTemperatures") { return false }
+        else { return true }
+    })
     .on('invalid', function () {
         return this.setCustomValidity('Výber je povinný.');
     })
@@ -128,67 +137,36 @@ $("select")
     });
 
 
+$("input").attr("required",
+    function () {
+        if ($("#thermalResistance").val() != "" && this.id == "thickness") { return false }
+        else if ($("#thermalResistance").val() != "" && this.id == "thermalConductivity") { return false }
+        else if ($("#thermalConductivity").val() != "" && this.id == "thermalResistance") { return false }
+        else { return true }
+    });
+
+
 $("input")
-    .attr("required", true)
     .on('invalid', function () {
-        return this.setCustomValidity('Toto pole je povinné.');
+        if (this.id == "thickness") { return this.setCustomValidity('Aspoň jeden z údajov tep. vlastností je povinný.'); }
+        else if (this.id == "spaceTemperature" && this.value != "") { return this.setCustomValidity(''); }
+        else { return this.setCustomValidity('Toto pole je povinné.'); }
     })
     .on('input', function () {
-        return this.setCustomValidity('');
-    });
-
-$("#spaceTemperatures").attr("required", false);
-
-
-$("#thickness")
-    .attr("required", true)
-    .on('invalid', function () {
-        //if ($("#thermalResistance").value != "") {
-        //    await $("#thickness").removeAttr('required');
-        //    await $("#thermalConductivity").removeAttr('required');
-        //}
-        return this.setCustomValidity('Aspoň jeden z údajov tep. vlastností je povinný.');
-    })
-    .on('input', function () {
-        return this.setCustomValidity('');
-    });
-
-
-$("#thickness")
-    .on('change', function () {
-        alert()
-        if (this.id = "thermalConductivity" && this.value != "") {
+        if (this.id == "thickness" && this.value != "") {
             $("#thermalConductivity").attr("required", true);
             $("#thermalResistance").val(null);
-            $("#thermalConductivity").attr("required", true);
             $("#thermalResistance").attr("required", false);
         }
-        else {
-            $("#thickness").attr("required", true);
-            $("#thermalResistance").attr("required", true);
-        }
-    });
-
-
-$("#thermalConductivity")
-    .on('change', function () {
-        if (this.value != "") {
+        if (this.id == "thermalConductivity" && this.value != "") {
             $("#thermalResistance").val(null);
             $("#thickness").attr("required", true);
         }
-    });
-
-
-$("#thermalResistance")
-    .on('change', function () {
-        if (this.value != "") {
+        if (this.id == "thermalResistance" && this.value != "") {
             $("#thickness").val(null);
-            $("#thermalConductivity").val(null);
             $("#thickness").attr("required", false);
+            $("#thermalConductivity").val(null);
             $("#thermalConductivity").attr("required", false);
         }
-        else {
-            $("#thickness").attr("required", true);
-            $("#thermalConductivity").attr("required", true);
-        }
+        return this.setCustomValidity('');
     });

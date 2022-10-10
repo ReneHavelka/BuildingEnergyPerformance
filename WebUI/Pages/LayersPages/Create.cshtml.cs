@@ -7,12 +7,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 
 namespace WebUI.Pages.LayersPages
 {
-    public class CreateModel : PageModel
-    {
+	public class CreateModel : PageModel
+	{
 		[BindProperty]
 		public LayersDto LayerDto { get; set; }
 		public SelectList StoreySelectList { get; set; }
@@ -20,14 +19,14 @@ namespace WebUI.Pages.LayersPages
 		IApplicationDbContext _context;
 		IMapper _mapper;
 
-		public CreateModel (IApplicationDbContext context, IMapper mapper)
+		public CreateModel(IApplicationDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
 		public void OnGet()
-        {
+		{
 			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
 			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name");
 		}

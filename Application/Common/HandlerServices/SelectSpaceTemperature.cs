@@ -12,7 +12,7 @@ namespace Application.Common.HandlerServices
 			getSpace = new GetSpace(context, mapper);
 		}
 
-		public float GetSpaceTemperature(int id) 
+		public float GetSpaceTemperature(int id)
 		{
 			var space = getSpace.GetSpaceDto(id);
 			var temperature = space.Temperature;

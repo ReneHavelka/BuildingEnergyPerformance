@@ -7,27 +7,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.SpaceTemperaturesPages
 {
-    public class CreateModel : PageModel
-    {
-        [BindProperty]
-        public SpaceTemperaturesDto SpaceTemperatureDto { get; set; }
+	public class CreateModel : PageModel
+	{
+		[BindProperty]
+		public SpaceTemperaturesDto SpaceTemperatureDto { get; set; }
 
-        IApplicationDbContext _context;
-        IMapper _mapper;
+		IApplicationDbContext _context;
+		IMapper _mapper;
 
 
-        public CreateModel(IApplicationDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
+		public CreateModel(IApplicationDbContext context, IMapper mapper)
+		{
+			_context = context;
+			_mapper = mapper;
+		}
 
-        public async Task<IActionResult> OnPost(SpaceTemperaturesDto SpaceTemperatureDto)
-        {
-            var createSpaceTemperature = new CreateSpaceTemperature(_context, _mapper);
-            await createSpaceTemperature.AddSpaceTemperature(SpaceTemperatureDto);
+		public async Task<IActionResult> OnPost(SpaceTemperaturesDto SpaceTemperatureDto)
+		{
+			var createSpaceTemperature = new CreateSpaceTemperature(_context, _mapper);
+			await createSpaceTemperature.AddSpaceTemperature(SpaceTemperatureDto);
 
-            return RedirectToPage("Index");
-        }
-    }
+			return RedirectToPage("Index");
+		}
+	}
 }

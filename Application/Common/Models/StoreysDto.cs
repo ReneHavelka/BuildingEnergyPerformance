@@ -1,6 +1,6 @@
 ﻿namespace Application.Common.Models
 {
-    public class StoreysDto : IdNameDto
-    {
-    }
+	public class StoreysDto : IdNameDto
+	{
+	}
 }

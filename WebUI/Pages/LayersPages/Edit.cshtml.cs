@@ -10,18 +10,17 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 
 namespace WebUI.Pages.LayersPages
 {
-    public class EditModel : PageModel
-    {
+	public class EditModel : PageModel
+	{
 		[BindProperty]
 		public LayersDto LayerDto { get; set; }
 		public SelectList StoreySelectList { get; set; }
 		public SelectList SpaceSelectList { get; set; }
 		public SelectList BuildingElementList { get; set; }
-		
+
 		public float temperature;
 		public float area;
 
@@ -75,9 +74,8 @@ namespace WebUI.Pages.LayersPages
 
 		public async Task<IActionResult> OnPost(LayersDto LayerDto)
 		{
-			Debug.WriteLine(LayerDto.BuildingElementsId);
-			//var editLayer = new EditLayers(_context, _mapper);
-			//await editLayer.ModifyLayer(LayerDto);
+			var editLayer = new EditLayers(_context, _mapper);
+			await editLayer.ModifyLayer(LayerDto);
 
 			return RedirectToPage("Index");
 		}

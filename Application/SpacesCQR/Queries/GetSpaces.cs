@@ -4,22 +4,22 @@ using AutoMapper;
 
 namespace Application.SpacesCQR.Queries
 {
-    public class GetSpaces
+	public class GetSpaces
 	{
-        IApplicationDbContext _context;
-        IMapper _mapper;
+		IApplicationDbContext _context;
+		IMapper _mapper;
 
-        public GetSpaces(IApplicationDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
+		public GetSpaces(IApplicationDbContext context, IMapper mapper)
+		{
+			_context = context;
+			_mapper = mapper;
+		}
 
-        public IList<SpacesDto> GetSpaceDtoList()
-        {
-            var spaces = _context.Spaces;
-            var spacesDto = _mapper.Map<IList<SpacesDto>>(spaces);
-            return spacesDto;
-        }
-    }
+		public IList<SpacesDto> GetSpaceDtoList()
+		{
+			var spaces = _context.Spaces;
+			var spacesDto = _mapper.Map<IList<SpacesDto>>(spaces);
+			return spacesDto;
+		}
+	}
 }

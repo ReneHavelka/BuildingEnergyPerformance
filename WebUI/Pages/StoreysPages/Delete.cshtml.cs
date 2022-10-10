@@ -8,31 +8,31 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.StoreysPages
 {
-    public class DeleteModel : PageModel
-    {
-        [BindProperty]
-        public StoreysDto StoreyDto { get; set; }
-        private IApplicationDbContext _context;
-        private IMapper _mapper;
+	public class DeleteModel : PageModel
+	{
+		[BindProperty]
+		public StoreysDto StoreyDto { get; set; }
+		private IApplicationDbContext _context;
+		private IMapper _mapper;
 
-        public DeleteModel(IApplicationDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
-        }
+		public DeleteModel(IApplicationDbContext context, IMapper mapper)
+		{
+			_context = context;
+			_mapper = mapper;
+		}
 
-        public void OnGet(int id)
-        {
-            var storeyDtoList = new GetStorey(_context, _mapper);
-            StoreyDto = storeyDtoList.GetStoreyDto(id);
-        }
+		public void OnGet(int id)
+		{
+			var storeyDtoList = new GetStorey(_context, _mapper);
+			StoreyDto = storeyDtoList.GetStoreyDto(id);
+		}
 
-        public async Task<IActionResult> OnPost()
-        {
-            var deleteStoreys = new DeleteStorey(_context);
-            await deleteStoreys.RemoveStorey(StoreyDto);
+		public async Task<IActionResult> OnPost()
+		{
+			var deleteStoreys = new DeleteStorey(_context);
+			await deleteStoreys.RemoveStorey(StoreyDto);
 
-            return RedirectToPage("Index");
-        }
-    }
+			return RedirectToPage("Index");
+		}
+	}
 }
