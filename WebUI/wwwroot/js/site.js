@@ -156,7 +156,9 @@ $("#thickness")
 
 $("#thickness")
     .on('change', function () {
-        if (this.value != "") {
+        alert()
+        if (this.id = "thermalConductivity" && this.value != "") {
+            $("#thermalConductivity").attr("required", true);
             $("#thermalResistance").val(null);
             $("#thermalConductivity").attr("required", true);
             $("#thermalResistance").attr("required", false);
