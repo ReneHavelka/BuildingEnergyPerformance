@@ -13,12 +13,10 @@ namespace WebUI.Pages.SpacesPages
 		public GetSpacesWithStoreys SpaceWithStorey { get; set; }
 
 		IApplicationDbContext _context;
-		IMapper _mapper;
 
 		public DeleteModel(IApplicationDbContext context, IMapper mapper)
 		{
 			_context = context;
-			_mapper = mapper;
 		}
 		public IActionResult OnGet(int id)
 		{

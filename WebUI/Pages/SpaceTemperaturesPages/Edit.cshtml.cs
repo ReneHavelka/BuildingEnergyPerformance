@@ -25,11 +25,11 @@ namespace WebUI.Pages.SpaceTemperaturesPages
 
 		public void OnGet(int id)
 		{
-			var spaceTemperatureList = new GetSpaceTemperature(_context, _mapper);
-			SpaceTemperatureDto = spaceTemperatureList.GetSpaceTemperatureDto(id);
+			var getSpaceTemperature = new GetSpaceTemperature(_context, _mapper);
+			SpaceTemperatureDto = getSpaceTemperature.GetSpaceTemperatureDto(id);
 		}
 
-		public async Task<IActionResult> OnPost(SpaceTemperaturesDto SpaceTemperatureDto)
+		public async Task<IActionResult> OnPost()
 		{
 			var editSpaceTemperature = new EditSpaceTemperature(_context, _mapper);
 			await editSpaceTemperature.ModifySpaceTemperature(SpaceTemperatureDto);

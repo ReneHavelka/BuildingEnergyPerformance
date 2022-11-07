@@ -7,7 +7,7 @@
 		BuildingElements,
 		Layers,
 		SpaceTemperatures,
-		ThermalResistanceTable,
-		ThermalConductivityTable,
+		ThermalConductivities,
+		ThermalResistances
 	}
 }

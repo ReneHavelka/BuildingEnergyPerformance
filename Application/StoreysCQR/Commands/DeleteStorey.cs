@@ -7,7 +7,6 @@ namespace Application.StoreysCQR.Commands
 	public class DeleteStorey
 	{
 		IApplicationDbContext _context;
-		IMapper _mapper;
 
 		public DeleteStorey(IApplicationDbContext context)
 		{

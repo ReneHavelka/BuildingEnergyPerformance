@@ -72,7 +72,7 @@ namespace WebUI.Pages.LayersPages
 			return new JsonResult(buildingElementArea);
 		}
 
-		public async Task<IActionResult> OnPost(LayersDto LayerDto)
+		public async Task<IActionResult> OnPost()
 		{
 			var editLayer = new EditLayers(_context, _mapper);
 			await editLayer.ModifyLayer(LayerDto);

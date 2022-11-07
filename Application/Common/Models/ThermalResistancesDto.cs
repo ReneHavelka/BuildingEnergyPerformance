@@ -1,6 +1,8 @@
-﻿namespace Application.Common.Models
+﻿using Domain.Common;
+
+namespace Application.Common.Models
 {
-	public class ThermalResistancesDto : ThermalPropertiesDto
+	public class ThermalResistancesDto : ThermalProperties
 	{
 	}
 }

@@ -17,7 +17,7 @@ namespace Application.ThermalResistancesCQR.Queries
 
 		public IList<ThermalResistancesDto> GetThermalResistanceDtoList()
 		{
-			var thermalResistances = _context.ThermalResistanceTable;
+			var thermalResistances = _context.ThermalResistances;
 			var thermalResistanceDtoList = _mapper.Map<IList<ThermalResistancesDto>>(thermalResistances);
 			return thermalResistanceDtoList;
 		}

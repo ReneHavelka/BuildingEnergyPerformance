@@ -10,8 +10,8 @@ namespace Application.Common.Interfaces
 		public DbSet<BuildingElements> BuildingElements { get; set; }
 		public DbSet<Layers> Layers { get; set; }
 		public DbSet<SpaceTemperatures> SpaceTemperatures { get; set; }
-		public DbSet<ThermalResistanceTable> ThermalResistanceTable { get; set; }
-		public DbSet<ThermalConductivityTable> ThermalConductivityTables { get; set; }
+		public DbSet<ThermalResistances> ThermalResistances { get; set; }
+		public DbSet<ThermalConductivities> ThermalConductivities { get; set; }
 
 		public Task<int> SaveChangesAsync();
 	}

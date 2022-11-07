@@ -2,7 +2,7 @@
 
 namespace Application.Common.Models
 {
-	public class ThermalPropertiesDto : ThermalProperties
+	public class ThermalConductivitiesDto : ThermalProperties
 	{
 	}
 }

@@ -9,8 +9,8 @@
 			{"BuildingElements", "Stavebné konštrukcie" },
 			{"Layers", "Vrstvy" },
 			{"SpaceTemperatures", "Teploty v priestoroch" },
-			{"ThermalResistanceTable", "Tabuľka tepelných odporov" },
-			{"ThermalConductivityTable", "Tabuľka tepelných vodivostí" }
+			{"ThermalConductivities", "Tepelné vodivosti" },
+			{"ThermalResistances", "Tepelné odpory" }
 		};
 	}
 }

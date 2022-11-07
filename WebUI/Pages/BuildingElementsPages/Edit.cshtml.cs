@@ -58,7 +58,7 @@ namespace WebUI.Pages.BuildingElementsPages
 			return new JsonResult(temperature);
 		}
 
-		public async Task<IActionResult> OnPost(BuildingElementsDto BuildingElementDto)
+		public async Task<IActionResult> OnPost()
 		{
 
 

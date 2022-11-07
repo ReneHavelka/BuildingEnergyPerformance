@@ -24,8 +24,8 @@ namespace WebUI.Pages.SpaceTemperaturesPages
 
 		public IActionResult OnGet(int id)
 		{
-			var spaceTemperatureList = new GetSpaceTemperature(_context, _mapper);
-			SpaceTemperatureDto = spaceTemperatureList.GetSpaceTemperatureDto(id);
+			var getSpaceTemperature = new GetSpaceTemperature(_context, _mapper);
+			SpaceTemperatureDto = getSpaceTemperature.GetSpaceTemperatureDto(id);
 
 			if (SpaceTemperatureDto == null)
 			{

@@ -22,11 +22,11 @@ namespace WebUI.Pages.StoreysPages
 		}
 		public void OnGet(int id)
 		{
-			var storeyDtoList = new GetStorey(_context, _mapper);
-			StoreyDto = storeyDtoList.GetStoreyDto(id);
+			var getStorey = new GetStorey(_context, _mapper);
+			StoreyDto = getStorey.GetStoreyDto(id);
 		}
 
-		public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
+		public async Task<IActionResult> OnPost()
 		{
 			var editStoreys = new EditStorey(_context, _mapper);
 			await editStoreys.ModifyStorey(StoreyDto);

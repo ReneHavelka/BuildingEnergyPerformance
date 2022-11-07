@@ -18,8 +18,8 @@ namespace Application.SpaceTemperaturesCQR.Commands
 
 		public async Task AddSpaceTemperature(SpaceTemperaturesDto spaceTemperatureDto)
 		{
-			SpaceTemperatures spaceTemperatures = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
-			await _context.SpaceTemperatures.AddAsync(spaceTemperatures);
+			SpaceTemperatures spaceTemperature = _mapper.Map<SpaceTemperatures>(spaceTemperatureDto);
+			await _context.SpaceTemperatures.AddAsync(spaceTemperature);
 			await _context.SaveChangesAsync();
 		}
 	}
