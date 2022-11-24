@@ -8,9 +8,9 @@
 
 ## Vrstvy:
 1. Domain (zadefinované modely):
-   1.1. Entities
-   1.2. Enums
-   1.3. Common – abstraktné triedy kvôli prehľadnosti a princípu DRY
+	1.1. Entities
+	1.2. Enums
+	1.3. Common – abstraktné triedy kvôli prehľadnosti a princípu DRY
 2. Application:
    2.1. Common:
         2.1.1. Interfaces – implementácia v samotnej vrstve Application a vo vrstve Infrastructure 
