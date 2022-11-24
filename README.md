@@ -1,12 +1,12 @@
-## Rozpracovaný projekt - Building Energy Performance
+# Rozpracovaný projekt - Building Energy Performance
 
-# Riešenie je  rozdelené na 4 vrstvy (projekty):
+## Riešenie je  rozdelené na 4 vrstvy (projekty):
 1. Domain
 2. Application
 3. Infrastructure
 4. WebUI.
 
-# Vrstvy:
+## Vrstvy:
 1. Domain (zadefinované modely):
 1.1. Entities
 1.2. Enums
@@ -36,13 +36,13 @@
 4.2. wwwroot/js: script v js s knižnicou jQuery
 
 
-# Závislosti:
+## Závislosti:
 1. Domain – žiadna
 2. Application – len na Domain
 3. Infrastructure – len na Application
 4. WebUI – len na Application a Infrastructure (Závislosť na Infrastructure je len v Program.cs.)
 
-# Kategórie s odpovedajúcimi referenciami v aplikácii:
+## Kategórie s odpovedajúcimi referenciami v aplikácii:
 - Storeys: Podlažia
 - Spaces: Priestory
 - BuildingElements: Stavebné konštrukcie
