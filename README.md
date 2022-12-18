@@ -1,10 +1,15 @@
-# Rozpracovaný projekt - Building Energy Performance
+# Building Energy Performance
+
+Toto riešenie je v stave rozpracovanosti. Obsahuje len základné funkcionality pre napojenie na databázu a užívateľa.
+V tejto fáze je nevyhnutné nasadiť testy, prejsť na TDD a refaktoring existujúceho kódu.
 
 ## Riešenie je  rozdelené na 4 vrstvy (projekty):
 1. Domain
 2. Application
 3. Infrastructure
 4. WebUI.
+plus
+5. Piaty projekt - testovanie
 
 ## Vrstvy:
 1. Domain (zadefinované modely):
@@ -51,3 +56,6 @@
 	- SpaceTemperatures: Teploty v priestoroch
 	- ThermalConductivityTable: Tabuľka tepelných vodivostí
 	- ThermalResistanceTable: Tabuľka tepelných odporov
+	
+## Testovanie.
+Testovanie je realizované prostredníctvom testovacieho framework-u MSTest.

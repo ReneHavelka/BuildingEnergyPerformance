@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8C5EB6E-073
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{51865217-CD44-429C-86E9-BB7D366D4A6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "tests\Application.UnitTests\Application.UnitTests.csproj", "{82CE8D19-FC98-4B98-AB34-CB7FA00DA9BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingEnergyPerformanceTests", "tests\Application.UnitTests\BuildingEnergyPerformanceTests.csproj", "{82CE8D19-FC98-4B98-AB34-CB7FA00DA9BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{FC533A34-687C-4F19-9523-BF286E6A7053}"
 EndProject
