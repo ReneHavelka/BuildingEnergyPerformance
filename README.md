@@ -8,7 +8,9 @@ V tejto fáze je nevyhnutné nasadiť testy, prejsť na TDD a refaktoring existu
 2. Application
 3. Infrastructure
 4. WebUI.
+
 plus
+
 5. Piaty projekt - testovanie
 
 ## Vrstvy:
