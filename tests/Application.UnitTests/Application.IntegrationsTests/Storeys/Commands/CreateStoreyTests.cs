@@ -4,6 +4,7 @@ using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using AutoMapper;
 using Infrastructure.Persistance;
+using System.Diagnostics;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
@@ -21,93 +22,69 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			_mapper = new Mapper(config);
 		}
 
-		//The name of the storey should not be null or empty.
-		[TestMethod]
-		[ExpectedException(typeof(ArgumentException))]
-		public async Task NameShouldNotBeNullOrEmpty()
+		public async Task TryName(string str)
 		{
-			var storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			var idBefore = storey.Id;
-
 			StoreysDto storeyDto = new();
 			CreateStorey createStorey = new(_context, _mapper);
-			storeyDto.Name = null;
+			storeyDto.Name = str;
 
-			await createStorey.AddStorey(storeyDto);
-
-			storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			Assert.IsTrue(storey.Id == idBefore);
-
-			storeyDto.Name = String.Empty;
-
-			await createStorey.AddStorey(storeyDto);
-
-			//No data added
-			storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			Assert.IsTrue(storey.Id == idBefore);
+			try
+			{
+				await createStorey.AddStorey(storeyDto);
+			}
+			catch
+			{
+				throw new ArgumentException();
+			}
 		}
 
-		//The name of the storey must consist of 4 characters at least.
+		//The name of the storey should not be null.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public async Task NameShouldNotBeNull()
+		{
+			await TryName(null);
+		}
+
+		//The name must consist of 4 characters at least.
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
 		public async Task MinimalNameLength()
 		{
-			var storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			var idBefore = storey.Id;
-
-			StoreysDto storeyDto = new();
-			CreateStorey createStorey = new(_context, _mapper);
-			storeyDto.Name = "Abc";
-
-			await createStorey.AddStorey(storeyDto);
-
-			storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			Assert.IsTrue(storey.Id == idBefore);
+			await TryName("Abc");
 		}
 
-		//The name of the storey must beginn with a capital letter.
+		//The name must beginn with a letter.
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
 		public async Task NameFirstCharacter()
 		{
-			var storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			var idBefore = storey.Id;
-
-			StoreysDto storeyDto = new();
-			CreateStorey createStorey = new(_context, _mapper);
-			storeyDto.Name = "abcd";
-
-			await createStorey.AddStorey(storeyDto);
-
-			storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			Assert.IsTrue(storey.Id == idBefore);
-
-			storeyDto.Name = "1bcd";
-
-			await createStorey.AddStorey(storeyDto);
-
-			//No data added
-			storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			Assert.IsTrue(storey.Id == idBefore);
+			await TryName("1bcd");
 		}
 
-		//The name of the storey must consist of the maximum of 14 characters.
+		//The name must beginn with a capital letter.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public async Task NameFirstUpperCharacter()
+		{
+			await TryName("abcd");
+		}
+
+		//The name must consist of the maximum of 20 characters.
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
 		public async Task MaximalNameLength()
 		{
-			var storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			var idBefore = storey.Id;
+			await TryName("A23456789012345678901");
+		}
 
-			StoreysDto storeyDto = new();
-			CreateStorey createStorey = new(_context, _mapper);
-			storeyDto.Name = "A23456789ABCDEF";
-
-			await createStorey.AddStorey(storeyDto);
-
-			//No data added
-			storey = _context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			Assert.IsTrue(storey.Id == idBefore);
+		//The name must be distinct from the others.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public async Task DistinctName()
+		{
+			var name = _context.Storeys.OrderBy(x => x.Id).LastOrDefault().Name;
+			await TryName(name);
 		}
 	}
 }
