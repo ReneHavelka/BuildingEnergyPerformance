@@ -3,16 +3,17 @@ using Application.Common.Mappings;
 using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using AutoMapper;
+using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common;
 using Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
-	[TestClass]
+    [TestClass]
 	public class CreateStoreyTests
 	{
-		public TryOutName tryOutName = new();
+		public CreateTryOutName tryOutName = new();
 
 		//The name of the storey should not be null.
 		[TestMethod]
