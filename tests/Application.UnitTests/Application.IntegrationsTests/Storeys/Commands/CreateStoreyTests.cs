@@ -1,19 +1,26 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Mappings;
 using Application.Common.Models;
 using Application.StoreysCQR.Commands;
+using Application.StoreysCQR.Queries;
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common;
 using Infrastructure.Persistance;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
-    [TestClass]
+	[TestClass]
 	public class CreateStoreyTests
 	{
 		public CreateTryOutName tryOutName = new();
+		IApplicationDbContext context;
+		IMapper mapper;
+
+		public CreateStoreyTests()
+		{
+			var getContexMapper = new GetContexMapper();
+			context = getContexMapper.Context;
+			mapper = getContexMapper.Mapper;
+		}
 
 		//The name of the storey should not be null.
 		[TestMethod]
@@ -55,14 +62,35 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			await tryOutName.TryName("A23456789012345678901");
 		}
 
-		//The name must be distinct from the others.
+		//The name must be distinct from the others. Take out the last name and try to add.
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
 		public async Task DistinctName()
 		{
-			var context = new ApplicationDbContext();
-			var name = context.Storeys.OrderBy(x => x.Id).LastOrDefault().Name;
+			//Last record in storey database
+			var getLastStoreyListAndLast = new GetStoreyListAndLast();
+			var lastStorey = await getLastStoreyListAndLast.GetLastStorey();
+
+			var name = lastStorey.Name;
 			await tryOutName.TryName(name);
+		}
+
+		//Regular adding.
+		[TestMethod]
+		public async Task RegularAdding()
+		{
+			string name = "Abcde";
+			await tryOutName.TryName(name);
+
+			//Last record in storey database
+			var getLastStorey = new Common.GetStoreyListAndLast();
+			var addedStorey = await getLastStorey.GetLastStorey();
+			//Added storey name
+			var addedName = addedStorey.Name;
+			Assert.AreEqual(name, addedName);
+
+			var deleteStorey = new DeleteStorey(context);
+			await deleteStorey.RemoveStorey(addedStorey);
 		}
 	}
 }

@@ -26,9 +26,10 @@ namespace WebUI.Pages.SpacesPages
 			_mapper = mapper;
 		}
 
-		public void OnGet()
+		public async Task OnGet()
 		{
-			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
+			var getStoreys = new GetStoreys(_context, _mapper);
+			var storeysDtoList = await getStoreys.GetStoreyDtoList();
 			StoreysSelectList = new SelectList(storeysDtoList, "Id", "Name");
 			var spaceTemperaturesDtoList = new GetSpaceTemperatures(_context, _mapper).GetSpaceTemperaturesDtoList();
 			for (int i = 0; i < spaceTemperaturesDtoList.Count; i++) { spaceTemperaturesDtoList[i].Name += ": " + spaceTemperaturesDtoList[i].Temperature + "°C"; }

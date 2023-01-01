@@ -21,17 +21,17 @@ namespace WebUI.Pages.StoreysPages
 			_mapper = mapper;
 		}
 
-		public IActionResult OnGet(int id)
+		public async Task OnGet(int id)
 		{
 			var getStorey = new GetStorey(_context, _mapper);
-			StoreyDto = getStorey.GetStoreyDto(id);
+			StoreyDto = await getStorey.GetStoreyDto(id);
 
 			if (StoreyDto == null)
 			{
-				return RedirectToPage("Index");
+				RedirectToPage("Index");
 			}
 
-			return Page();
+			Page();
 		}
 
 		public async Task<IActionResult> OnPost()

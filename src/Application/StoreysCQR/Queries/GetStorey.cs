@@ -15,7 +15,7 @@ namespace Application.StoreysCQR.Queries
 			_mapper = mapper;
 		}
 
-		public StoreysDto GetStoreyDto(int id)
+		public async Task<StoreysDto> GetStoreyDto(int id)
 		{
 			var storey = _context.Storeys.Find(id);
 			var storeyDto = _mapper.Map<StoreysDto>(storey);

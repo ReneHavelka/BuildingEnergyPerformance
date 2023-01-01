@@ -2,15 +2,10 @@
 using Application.Common.Mappings;
 using AutoMapper;
 using Infrastructure.Persistance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common
 {
-    internal class GetContexMapper
+	internal class GetContexMapper
     {
         internal IApplicationDbContext Context { get; }
         internal IMapper Mapper { get; }

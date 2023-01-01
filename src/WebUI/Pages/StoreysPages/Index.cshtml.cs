@@ -12,17 +12,17 @@ namespace WebUI.Pages.StoreysPages
 		private readonly IApplicationDbContext _context;
 		private IMapper _mapper;
 
-		public IEnumerable<StoreysDto> StoreyList { get; set; }
+		public IList<StoreysDto> StoreyList { get; set; }
 		public IndexModel(IApplicationDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
 		}
 
-		public void OnGet()
+		public async Task OnGet()
 		{
 			var getStoreys = new GetStoreys(_context, _mapper);
-			StoreyList = getStoreys.GetStoreyDtoList();
+			StoreyList = await getStoreys.GetStoreyDtoList();
 		}
 	}
 }

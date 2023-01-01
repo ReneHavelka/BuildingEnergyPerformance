@@ -36,7 +36,7 @@ namespace WebUI.Pages.BuildingElementsPages
 			var buildingElement = new GetBuildingElement(_context, _mapper);
 			BuildingElementDto = buildingElement.GetBuildingElementDto(id);
 			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
-			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", buildingElement.StoreyId);
+			StoreySelectList = new SelectList((System.Collections.IEnumerable)storeysDtoList, "Id", "Name", buildingElement.StoreyId);
 			var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
 			SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);
 			temperature = spacesDtoList.FirstOrDefault(x => x.Id == BuildingElementDto.SpacesId).Temperature;

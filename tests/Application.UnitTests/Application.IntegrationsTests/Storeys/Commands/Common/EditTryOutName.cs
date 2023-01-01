@@ -11,35 +11,37 @@ using System.Threading.Tasks;
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common
 {
     internal class EditTryOutName
-    {
-        IApplicationDbContext context;
-        IMapper mapper;
-        int id;
-        internal EditTryOutName()
-        {
-            GetContexMapper getContexMapper = new();
-            context = getContexMapper.Context;
-            mapper = getContexMapper.Mapper;
-            //The id is gotten from the first record.
-            id = context.Storeys.OrderBy(x => x.Id).FirstOrDefault().Id;
-        }
+	{
+		//      StoreysDto storeyDto;
+		//      EditStorey editStorey;
 
-        public async Task TryName(string str)
-        {
-            StoreysDto storeyDto = new();
-            EditStorey editStorey = new(context, mapper);
-            storeyDto.Name = str;
+		//internal EditTryOutName()
+		//      {
+		//          GetContexMapper getContexMapper = new();
+		//          var context = getContexMapper.Context;
+		//          var mapper = getContexMapper.Mapper;
+		//	var editStorey = new EditStorey(context, mapper);
 
-            storeyDto.Id = id;
+		//	storeyDto = context.Storeys.OrderBy(x => x.Id).FirstOrDefault();
+		//          //The id is gotten from the first storey record.
+		//          id = storey.Id;
+		//          //Name of the first storey record - origianl name.
+		//          OriginalName = storey.Name;
+		//      }
 
-            try
-            {
-                await editStorey.ModifyStorey(storeyDto);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-    }
+		//      public async Task TryName(string str)
+		//      {
+		//          storeyDto.Name = str;
+		//          storeyDto.Id = id;
+
+		//          try
+		//          {
+		//              await editStorey.ModifyStorey(storeyDto);
+		//          }
+		//          catch
+		//          {
+		//              throw;
+		//          }
+		//      }
+	}
 }

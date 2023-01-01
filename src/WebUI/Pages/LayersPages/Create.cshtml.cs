@@ -28,7 +28,7 @@ namespace WebUI.Pages.LayersPages
 		public void OnGet()
 		{
 			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
-			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name");
+			StoreySelectList = new SelectList((System.Collections.IEnumerable)storeysDtoList, "Id", "Name");
 		}
 
 		public JsonResult OnGetCollection(string nextCategory, int selectedValue)

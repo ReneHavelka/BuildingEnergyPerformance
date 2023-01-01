@@ -18,17 +18,18 @@ namespace WebUI.Pages.SpacesPages
 		{
 			_context = context;
 		}
-		public IActionResult OnGet(int id)
+
+		public async Task OnGet(int id)
 		{
 			var getSpaces = new GetSpaceWithStorey(_context, id);
 			SpaceWithStorey = getSpaces.GetSpaceWithStoreyDto();
 
 			if (SpaceWithStorey == null)
 			{
-				return RedirectToPage("Index");
+				RedirectToPage("Index");
 			}
 
-			return Page();
+			Page();
 		}
 
 		public async Task<IActionResult> OnPost()

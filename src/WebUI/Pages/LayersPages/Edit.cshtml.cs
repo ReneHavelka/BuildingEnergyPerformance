@@ -34,11 +34,12 @@ namespace WebUI.Pages.LayersPages
 			_mapper = mapper;
 		}
 
-		public void OnGet(int id)
+		public async Task OnGet(int id)
 		{
 			var layer = new GetLayer(_context, _mapper);
 			LayerDto = layer.GetLayerDto(id);
-			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
+			var getStoreys = new GetStoreys(_context, _mapper);
+			var storeysDtoList = await getStoreys.GetStoreyDtoList();
 			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", layer.StoreyId);
 			var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
 			SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", layer.SpaceId);

@@ -13,7 +13,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
         internal CreateTryOutName()
         {
             GetContexMapper getContexMapper = new();
-            _context = getContexMapper.Context;
+			_context = getContexMapper.Context;
             _mapper = getContexMapper.Mapper;
         }
 

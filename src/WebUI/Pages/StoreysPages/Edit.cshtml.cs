@@ -20,10 +20,10 @@ namespace WebUI.Pages.StoreysPages
 			_context = context;
 			_mapper = mapper;
 		}
-		public void OnGet(int id)
+		public async Task OnGet(int id)
 		{
 			var getStorey = new GetStorey(_context, _mapper);
-			StoreyDto = getStorey.GetStoreyDto(id);
+			StoreyDto = await getStorey.GetStoreyDto(id);
 		}
 
 		public async Task<IActionResult> OnPost()
