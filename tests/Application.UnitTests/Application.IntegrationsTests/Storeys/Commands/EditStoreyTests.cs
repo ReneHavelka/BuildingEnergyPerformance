@@ -85,7 +85,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[TestMethod]
 		public async Task RegularEditing()
 		{
-			string name = "Poschodie";
+			string name = "Abcde";
 			await tryOutName.TryName(name);
 			var originalName = tryOutName.OriginalName;
 
@@ -98,8 +98,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			//Finally modify the name to the original one.
 			modifiedStorey.Name = originalName;
 			var _context = new ApplicationDbContext();
-			var getBackToOriginalName = new GetBackToOriginalName(_context, _mapper);
-			await getBackToOriginalName.ToOriginalName(modifiedStorey);
+			tryOutName = new EditTryOutName(_context, _mapper);
+			await tryOutName.TryName(originalName);
 		}
 	}
 }
