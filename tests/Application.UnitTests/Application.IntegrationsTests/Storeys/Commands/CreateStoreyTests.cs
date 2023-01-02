@@ -1,25 +1,24 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Models;
 using Application.StoreysCQR.Commands;
-using Application.StoreysCQR.Queries;
 using AutoMapper;
-using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common;
-using Infrastructure.Persistance;
+using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
 	[TestClass]
 	public class CreateStoreyTests
 	{
-		public CreateTryOutName tryOutName = new();
-		IApplicationDbContext context;
-		IMapper mapper;
+		CreateTryOutName tryOutName;
+		IApplicationDbContext _context;
+		GetLastOrList getLastOrList;
 
 		public CreateStoreyTests()
 		{
 			var getContexMapper = new GetContexMapper();
-			context = getContexMapper.Context;
-			mapper = getContexMapper.Mapper;
+			_context = getContexMapper.Context;
+			IMapper mapper = getContexMapper.Mapper;
+			tryOutName = new CreateTryOutName(_context, mapper);
+			getLastOrList = new GetLastOrList();
 		}
 
 		//The name of the storey should not be null.
@@ -68,8 +67,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		public async Task DistinctName()
 		{
 			//Last record in storey database
-			var getLastStoreyListAndLast = new GetStoreyListAndLast();
-			var lastStorey = await getLastStoreyListAndLast.GetLastStorey();
+			var lastStorey = await getLastOrList.GetLastStorey();
 
 			var name = lastStorey.Name;
 			await tryOutName.TryName(name);
@@ -83,13 +81,13 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			await tryOutName.TryName(name);
 
 			//Last record in storey database
-			var getLastStorey = new Common.GetStoreyListAndLast();
-			var addedStorey = await getLastStorey.GetLastStorey();
+			var addedStorey = await getLastOrList.GetLastStorey();
 			//Added storey name
 			var addedName = addedStorey.Name;
 			Assert.AreEqual(name, addedName);
 
-			var deleteStorey = new DeleteStorey(context);
+			//Finally delete the added item.
+			var deleteStorey = new DeleteStorey(_context);
 			await deleteStorey.RemoveStorey(addedStorey);
 		}
 	}

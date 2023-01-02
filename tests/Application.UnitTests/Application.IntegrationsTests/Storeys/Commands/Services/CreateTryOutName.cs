@@ -3,18 +3,17 @@ using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using AutoMapper;
 
-namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common
+namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services
 {
 	public class CreateTryOutName
     {
         IApplicationDbContext _context;
         IMapper _mapper;
 
-        internal CreateTryOutName()
+        internal CreateTryOutName(IApplicationDbContext contex, IMapper mapper)
         {
-            GetContexMapper getContexMapper = new();
-			_context = getContexMapper.Context;
-            _mapper = getContexMapper.Mapper;
+			_context = contex;
+            _mapper = mapper;
         }
 
         internal async Task TryName(string str)

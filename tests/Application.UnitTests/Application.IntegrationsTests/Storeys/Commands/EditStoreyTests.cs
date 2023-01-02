@@ -4,92 +4,102 @@ using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using Application.StoreysCQR.Queries;
 using AutoMapper;
-using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Common;
+using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
 using Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
- //   [TestClass]
-	//public class EditStoreyTests
-	//{
-	//	internal EditTryOutName tryOutName = new();
-	//	IApplicationDbContext context;
-	//	IMapper mapper;
 
 
-	//	public EditStoreyTests()
-	//	{
-	//		var getContexMapper = new GetContexMapper();
-	//		context = getContexMapper.Context;
-	//		mapper = getContexMapper.Mapper;
-	//	}
 
-	//	//The name of the storey should not be null.
-	//	[TestMethod]
-	//	[ExpectedException(typeof(ArgumentOutOfRangeException))]
-	//	public async Task NameShouldNotBeNull()
-	//	{
-	//		await tryOutName.TryName(null);
-	//	}
 
-	//	//The name must consist of 4 characters at least.
-	//	[TestMethod]
-	//	[ExpectedException(typeof(ArgumentOutOfRangeException))]
-	//	public async Task MinimalNameLength()
-	//	{
-	//		await tryOutName.TryName("Abc");
-	//	}
+	[TestClass]
+	public class EditStoreyTests
+	{
+		EditTryOutName tryOutName;
+		IApplicationDbContext _context;
+		IMapper _mapper;
+		GetLastOrList getLastOrList;
 
-	//	//The name must beginn with a letter.
-	//	[TestMethod]
-	//	[ExpectedException(typeof(ArgumentException))]
-	//	public async Task NameFirstCharacter()
-	//	{
-	//		await tryOutName.TryName("1bcd");
-	//	}
+		public EditStoreyTests()
+		{
+			var getContexMapper = new GetContexMapper();
+			_context = getContexMapper.Context;
+			_mapper = getContexMapper.Mapper;
+			tryOutName = new EditTryOutName(_context, _mapper);
+			getLastOrList = new GetLastOrList();
+		}
 
-	//	//The name must beginn with a capital letter.
-	//	[TestMethod]
-	//	[ExpectedException(typeof(ArgumentException))]
-	//	public async Task NameFirstUpperCharacter()
-	//	{
-	//		await tryOutName.TryName("abcd");
-	//	}
+		//The name of the storey should not be null.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public async Task NameShouldNotBeNull()
+		{
+			await tryOutName.TryName(null);
+		}
 
-	//	//The name must consist of the maximum of 20 characters.
-	//	[TestMethod]
-	//	[ExpectedException(typeof(ArgumentOutOfRangeException))]
-	//	public async Task MaximalNameLength()
-	//	{
-	//		await tryOutName.TryName("A23456789012345678901");
-	//	}
+		//The name must consist of 4 characters at least.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public async Task MinimalNameLength()
+		{
+			await tryOutName.TryName("Abc");
+		}
 
-	//	//The name must be distinct from the others.
-	//	[TestMethod]
-	//	[ExpectedException(typeof(ArgumentException))]
-	//	public async Task DistinctName()
-	//	{
-	//		var name = context.Storeys.OrderBy(x => x.Id).LastOrDefault().Name;
-	//		await tryOutName.TryName(name);
-	//	}
+		//The name must beginn with a letter.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public async Task NameFirstCharacter()
+		{
+			await tryOutName.TryName("1bcd");
+		}
 
-	//	//Regular editing
-	//	[TestMethod]
-	//	public async Task RegularEditing()
-	//	{
-	//		var originalName = tryOutName.OriginalName; 
+		//The name must beginn with a capital letter.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public async Task NameFirstUpperCharacter()
+		{
+			await tryOutName.TryName("abcd");
+		}
 
-	//		string name = "Abcde";
-	//		await tryOutName.TryName(name);
-	//		//var editedStorey = context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-	//		//Assert.AreEqual(name, editedStorey.Name);
+		//The name must consist of the maximum of 20 characters.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public async Task MaximalNameLength()
+		{
+			await tryOutName.TryName("A23456789012345678901");
+		}
 
-	//		//var getStorey = new GetStorey(context, mapper);
-	//		//var addedStoreyDto = getStorey.GetStoreyDto(editedStorey.Id);
+		//The name must be distinct from the others.
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentException))]
+		public async Task DistinctName()
+		{
+			var name = _context.Storeys.OrderBy(x => x.Id).FirstOrDefault().Name;
+			await tryOutName.TryName(name);
+		}
 
-	//		//await tryOutName.TryName(originalName);
-	//	}
-	//}
+		//Regular editing
+		[TestMethod]
+		public async Task RegularEditing()
+		{
+			string name = "Poschodie";
+			await tryOutName.TryName(name);
+			var originalName = tryOutName.OriginalName;
+
+			//Last record in storey database
+			var modifiedStorey = await getLastOrList.GetLastStorey();
+			//Modified storey name
+			var modifiedName = modifiedStorey.Name;
+			Assert.AreEqual(name, modifiedName);
+
+			//Finally modify the name to the original one.
+			modifiedStorey.Name = originalName;
+			var _context = new ApplicationDbContext();
+			var getBackToOriginalName = new GetBackToOriginalName(_context, _mapper);
+			await getBackToOriginalName.ToOriginalName(modifiedStorey);
+		}
+	}
 }
