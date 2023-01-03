@@ -24,7 +24,7 @@ namespace WebUI.Pages.StoreysPages
 		public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
 		{
 			var createStoreys = new CreateStorey(_context, _mapper);
-			await createStoreys.AddStorey(StoreyDto);
+			await createStoreys.AddStoreyAsync(StoreyDto);
 
 			return RedirectToPage("Index");
 		}

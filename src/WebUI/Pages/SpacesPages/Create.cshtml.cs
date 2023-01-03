@@ -29,7 +29,7 @@ namespace WebUI.Pages.SpacesPages
 		public async Task OnGet()
 		{
 			var getStoreys = new GetStoreys(_context, _mapper);
-			var storeysDtoList = await getStoreys.GetStoreyDtoList();
+			var storeysDtoList = await getStoreys.GetStoreyDtoListAsync();
 			StoreysSelectList = new SelectList(storeysDtoList, "Id", "Name");
 			var spaceTemperaturesDtoList = new GetSpaceTemperatures(_context, _mapper).GetSpaceTemperaturesDtoList();
 			for (int i = 0; i < spaceTemperaturesDtoList.Count; i++) { spaceTemperaturesDtoList[i].Name += ": " + spaceTemperaturesDtoList[i].Temperature + "°C"; }
@@ -39,7 +39,7 @@ namespace WebUI.Pages.SpacesPages
 		public async Task<IActionResult> OnPost(SpacesDto SpaceDto)
 		{
 			var createSpace = new CreateSpace(_context, _mapper);
-			await createSpace.AddSpace(SpaceDto);
+			await createSpace.AddSpaceAsync(SpaceDto);
 
 			return RedirectToPage("Index");
 		}

@@ -15,7 +15,7 @@ namespace Application.StoreysCQR.Queries
 			_mapper = mapper;
 		}
 
-		public async Task<IList<StoreysDto>> GetStoreyDtoList()
+		public async Task<IList<StoreysDto>> GetStoreyDtoListAsync()
 		{
 			var storeys = _context.Storeys;
 			var storeysDto = _mapper.Map<IList<StoreysDto>>(storeys);

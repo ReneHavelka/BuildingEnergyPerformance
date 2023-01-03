@@ -15,7 +15,7 @@ namespace Application.StoreysCQR.Commands
 			_mapper = mapper;
 		}
 
-		public async Task ModifyStorey(StoreysDto storeyDto)
+		public async Task ModifyStoreyAsync(StoreysDto storeyDto)
 		{
 			var storeyNameValidation = new StoreyNameValidation();
 			storeyNameValidation.StoreyNameValidate(storeyDto, _context);

@@ -35,7 +35,7 @@ namespace WebUI.Pages.BuildingElementsPages
 		{
 			var buildingElement = new GetBuildingElement(_context, _mapper);
 			BuildingElementDto = buildingElement.GetBuildingElementDto(id);
-			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
+			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoListAsync();
 			StoreySelectList = new SelectList((System.Collections.IEnumerable)storeysDtoList, "Id", "Name", buildingElement.StoreyId);
 			var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
 			SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);

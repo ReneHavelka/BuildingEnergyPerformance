@@ -27,7 +27,7 @@ namespace WebUI.Pages.LayersPages
 
 		public void OnGet()
 		{
-			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoList();
+			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoListAsync();
 			StoreySelectList = new SelectList((System.Collections.IEnumerable)storeysDtoList, "Id", "Name");
 		}
 

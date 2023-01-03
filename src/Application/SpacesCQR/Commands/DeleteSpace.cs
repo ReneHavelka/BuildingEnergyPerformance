@@ -12,7 +12,7 @@ namespace Application.SpacesCQR.Commands
 			_context = context;
 		}
 
-		public async Task RemoveSpace(GetSpacesWithStoreys spaceWithStorey)
+		public async Task RemoveSpaceAsync(GetSpacesWithStoreys spaceWithStorey)
 		{
 			var space = _context.Spaces.Find(spaceWithStorey.Id);
 			_context.Spaces.Remove(space);

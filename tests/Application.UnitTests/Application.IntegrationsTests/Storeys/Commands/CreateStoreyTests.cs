@@ -2,6 +2,7 @@
 using Application.StoreysCQR.Commands;
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
+using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
@@ -88,7 +89,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 			//Finally delete the added item.
 			var deleteStorey = new DeleteStorey(_context);
-			await deleteStorey.RemoveStorey(addedStorey);
+			await deleteStorey.RemoveStoreyAsync	(addedStorey);
 		}
 	}
 }

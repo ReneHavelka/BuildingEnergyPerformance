@@ -1,13 +1,8 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Mappings;
-using Application.Common.Models;
-using Application.StoreysCQR.Commands;
-using Application.StoreysCQR.Queries;
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
+using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
 using Infrastructure.Persistance;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {

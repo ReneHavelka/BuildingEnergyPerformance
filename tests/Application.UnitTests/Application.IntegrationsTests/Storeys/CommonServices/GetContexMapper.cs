@@ -3,9 +3,9 @@ using Application.Common.Mappings;
 using AutoMapper;
 using Infrastructure.Persistance;
 
-namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services
+namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices
 {
-	internal class GetContexMapper
+    internal class GetContexMapper
     {
         internal IApplicationDbContext Context { get; }
         internal IMapper Mapper { get; }

@@ -13,7 +13,7 @@ namespace Application.StoreysCQR.Commands
 			_context = context;
 		}
 
-		public async Task RemoveStorey(StoreysDto storeyDto)
+		public async Task RemoveStoreyAsync(StoreysDto storeyDto)
 		{
 			int id = storeyDto.Id;
 			var storey = _context.Storeys.Find(id);

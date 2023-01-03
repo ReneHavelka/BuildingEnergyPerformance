@@ -2,10 +2,11 @@
 using Application.Common.Models;
 using Application.StoreysCQR.Queries;
 using AutoMapper;
+using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services
 {
-	internal class GetLastOrList
+    internal class GetLastOrList
 	{
 		GetStoreys getStoreys;
 
@@ -19,14 +20,14 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		internal async Task<StoreysDto> GetLastStorey()
 		{
-			var getStoreyDtoList = await getStoreys.GetStoreyDtoList();
+			var getStoreyDtoList = await getStoreys.GetStoreyDtoListAsync();
 			StoreysDto storeysDto = getStoreyDtoList.OrderBy(x => x.Id).LastOrDefault();
 			return storeysDto;
 		}
 
 		internal async Task<IList<StoreysDto>> GetStoreyList()
 		{
-			var getStoreyDtoList = await getStoreys.GetStoreyDtoList();
+			var getStoreyDtoList = await getStoreys.GetStoreyDtoListAsync();
 			IList<StoreysDto> storeyList = getStoreyDtoList.OrderBy(x => x.Id).ToList();
 			return storeyList;
 		}

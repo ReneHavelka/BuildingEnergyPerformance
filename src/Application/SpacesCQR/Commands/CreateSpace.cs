@@ -16,7 +16,7 @@ namespace Application.SpacesCQR.Commands
 			_mapper = mapper;
 		}
 
-		public async Task AddSpace(SpacesDto spaceDto)
+		public async Task AddSpaceAsync(SpacesDto spaceDto)
 		{
 			var space = _mapper.Map<Spaces>(spaceDto);
 			await _context.Spaces.AddAsync(space);

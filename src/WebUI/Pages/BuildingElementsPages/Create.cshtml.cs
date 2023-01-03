@@ -29,7 +29,7 @@ namespace WebUI.Pages.BuildingElementsPages
 		public async Task OnGet()
 		{
 			var getStoreys = new GetStoreys(_context, _mapper);
-			var storeysDtoList = await getStoreys.GetStoreyDtoList();
+			var storeysDtoList = await getStoreys.GetStoreyDtoListAsync();
 			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name");
 		}
 

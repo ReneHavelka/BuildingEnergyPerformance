@@ -40,7 +40,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			try
 			{
 				var editStorey = new EditStorey(_context, _mapper);
-				await editStorey.ModifyStorey(storeyDto);
+				await editStorey.ModifyStoreyAsync(storeyDto);
 			}
 			catch
 			{

@@ -37,14 +37,14 @@ namespace WebUI.Pages.SpacesPages
 			SpaceDto = getSpace.GetSpaceDto(id);
 
 			var getStoreys = new GetStoreys(_context, _mapper);
-			var storeysDtoList = await getStoreys.GetStoreyDtoList();
+			var storeysDtoList = await getStoreys.GetStoreyDtoListAsync();
 			StoreysSelectList = new SelectList(storeysDtoList, "Id", "Name");
 		}
 
 		public async Task<IActionResult> OnPost()
 		{
 			var editSpace = new EditSpace(_context, _mapper);
-			await editSpace.ModifySpace(SpaceDto);
+			await editSpace.ModifySpaceAsync(SpaceDto);
 
 			return RedirectToPage("Index");
 		}

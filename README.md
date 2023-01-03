@@ -2,6 +2,9 @@
 
 Aplikácia je v stave rozpracovanosti. Obsahuje len základné funkcionality pre napojenie na databázu a užívateľa.
 V tejto fáze je nevyhnutné nasadiť testy, prejsť na TDD a refaktoring existujúceho kódu.
+Počiatočné testy pre komunikáciu s databázou (integračné pre Application/StoreysCQR) už boli využité. Prvé kroky refaktoringu viedli k úprave niektorých metód.
+Mnohé metódy sú postupne modifikované na asynchrónne.
+
 
 ## Riešenie obsahuje 4 vrstvy (projekty):
 1. Domain

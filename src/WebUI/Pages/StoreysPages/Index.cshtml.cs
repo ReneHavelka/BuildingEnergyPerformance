@@ -22,7 +22,7 @@ namespace WebUI.Pages.StoreysPages
 		public async Task OnGet()
 		{
 			var getStoreys = new GetStoreys(_context, _mapper);
-			StoreyList = await getStoreys.GetStoreyDtoList();
+			StoreyList = await getStoreys.GetStoreyDtoListAsync();
 		}
 	}
 }

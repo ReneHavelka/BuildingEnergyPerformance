@@ -23,13 +23,13 @@ namespace WebUI.Pages.StoreysPages
 		public async Task OnGet(int id)
 		{
 			var getStorey = new GetStorey(_context, _mapper);
-			StoreyDto = await getStorey.GetStoreyDto(id);
+			StoreyDto = await getStorey.GetStoreyDtoAsync(id);
 		}
 
 		public async Task<IActionResult> OnPost()
 		{
 			var editStoreys = new EditStorey(_context, _mapper);
-			await editStoreys.ModifyStorey(StoreyDto);
+			await editStoreys.ModifyStoreyAsync(StoreyDto);
 
 			return RedirectToPage("Index");
 		}

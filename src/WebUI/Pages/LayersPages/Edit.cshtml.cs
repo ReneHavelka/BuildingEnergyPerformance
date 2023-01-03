@@ -39,7 +39,7 @@ namespace WebUI.Pages.LayersPages
 			var layer = new GetLayer(_context, _mapper);
 			LayerDto = layer.GetLayerDto(id);
 			var getStoreys = new GetStoreys(_context, _mapper);
-			var storeysDtoList = await getStoreys.GetStoreyDtoList();
+			var storeysDtoList = await getStoreys.GetStoreyDtoListAsync();
 			StoreySelectList = new SelectList(storeysDtoList, "Id", "Name", layer.StoreyId);
 			var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
 			SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", layer.SpaceId);
