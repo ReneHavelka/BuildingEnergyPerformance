@@ -1,4 +1,5 @@
-﻿using Application.StoreysCQR.Commands;
+﻿using Application.Common.Models;
+using Application.StoreysCQR.Commands;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
 using System.Collections;
@@ -17,26 +18,31 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			var getLastOrList = new GetLastOrList();
 
 			//Name list before adding and deleting
-			var storeyListBefore = await getLastOrList.GetStoreyList();
+			Task<IList<StoreysDto>> getStoreyListAsync = getLastOrList.GetStoreyListAsync();
+			var storeyListBefore = await getStoreyListAsync;
 			var nameListBefore = storeyListBefore.Select(x => x.Name).ToList() as ICollection;
 
 			//Add a new storey.
 			string name = "DeleteTest";
 			var createTryOutName = new CreateTryOutName(context, mapper);
-			await createTryOutName.TryName(name);
+			Task tryName = createTryOutName.TryNameAsync(name);
+			await tryName;
 
 			//Checking whether the new name has been added.
 			//Last record in storey database
-			var addedStorey = await getLastOrList.GetLastStorey();
+			var getLastStoreyAsync =  getLastOrList.GetLastStoreyAsync();
+			var addedStorey = await getLastStoreyAsync;
 			var addedName = addedStorey.Name;
 			Assert.AreEqual(name, addedName);
 
 			//Delete the storey.
 			var deleteStorey = new DeleteStorey(context);
-			await deleteStorey.RemoveStoreyAsync(addedStorey);
+			Task removeStoreyAsync = deleteStorey.RemoveStoreyAsync(addedStorey);
+			await removeStoreyAsync;
 
 			//Checking wheter the storey has been deleted:
-			var listAfter = await getLastOrList.GetStoreyList();
+			getLastStoreyAsync = getLastOrList.GetLastStoreyAsync();
+			var listAfter = await getLastStoreyAsync;
 
 			//Name collection after deleting
 			var nameListAfter = storeyListBefore.Select(x => x.Name).ToList() as ICollection;

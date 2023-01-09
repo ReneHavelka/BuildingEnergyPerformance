@@ -25,10 +25,11 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			_mapper = mapper;
 		}
 
-		public async Task TryName(string str)
+		public async Task TryNameAsync(string str)
 		{
 			var getLastOrList = new GetLastOrList();
-			StoreysDto storeyDto = await getLastOrList.GetLastStorey();
+			Task<StoreysDto> getLastStoreyAsync = getLastOrList.GetLastStoreyAsync();
+			StoreysDto storeyDto = await getLastStoreyAsync;
 			//The id is gotten from the last storey record.
 			var id = storeyDto.Id;
 			//Name of the last storey record - origianl name.
@@ -40,7 +41,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			try
 			{
 				var editStorey = new EditStorey(_context, _mapper);
-				await editStorey.ModifyStoreyAsync(storeyDto);
+				Task modifyStoreyAsync = editStorey.ModifyStoreyAsync(storeyDto);
+				await modifyStoreyAsync;
 			}
 			catch
 			{

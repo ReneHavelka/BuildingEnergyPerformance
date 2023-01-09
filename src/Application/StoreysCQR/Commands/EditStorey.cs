@@ -22,7 +22,8 @@ namespace Application.StoreysCQR.Commands
 
 			Storeys storey = _mapper.Map<Storeys>(storeyDto);
 			_context.Storeys.Update(storey);
-			await _context.SaveChangesAsync();
+			Task updateStorey = _context.SaveChangesAsync();
+			await updateStorey;
 		}
 	}
 }

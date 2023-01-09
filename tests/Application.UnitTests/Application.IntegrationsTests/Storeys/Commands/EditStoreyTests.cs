@@ -32,7 +32,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[ExpectedException(typeof(ArgumentOutOfRangeException))]
 		public async Task NameShouldNotBeNull()
 		{
-			await tryOutName.TryName(null);
+			Task nameShouldNotBeNull = tryOutName.TryNameAsync(null);
+			await nameShouldNotBeNull;
 		}
 
 		//The name must consist of 4 characters at least.
@@ -40,7 +41,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[ExpectedException(typeof(ArgumentOutOfRangeException))]
 		public async Task MinimalNameLength()
 		{
-			await tryOutName.TryName("Abc");
+			Task minimalNameLength = tryOutName.TryNameAsync("Abc");
+			await minimalNameLength;
 		}
 
 		//The name must beginn with a letter.
@@ -48,7 +50,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[ExpectedException(typeof(ArgumentException))]
 		public async Task NameFirstCharacter()
 		{
-			await tryOutName.TryName("1bcd");
+			Task nameFirstCharacter = tryOutName.TryNameAsync("1bcd");
+			await nameFirstCharacter;
 		}
 
 		//The name must beginn with a capital letter.
@@ -56,7 +59,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[ExpectedException(typeof(ArgumentException))]
 		public async Task NameFirstUpperCharacter()
 		{
-			await tryOutName.TryName("abcd");
+			Task nameFirstUpperCharacter = tryOutName.TryNameAsync("abcd");
+			await nameFirstUpperCharacter;
 		}
 
 		//The name must consist of the maximum of 20 characters.
@@ -64,7 +68,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[ExpectedException(typeof(ArgumentOutOfRangeException))]
 		public async Task MaximalNameLength()
 		{
-			await tryOutName.TryName("A23456789012345678901");
+			Task maximalNameLength = tryOutName.TryNameAsync("A23456789012345678901");
+			await maximalNameLength;
 		}
 
 		//The name must be distinct from the others.
@@ -73,7 +78,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		public async Task DistinctName()
 		{
 			var name = _context.Storeys.OrderBy(x => x.Id).FirstOrDefault().Name;
-			await tryOutName.TryName(name);
+			var tryNameAsync = tryOutName.TryNameAsync(name);
+			await tryNameAsync;
 		}
 
 		//Regular editing
@@ -81,20 +87,21 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		public async Task RegularEditing()
 		{
 			string name = "Abcde";
-			await tryOutName.TryName(name);
+			var tryNameAsync = tryOutName.TryNameAsync(name);
+			await tryNameAsync;
 			var originalName = tryOutName.OriginalName;
 
 			//Last record in storey database
-			var modifiedStorey = await getLastOrList.GetLastStorey();
+			var getLastStoreyAsync = getLastOrList.GetLastStoreyAsync();
+			var modifiedStorey = await getLastStoreyAsync;
 			//Modified storey name
 			var modifiedName = modifiedStorey.Name;
 			Assert.AreEqual(name, modifiedName);
 
 			//Finally modify the name to the original one.
-			modifiedStorey.Name = originalName;
 			var _context = new ApplicationDbContext();
 			tryOutName = new EditTryOutName(_context, _mapper);
-			await tryOutName.TryName(originalName);
+			await tryOutName.TryNameAsync(originalName);
 		}
 	}
 }

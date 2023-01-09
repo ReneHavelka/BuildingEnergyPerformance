@@ -18,7 +18,8 @@ namespace Application.StoreysCQR.Commands
 			int id = storeyDto.Id;
 			var storey = _context.Storeys.Find(id);
 			_context.Storeys.Remove(storey);
-			await _context.SaveChangesAsync();
+			Task saveChanges = _context.SaveChangesAsync();
+			await saveChanges;
 		}
 	}
 }

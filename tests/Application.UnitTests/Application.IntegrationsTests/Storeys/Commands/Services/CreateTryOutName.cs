@@ -16,7 +16,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
             _mapper = mapper;
         }
 
-        internal async Task TryName(string str)
+        internal async Task TryNameAsync(string str)
         {
             StoreysDto storeyDto = new();
             CreateStorey createStorey = new(_context, _mapper);
