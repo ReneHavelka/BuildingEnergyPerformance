@@ -25,7 +25,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Q
 
 			//Item by application query
 			var getStorey = new GetStorey(context, mapper);
-			var storeyDto = await getStorey.GetStoreyDtoAsync(id);
+			var getStoreyDtoAsync = getStorey.GetStoreyDtoAsync(id);
+			var storeyDto = await getStoreyDtoAsync;
 			var nameDto = storeyDto.Name;
 
 			Assert.AreEqual(name, nameDto);

@@ -24,7 +24,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Q
 
 			//Names by the means of application query
 			var getStoreys = new GetStoreys(context, mapper);
-			var storeysDto = await getStoreys.GetStoreyDtoListAsync();
+			var getStoreyDtoListAsync = getStoreys.GetStoreyDtoListAsync();
+			var storeysDto = await getStoreyDtoListAsync;
 			var storeyNamesDto = storeysDto.OrderBy(x => x.Name).Select(y => y.Name).ToList() as ICollection;
 
 			CollectionAssert.AreEquivalent(storeyNames, storeyNamesDto);

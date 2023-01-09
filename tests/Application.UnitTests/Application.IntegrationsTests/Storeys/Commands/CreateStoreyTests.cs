@@ -4,6 +4,7 @@ using Application.StoreysCQR.Commands;
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
+using System.Diagnostics;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
 {
@@ -37,7 +38,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 		[ExpectedException(typeof(ArgumentOutOfRangeException))]
 		public async Task MinimalNameLength()
 		{
-			Task minimalNameLength  = tryOutName.TryNameAsync("Abc");
+			Task minimalNameLength = tryOutName.TryNameAsync("Abc");
 			await minimalNameLength;
 		}
 
@@ -98,6 +99,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 			Assert.AreEqual(name, addedName);
 
 			//Finally delete the added item.
+			
+			
 			var deleteStorey = new DeleteStorey(_context);
 			Task deleteAddedStorey = deleteStorey.RemoveStoreyAsync(addedStorey);
 			await deleteAddedStorey;

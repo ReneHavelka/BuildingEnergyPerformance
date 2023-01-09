@@ -24,7 +24,8 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
             try
             {
-                await createStorey.AddStoreyAsync(storeyDto);
+                var addStoreyAsync = createStorey.AddStoreyAsync(storeyDto);
+                await addStoreyAsync;
             }
             catch
             {

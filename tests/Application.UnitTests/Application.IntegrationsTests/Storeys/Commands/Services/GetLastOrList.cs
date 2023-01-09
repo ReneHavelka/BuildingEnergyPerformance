@@ -20,14 +20,16 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		internal async Task<StoreysDto> GetLastStoreyAsync()
 		{
-			var getStoreyDtoList = await getStoreys.GetStoreyDtoListAsync();
+			var getStoreyDtoListAsync = getStoreys.GetStoreyDtoListAsync();
+			var getStoreyDtoList = await getStoreyDtoListAsync;
 			StoreysDto storeysDto = getStoreyDtoList.OrderBy(x => x.Id).LastOrDefault();
 			return storeysDto;
 		}
 
 		internal async Task<IList<StoreysDto>> GetStoreyListAsync()
 		{
-			var getStoreyDtoList = await getStoreys.GetStoreyDtoListAsync();
+			var getStoreyDtoListAsync = getStoreys.GetStoreyDtoListAsync();
+			var getStoreyDtoList = await getStoreyDtoListAsync;
 			IList<StoreysDto> storeyList = getStoreyDtoList.OrderBy(x => x.Id).ToList();
 			return storeyList;
 		}
