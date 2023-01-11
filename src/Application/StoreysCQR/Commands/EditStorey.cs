@@ -2,6 +2,9 @@
 using Application.Common.Models;
 using AutoMapper;
 using Domain.Entities;
+using FluentValidation;
+using FluentValidation.Results;
+using System.Diagnostics;
 
 namespace Application.StoreysCQR.Commands
 {
@@ -17,8 +20,11 @@ namespace Application.StoreysCQR.Commands
 
 		public async Task ModifyStoreyAsync(StoreysDto storeyDto)
 		{
-			var storeyNameValidation = new StoreyNameValidation();
-			storeyNameValidation.StoreyNameValidate(storeyDto, _context);
+			//var storeyNameValidation = new StoreyNameValidator();
+			//storeyNameValidation.StoreyNameValidate(storeyDto, _context);
+			StoreyCommandValidator storeyCommandValidator = new(storeyDto, _context);
+			storeyCommandValidator.ValidateAndThrow(storeyDto);
+
 
 			Storeys storey = _mapper.Map<Storeys>(storeyDto);
 			_context.Storeys.Update(storey);

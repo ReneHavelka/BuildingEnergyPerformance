@@ -33,7 +33,8 @@ plus
 		- Dependencies – súčasťou sú i nasledovné Packages:
 			- Automapper
 			- Microsoft Entity Framework Core
-			- ConfigureServices.cs – pre injektáž Automapper s MappingProfile do WebUI
+			- Fluent Validation
+		- ConfigureServices.cs – pre injektáž Automapper s MappingProfile do WebUI
 3. Infrastructure:
 	- Migration – pre vytvorenie a prípadnú modifikáciu databázy
 	- Persistance: trieda ApplicationDBContext pre komunikáciu s externými zdrojmi (databázou)

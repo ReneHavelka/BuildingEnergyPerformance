@@ -2,6 +2,7 @@
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
+using FluentValidation;
 using Infrastructure.Persistance;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
@@ -29,7 +30,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		//The name of the storey should not be null.
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		[ExpectedException(typeof(ValidationException))]
 		public async Task NameShouldNotBeNull()
 		{
 			Task nameShouldNotBeNull = tryOutName.TryNameAsync(null);
@@ -38,7 +39,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		//The name must consist of 4 characters at least.
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		[ExpectedException(typeof(ValidationException))]
 		public async Task MinimalNameLength()
 		{
 			Task minimalNameLength = tryOutName.TryNameAsync("Abc");
@@ -47,7 +48,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		//The name must beginn with a letter.
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentException))]
+		[ExpectedException(typeof(ValidationException))]
 		public async Task NameFirstCharacter()
 		{
 			Task nameFirstCharacter = tryOutName.TryNameAsync("1bcd");
@@ -56,7 +57,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		//The name must beginn with a capital letter.
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentException))]
+		[ExpectedException(typeof(ValidationException))]
 		public async Task NameFirstUpperCharacter()
 		{
 			Task nameFirstUpperCharacter = tryOutName.TryNameAsync("abcd");
@@ -65,7 +66,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		//The name must consist of the maximum of 20 characters.
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		[ExpectedException(typeof(ValidationException))]
 		public async Task MaximalNameLength()
 		{
 			Task maximalNameLength = tryOutName.TryNameAsync("A23456789012345678901");
@@ -74,7 +75,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.C
 
 		//The name must be distinct from the others.
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentException))]
+		[ExpectedException(typeof(ValidationException))]
 		public async Task DistinctName()
 		{
 			var name = _context.Storeys.OrderBy(x => x.Id).FirstOrDefault().Name;
