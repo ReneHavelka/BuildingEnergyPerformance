@@ -9,7 +9,6 @@ namespace Application.StoreysCQR.Commands
 {
 	internal class StoreyCommandValidator : AbstractValidator<StoreysDto>
 	{
-		internal string ExceptionMessage { get; set; }
 		internal StoreyCommandValidator(StoreysDto storeyDto, IApplicationDbContext context)
 		{
 			var sameName = context.Storeys.Where(x => x.Name.Equals(storeyDto.Name) && !x.Id.Equals(storeyDto.Id)).Select(x => x.Name).FirstOrDefault();
