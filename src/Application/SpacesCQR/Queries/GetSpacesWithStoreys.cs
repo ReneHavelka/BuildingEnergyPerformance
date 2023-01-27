@@ -3,7 +3,7 @@ using Application.Common.Models;
 
 namespace Application.SpacesCQR.Queries
 {
-	public class GetSpacesWithStoreys : IdNameDto
+	public record GetSpacesWithStoreys : IdNameDto
 	{
 		public float Temperature { get; set; }
 		public string StoreyName { get; set; }

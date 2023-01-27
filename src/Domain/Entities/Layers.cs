@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-	public class Layers : IdName
+	public record Layers : IdName
 	{
 
 		public float? Thickness { get; set; }

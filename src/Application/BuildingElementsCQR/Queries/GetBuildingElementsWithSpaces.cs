@@ -3,7 +3,7 @@ using Application.Common.Models;
 
 namespace Application.BuildingElementsCQR.Queries
 {
-	public class GetBuildingElementsWithSpaces : IdNameDto
+	public record GetBuildingElementsWithSpaces : IdNameDto
 	{
 		public string StoreyName { get; set; }
 		public string SpaceName { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Application.Common.Models
 {
-	public class BuildingElementsDto : IdNameDto
+	public record BuildingElementsDto : IdNameDto
 	{
 		public int? ContiguousSpaceId { get; set; }
 		public float EffectiveArea { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Common
 {
-	public abstract class ThermalProperties : IdName
+	public abstract record ThermalProperties : IdName
 	{
 		public float Value { get; set; }
 	}

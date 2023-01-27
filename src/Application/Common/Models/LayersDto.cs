@@ -1,6 +1,6 @@
 ﻿namespace Application.Common.Models
 {
-	public class LayersDto : IdNameDto
+	public record LayersDto : IdNameDto
 	{
 		public float? Thickness { get; set; }
 		public float? ThermalConductivity { get; set; }

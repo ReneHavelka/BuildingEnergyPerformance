@@ -2,7 +2,7 @@
 
 namespace Domain.Common
 {
-	public abstract class IdName
+	public abstract record IdName
 	{
 		[Key]
 		public int Id { get; set; }

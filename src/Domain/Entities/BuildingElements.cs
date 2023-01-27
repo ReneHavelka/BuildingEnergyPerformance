@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-	public class BuildingElements : IdName
+	public record BuildingElements : IdName
 	{
 		public int? ContiguousSpaceId { get; set; }
 		public float EffectiveArea { get; set; }

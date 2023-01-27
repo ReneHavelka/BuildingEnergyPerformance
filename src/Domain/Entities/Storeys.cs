@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-	public class Storeys : IdName
+	public record Storeys : IdName
 	{
 		public List<Spaces> Spaces { get; set; }
 	}

@@ -3,7 +3,7 @@ using Application.Common.Models;
 
 namespace Application.LayersCQR.Queries
 {
-	public class GetLayersWithBuildingElements : IdNameDto
+	public record GetLayersWithBuildingElements : IdNameDto
 	{
 		public string StoreyName { get; set; }
 		public string SpaceName { get; set; }
