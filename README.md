@@ -1,7 +1,7 @@
 # Building Energy Performance
 
-Aplikácia je v stave rozpracovanosti. Obsahuje len základné funkcionality pre napojenie na databázu a užívateľa.
-V tejto fáze je nevyhnutné nasadiť testy, prejsť na TDD a refaktoring existujúceho kódu.
+Aplikácia je postavená na platforme ASP.NET core a využíva funkcionalitu Razor Pages.
+Jej rozpracovanosť je v len počiatočnom stave. Je nevyhnutné nasadiť testy, prejsť na TDD a refaktoring existujúceho kódu.
 Počiatočné testy pre komunikáciu s databázou (integračné pre Application/StoreysCQR) už boli využité. Prvé kroky refaktoringu viedli k úprave niektorých metód.
 Mnohé metódy sú postupne modifikované na asynchrónne.
 
