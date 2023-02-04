@@ -31,11 +31,12 @@ namespace WebUI.Pages.BuildingElementsPages
 			_mapper = mapper;
 		}
 
-		public void OnGet(int id)
+		public async Task OnGet(int id)
 		{
 			var buildingElement = new GetBuildingElement(_context, _mapper);
 			BuildingElementDto = buildingElement.GetBuildingElementDto(id);
-			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoListAsync();
+			Task<IList<StoreysDto>> storeysDtoListTask = new GetStoreys(_context, _mapper).GetStoreyDtoListAsync();
+			var storeysDtoList = await storeysDtoListTask;
 			StoreySelectList = new SelectList((System.Collections.IEnumerable)storeysDtoList, "Id", "Name", buildingElement.StoreyId);
 			var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
 			SpaceSelectList = new SelectList(spacesDtoList, "Id", "Name", BuildingElementDto.SpacesId);

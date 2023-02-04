@@ -25,9 +25,10 @@ namespace WebUI.Pages.LayersPages
 			_mapper = mapper;
 		}
 
-		public void OnGet()
+		public async Task OnGetAsync()
 		{
-			var storeysDtoList = new GetStoreys(_context, _mapper).GetStoreyDtoListAsync();
+			Task<IList<StoreysDto>> storeysDtoListTask = new GetStoreys(_context, _mapper).GetStoreyDtoListAsync();
+			var storeysDtoList = await storeysDtoListTask;
 			StoreySelectList = new SelectList((System.Collections.IEnumerable)storeysDtoList, "Id", "Name");
 		}
 
