@@ -26,7 +26,7 @@
 				<th class="fs-4 text-decoration-none px-6">Vedľ. priestor</th>
 				<th class="fs-4 text-decoration-none px-6">Názov vrstvy</th>
 				<th class="fs-4 text-decoration-none px-6">Hrúbka</th>
-				<th class="fs-4 text-decoration-none px-6">Tep. vodivosť</th>
+				<th class="fs-4 text-decoration-none px-6" style="width:50px;">Tep. vodivosť</th>
 				<th class="fs-4 text-decoration-none px-6">Tep. odpor</th>
 			</tr>
 		</thead>
@@ -38,8 +38,8 @@
 					<td class="fs-4 text-black text-decoration-none px-2">@layer.SpaceName</td>
 					<td class="fs-4 text-black text-decoration-none px-2">@layer.Temperature °C</td>
 					<td class="fs-4 text-black text-decoration-none px-2">@layer.BuildingElementName</td>
-					<td class="fs-4 text-black text-decoration-none px-2">@layer.EffectiveArea m2</td>
-					<td class="fs-4 text-black text-decoration-none px-2">-- Vonkajší priestor --</td>
+					<td class="fs-4 text-black text-decoration-none px-2" style=" width:100px;">@layer.EffectiveArea m2</td>
+					<td class="fs-4 text-black text-decoration-none px-2" style="width:250px;">-- Vonkajší priestor --</td>
 					<td class="fs-4 text-black text-decoration-none px-2">@layer.Name</td>
 					@{
 						if (@layer.ThermalConductivity != null)
@@ -52,10 +52,10 @@
 						{
 							<td></td>
 							<td></td>
-							<td class="fs-4 text-black text-decoration-none px-2">@layer.ThermalResistance m<sup>2</sup>K/W</td>
+							<td class="fs-4 text-black text-decoration-none px-2" style="width:150px;">@layer.ThermalResistance m<sup>2</sup>K/W</td>
 						}
 					}
-					<td class="fs-5 text-decoration-none px-2">
+					<td class="fs-5 text-decoration-none px-2" style="width:200px;">
 						<a asp-page="Edit" asp-route-id="@layer.Id" class="btn text-black bg-light border-dark mx-2">Uprav</a>
 						<a asp-page="Delete" asp-route-id="@layer.Id" class="btn text-black bg-light border-dark mx-2">Vymaž</a>
 					</td>
