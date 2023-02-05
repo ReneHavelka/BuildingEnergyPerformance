@@ -1,21 +1,21 @@
 ﻿@page
-@model WebUI.Pages.ThermalConductivitiesPages.DeleteModel
+@model WebUI.Pages.ThermalResistancesPages.DeleteModel
 
 <div class="bg-light">
 	<form method="post">
-		<input asp-for="ThermalConductivityDto.Id" hidden />
+		<input asp-for="ThermalResistanceDto.Id" hidden />
 		<div class="row col-6 fs-1 pl-3 mx-3 mb-5">
-			Vymazanie tepelnej vodivosti
+			Vymazanie tepelného odporu
 		</div>
 		<div class="p-5">
 			<div classs="my-3" style="display:flex; flex-direction: row; width:50%">
 				<div class="fs-4 m-3">Materiál:</div>
-				<div class="form-control fs-4 py-3">@Model.ThermalConductivityDto.Name</div>
+				<div class="form-control fs-4 py-3">@Model.ThermalResistanceDto.Name</div>
 			</div>
 			<div class="my-3" style="display:flex; flex-direction: row; width:35%">
-				<div class="fs-4 m-3">Tepelná&nbsp;vodivosť:</div>
-				<div class="form-control fs-4 w-25 py-3" style="text-align:right">@Model.ThermalConductivityDto.Value</div>
-				<div class="fs-4 my-3 mx-2">W/mK</div>
+				<div class="fs-4 m-3">Tepelný&nbsp;odpor:</div>
+				<div class="form-control fs-4 w-25 py-3" style="text-align:right">@Model.ThermalResistanceDto.Value</div>
+				<div class="fs-4 my-3 mx-2">m<supt>2.</supt>K/W</div>
 			</div>
 		</div>
 		<button type="submit" class="btn btn-secondary float-sm-start m-3">Potvrď</button>

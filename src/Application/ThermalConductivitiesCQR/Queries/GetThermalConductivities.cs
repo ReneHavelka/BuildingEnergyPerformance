@@ -24,7 +24,6 @@ namespace Application.ThermalConductivitiesCQR.Queries
 		{
 			var thermalConductivities = _context.ThermalConductivities;
 			var thermalConductivitiesDtoList = _mapper.Map<IList<ThermalConductivitiesDto>>(thermalConductivities);
-
 			return thermalConductivitiesDtoList;
 		}
 	}

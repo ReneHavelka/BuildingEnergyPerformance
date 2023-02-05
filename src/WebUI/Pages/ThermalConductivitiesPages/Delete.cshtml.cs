@@ -37,7 +37,9 @@ namespace WebUI.Pages.ThermalConductivitiesPages
         public async Task<IActionResult> OnPost()
         {
             var deleteThermalConductivity = new DeleteThermalConductivity(_context);
-            await deleteThermalConductivity.RemoveThermalConductivity(ThermalConductivityDto);
+            var test = ThermalConductivityDto.Id;
+
+			await deleteThermalConductivity.RemoveThermalConductivity(ThermalConductivityDto);
 
             return RedirectToPage("Index");
         }
