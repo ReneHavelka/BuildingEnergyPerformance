@@ -21,9 +21,6 @@ namespace Application.StoreysCQR.Commands
 
 		public async Task AddStoreyAsync(StoreysDto storeyDto)
 		{
-			//var storeyNameValidation = new StoreyNameValidator();
-			//storeyNameValidation.StoreyNameValidate(storeyDto, _context);
-
 			StoreyCommandValidator storeyCommandValidator = new(storeyDto, _context);
 			storeyCommandValidator.ValidateAndThrow(storeyDto);
 

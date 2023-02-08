@@ -2,7 +2,7 @@
 using Application.Common.Models;
 using Application.StoreysCQR.Queries;
 using AutoMapper;
-using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
+using BuildingEnergyPerformanceTests.CommonServices;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services
 {

@@ -1,7 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
-using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
+using BuildingEnergyPerformanceTests.CommonServices;
 using FluentValidation;
 using Infrastructure.Persistance;
 

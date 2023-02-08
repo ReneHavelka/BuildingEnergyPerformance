@@ -2,6 +2,7 @@ using Application.Common.Interfaces;
 using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Diagnostics;
@@ -21,8 +22,11 @@ namespace WebUI.Pages.StoreysPages
 			_mapper = mapper;
 		}
 
-		public async Task<IActionResult> OnPost(StoreysDto StoreysDto)
+		public async Task<IActionResult> OnPostAsync()
 		{
+			StoreyCommandValidator storeyCommandValidator = new(StoreyDto, _context);
+			storeyCommandValidator.ValidateAndThrow(StoreyDto);
+
 			var createStoreys = new CreateStorey(_context, _mapper);
 			await createStoreys.AddStoreyAsync(StoreyDto);
 

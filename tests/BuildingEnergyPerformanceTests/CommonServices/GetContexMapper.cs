@@ -3,7 +3,7 @@ using Application.Common.Mappings;
 using AutoMapper;
 using Infrastructure.Persistance;
 
-namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices
+namespace BuildingEnergyPerformanceTests.CommonServices
 {
     internal class GetContexMapper
     {

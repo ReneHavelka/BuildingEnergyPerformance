@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace Application.StoreysCQR.Commands
 {
-	internal class StoreyCommandValidator : AbstractValidator<StoreysDto>
+	public class StoreyCommandValidator : AbstractValidator<StoreysDto>
 	{
-		internal StoreyCommandValidator(StoreysDto storeyDto, IApplicationDbContext context)
+		public StoreyCommandValidator(StoreysDto storeyDto, IApplicationDbContext context)
 		{
 			var sameName = context.Storeys.Where(x => x.Name.Equals(storeyDto.Name) && !x.Id.Equals(storeyDto.Id)).Select(x => x.Name).FirstOrDefault();
 

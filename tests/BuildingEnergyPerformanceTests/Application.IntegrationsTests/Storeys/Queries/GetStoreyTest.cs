@@ -1,10 +1,5 @@
 ﻿using Application.StoreysCQR.Queries;
-using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BuildingEnergyPerformanceTests.CommonServices;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Queries
 {

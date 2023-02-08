@@ -1,7 +1,7 @@
 ﻿using Application.Common.Models;
 using Application.StoreysCQR.Commands;
 using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands.Services;
-using BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.CommonServices;
+using BuildingEnergyPerformanceTests.CommonServices;
 using System.Collections;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.Storeys.Commands
