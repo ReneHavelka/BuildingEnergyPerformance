@@ -1,12 +1,8 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
-using BuildingEnergyPerformanceTests.CommonServices;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using System.Diagnostics;
+using BuildingEnergyPerformanceTests.Common;
 
-namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.StoreysPages
+namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPages
 {
 	[TestClass]
 	public class CreateTests
@@ -90,6 +86,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.StoreysPa
 			var exMessage = await TryOutNameAsync(lastName);
 			Assert.IsTrue(exMessage.Contains("Toto meno je už použité. Zadajte iné."));
 		}
+
 		//Regular adding
 		[TestMethod]
 		public async Task RegularAddingAsync()

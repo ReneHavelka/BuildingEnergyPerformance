@@ -25,7 +25,7 @@ namespace WebUI.Pages.StoreysPages
 		public async Task<IActionResult> OnPostAsync()
 		{
 			StoreyCommandValidator storeyCommandValidator = new(StoreyDto, _context);
-			storeyCommandValidator.ValidateAndThrow(StoreyDto);
+			await storeyCommandValidator.ValidateAndThrowAsync(StoreyDto);
 
 			var createStoreys = new CreateStorey(_context, _mapper);
 			await createStoreys.AddStoreyAsync(StoreyDto);

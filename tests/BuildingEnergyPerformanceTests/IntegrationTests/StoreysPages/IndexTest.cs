@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
-using BuildingEnergyPerformanceTests.CommonServices;
+using BuildingEnergyPerformanceTests.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebUI.Pages.StoreysPages;
 
-namespace BuildingEnergyPerformanceTests.Application.IntegrationsTests.StoreysPages
+namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPages
 {
 	[TestClass]
 	public class IndexTest

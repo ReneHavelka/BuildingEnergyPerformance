@@ -22,7 +22,7 @@ namespace Application.StoreysCQR.Commands
 		public async Task AddStoreyAsync(StoreysDto storeyDto)
 		{
 			StoreyCommandValidator storeyCommandValidator = new(storeyDto, _context);
-			storeyCommandValidator.ValidateAndThrow(storeyDto);
+			await storeyCommandValidator.ValidateAndThrowAsync(storeyDto);
 
 			Storeys storey = _mapper.Map<Storeys>(storeyDto);
 			await _context.Storeys.AddAsync(storey);
