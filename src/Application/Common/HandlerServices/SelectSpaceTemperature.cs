@@ -1,5 +1,5 @@
 ﻿using Application.Common.Interfaces;
-using Application.SpacesCQR.Queries;
+using Application.SpaceCQR.Queries;
 using AutoMapper;
 
 namespace Application.Common.HandlerServices

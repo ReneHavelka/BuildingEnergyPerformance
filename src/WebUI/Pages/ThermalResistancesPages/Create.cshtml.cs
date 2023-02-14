@@ -1,18 +1,16 @@
 using Application.Common.Interfaces;
 using Application.Common.Models;
-using Application.SpaceTemperaturesCQR.Commands;
-using Application.ThermalConductivitiesCQR.Commands;
-using Application.ThermalResistancesCQR.Commands;
+using Application.ThermalResistanceCQR.Commands;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.ThermalResistancesPages
+namespace WebUI.Pages.ThermalResistancePages
 {
-    public class CreateModel : PageModel
-    {
+	public class CreateModel : PageModel
+	{
 		[BindProperty]
-		public ThermalResistancesDto ThermalResistanceDto { get; set; }
+		public ThermalResistanceDto ThermalResistanceDto { get; set; }
 
 		IApplicationDbContext _context;
 		IMapper _mapper;
@@ -24,7 +22,7 @@ namespace WebUI.Pages.ThermalResistancesPages
 			_mapper = mapper;
 		}
 
-		public async Task<IActionResult> OnPostAsync(ThermalResistancesDto ThermalResistanceDto)
+		public async Task<IActionResult> OnPostAsync(ThermalResistanceDto ThermalResistanceDto)
 		{
 			var createThermalResistance = new CreateThermalResistance(_context, _mapper);
 			await createThermalResistance.AddThermalResistanceAsync(ThermalResistanceDto);

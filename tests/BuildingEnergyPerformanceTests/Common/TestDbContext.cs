@@ -5,12 +5,12 @@ namespace BuildingEnergyPerformanceTests.Common
 {
 	public class TestDbContext : DbContext
 	{
-		public virtual DbSet<Storeys> Storeys { get; set; }
-		public virtual DbSet<Spaces> Spaces { get; set; }
-		public virtual DbSet<BuildingElements> BuildingElements { get; set; }
-		public virtual DbSet<Layers> Layers { get; set; }
-		public virtual DbSet<SpaceTemperatures> SpaceTemperatures { get; set; }
-		public virtual DbSet<ThermalResistances> ThermalResistances { get; set; }
-		public virtual DbSet<ThermalConductivities> ThermalConductivities { get; set; }
+		public virtual DbSet<Storey> Storeys { get; set; }
+		public virtual DbSet<Space> Spaces { get; set; }
+		public virtual DbSet<BuildingElement> BuildingElements { get; set; }
+		public virtual DbSet<Layer> Layers { get; set; }
+		public virtual DbSet<SpaceTemperature> SpaceTemperatures { get; set; }
+		public virtual DbSet<ThermalResistance> ThermalResistances { get; set; }
+		public virtual DbSet<ThermalConductivity> ThermalConductivities { get; set; }
 	}
 }

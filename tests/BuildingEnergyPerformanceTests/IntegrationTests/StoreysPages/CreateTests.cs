@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
 using BuildingEnergyPerformanceTests.Common;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPages
 {
@@ -18,7 +20,13 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPag
 
 		internal async Task<string> TryOutNameAsync(string? name)
 		{
-			var createModel = new WebUI.Pages.StoreysPages.CreateModel(context, mapper);
+
+			var mockSet = new Mock<DbSet<Storeys>>();
+			var mockContext = new Mock<IApplicationDbContext>();
+			mockContext.Setup(m => m.Storeys).Returns(mockSet.Object);
+
+			var createModel = new WebUI.Pages.StoreysPages.CreateModel(mockContext.Object, mapper);
+			//var createModel = new WebUI.Pages.StoreysPages.CreateModel(context, mapper);
 			createModel.StoreyDto = new() { Name = name };
 			string exMessage = "OK";
 

@@ -1,7 +1,4 @@
-﻿using Application.Common.Interfaces;
-using Application.Common.Models;
-using Application.StoreysCQR.Commands;
-using AutoMapper;
+﻿using AutoMapper;
 using BuildingEnergyPerformanceTests.Common;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +23,7 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPag
 			var lastRecord = await context.Storeys.AsNoTracking().OrderBy(x => x.Id).LastOrDefaultAsync();
 			if (lastRecord.Name == "Abcd") return;
 
-			Storeys storey = new();
+			Storey storey = new();
 			storey.Name = "Abcd";
 			await context.Storeys.AddAsync(storey);
 			await context.SaveChangesAsync();

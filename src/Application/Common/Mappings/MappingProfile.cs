@@ -8,14 +8,14 @@ namespace Application.Common.Mappings
 	{
 		public MappingProfile()
 		{
-			CreateMap<Storeys, StoreysDto>().ReverseMap();
-			CreateMap<Spaces, SpacesDto>().ReverseMap();
-			CreateMap<BuildingElements, BuildingElementsDto>().ReverseMap();
-			CreateMap<Layers, LayersDto>().ReverseMap();
-			CreateMap<SpaceTemperatures, SpaceTemperaturesDto>().ReverseMap();
-			CreateMap<BuildingElements, BuildingElementsDto>().ReverseMap();
-			CreateMap<ThermalConductivities, ThermalConductivitiesDto>().ReverseMap();
-			CreateMap<ThermalResistances, ThermalResistancesDto>().ReverseMap();
+			CreateMap<Storey, StoreyDto>().ReverseMap();
+			CreateMap<Space, SpaceDto>().ReverseMap();
+			CreateMap<BuildingElement, BuildingElementDto>().ReverseMap();
+			CreateMap<Layer, LayerDto>().ReverseMap();
+			CreateMap<SpaceTemperature, SpaceTemperatureDto>().ReverseMap();
+			CreateMap<BuildingElement, BuildingElementDto>().ReverseMap();
+			CreateMap<ThermalConductivity, ThermalConductivitieDto>().ReverseMap();
+			CreateMap<ThermalResistance, ThermalResistanceDto>().ReverseMap();
 		}
 	}
 }

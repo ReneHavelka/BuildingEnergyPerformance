@@ -1,6 +1,6 @@
-﻿using Application.BuildingElementsCQR.Queries;
+﻿using Application.BuildingElementCQR.Queries;
 using Application.Common.Interfaces;
-using Application.SpacesCQR.Queries;
+using Application.SpaceCQR.Queries;
 using AutoMapper;
 
 namespace Application.Common.HandlerServices
@@ -24,11 +24,11 @@ namespace Application.Common.HandlerServices
 			{
 				case "spaces":
 					var spacesDtoList = new GetSpaces(_context, _mapper).GetSpaceDtoList();
-					selectedCollection = spacesDtoList.Where(x => x.StoreysId == selectedValue).Select(x => new { x.Id, x.Name });
+					selectedCollection = spacesDtoList.Where(x => x.StoreyId == selectedValue).Select(x => new { x.Id, x.Name });
 					break;
 				case "buildingElements":
 					var buildingElementsDtoList = new GetBuildingElements(_context, _mapper).GetBuildingElementDtoList();
-					selectedCollection = buildingElementsDtoList.Where(x => x.SpacesId == selectedValue).Select(x => new { x.Id, x.Name });
+					selectedCollection = buildingElementsDtoList.Where(x => x.SpaceId == selectedValue).Select(x => new { x.Id, x.Name });
 					break;
 			}
 

@@ -1,17 +1,17 @@
 using Application.Common.Interfaces;
 using Application.Common.Models;
-using Application.ThermalResistancesCQR.Commands;
-using Application.ThermalResistancesCQR.Queries;
+using Application.ThermalResistanceCQR.Commands;
+using Application.ThermalResistanceCQR.Queries;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.ThermalResistancesPages
+namespace WebUI.Pages.ThermalResistancePages
 {
 	public class DeleteModel : PageModel
 	{
 		[BindProperty]
-		public ThermalResistancesDto ThermalResistanceDto { get; set; }
+		public ThermalResistanceDto ThermalResistanceDto { get; set; }
 		private IApplicationDbContext _context;
 		private IMapper _mapper;
 

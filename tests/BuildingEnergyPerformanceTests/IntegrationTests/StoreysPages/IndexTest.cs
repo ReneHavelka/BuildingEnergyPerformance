@@ -1,13 +1,4 @@
-﻿using Application.Common.Interfaces;
-using AutoMapper;
-using BuildingEnergyPerformanceTests.Common;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuildingEnergyPerformanceTests.Common;
 using WebUI.Pages.StoreysPages;
 
 namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPages

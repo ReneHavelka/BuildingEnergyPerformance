@@ -1,4 +1,4 @@
-﻿using Application.BuildingElementsCQR.Queries;
+﻿using Application.BuildingElementCQR.Queries;
 using Application.Common.Interfaces;
 using AutoMapper;
 

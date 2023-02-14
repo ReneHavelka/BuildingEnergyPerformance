@@ -22,7 +22,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Domain.Entities.BuildingElements", b =>
+            modelBuilder.Entity("Domain.Entities.BuildingElement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,26 +36,21 @@ namespace Infrastructure.Migrations
                     b.Property<float>("EffectiveArea")
                         .HasColumnType("real");
 
-                    b.Property<int>("EmbededIn")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SpacesId")
+                    b.Property<int>("SpaceId")
                         .HasColumnType("int");
-
-                    b.Property<float?>("ThermalResistance")
-                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SpacesId");
+                    b.HasIndex("SpaceId");
 
                     b.ToTable("BuildingElements");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Layers", b =>
+            modelBuilder.Entity("Domain.Entities.Layer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,10 +58,11 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BuildingElementsId")
+                    b.Property<int>("BuildingElementId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float?>("ThermalConductivity")
@@ -80,12 +76,12 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BuildingElementsId");
+                    b.HasIndex("BuildingElementId");
 
                     b.ToTable("Layers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Spaces", b =>
+            modelBuilder.Entity("Domain.Entities.Space", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,9 +90,10 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StoreysId")
+                    b.Property<int>("StoreyId")
                         .HasColumnType("int");
 
                     b.Property<float>("Temperature")
@@ -104,12 +101,12 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StoreysId");
+                    b.HasIndex("StoreyId");
 
                     b.ToTable("Spaces");
                 });
 
-            modelBuilder.Entity("Domain.Entities.SpaceTemperatures", b =>
+            modelBuilder.Entity("Domain.Entities.SpaceTemperature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,6 +115,7 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Temperature")
@@ -128,7 +126,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("SpaceTemperatures");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Storeys", b =>
+            modelBuilder.Entity("Domain.Entities.Storey", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,6 +135,7 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -144,7 +143,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Storeys");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ThermalConductivityTable", b =>
+            modelBuilder.Entity("Domain.Entities.ThermalConductivity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -161,10 +160,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ThermalConductivityTables");
+                    b.ToTable("ThermalConductivities");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ThermalResistanceTable", b =>
+            modelBuilder.Entity("Domain.Entities.ThermalResistance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -181,53 +180,53 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ThermalResistanceTable");
+                    b.ToTable("ThermalResistances");
                 });
 
-            modelBuilder.Entity("Domain.Entities.BuildingElements", b =>
+            modelBuilder.Entity("Domain.Entities.BuildingElement", b =>
                 {
-                    b.HasOne("Domain.Entities.Spaces", "Spaces")
+                    b.HasOne("Domain.Entities.Space", "Space")
                         .WithMany("BuildingElements")
-                        .HasForeignKey("SpacesId")
+                        .HasForeignKey("SpaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Spaces");
+                    b.Navigation("Space");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Layers", b =>
+            modelBuilder.Entity("Domain.Entities.Layer", b =>
                 {
-                    b.HasOne("Domain.Entities.BuildingElements", "BuildingElements")
+                    b.HasOne("Domain.Entities.BuildingElement", "BuildingElement")
                         .WithMany("Layers")
-                        .HasForeignKey("BuildingElementsId")
+                        .HasForeignKey("BuildingElementId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BuildingElements");
+                    b.Navigation("BuildingElement");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Spaces", b =>
+            modelBuilder.Entity("Domain.Entities.Space", b =>
                 {
-                    b.HasOne("Domain.Entities.Storeys", "Storeys")
+                    b.HasOne("Domain.Entities.Storey", "Storey")
                         .WithMany("Spaces")
-                        .HasForeignKey("StoreysId")
+                        .HasForeignKey("StoreyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Storeys");
+                    b.Navigation("Storey");
                 });
 
-            modelBuilder.Entity("Domain.Entities.BuildingElements", b =>
+            modelBuilder.Entity("Domain.Entities.BuildingElement", b =>
                 {
                     b.Navigation("Layers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Spaces", b =>
+            modelBuilder.Entity("Domain.Entities.Space", b =>
                 {
                     b.Navigation("BuildingElements");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Storeys", b =>
+            modelBuilder.Entity("Domain.Entities.Storey", b =>
                 {
                     b.Navigation("Spaces");
                 });
