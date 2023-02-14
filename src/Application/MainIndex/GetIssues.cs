@@ -10,8 +10,8 @@ namespace Application.MainIndex
 
 		public GetIssues()
 		{
-			IssueKeyValue = from name in Enum.GetNames(typeof(Issues))
-							join nameSk in IssuesSk.IssuesList
+			IssueKeyValue = from name in Enum.GetNames(typeof(Categories))
+							join nameSk in CategoriesSk.IssuesList
 							on name equals nameSk.Key
 							select nameSk;
 		}
