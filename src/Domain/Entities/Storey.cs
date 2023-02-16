@@ -4,6 +4,6 @@ namespace Domain.Entities
 {
 	public record Storey : IdName
 	{
-		public List<Space> Spaces { get; set; }
+		public virtual List<Space> Spaces { get; set; }
 	}
 }

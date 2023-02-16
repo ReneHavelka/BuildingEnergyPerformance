@@ -6,9 +6,9 @@ namespace Domain.Entities
 	{
 		public float Temperature { get; set; }
 
-		public List<BuildingElement> BuildingElements { get; set; }
+		public virtual List<BuildingElement> BuildingElements { get; set; }
 
 		public int StoreyId { get; set; }
-		public Storey Storey { get; set; }
+		public virtual Storey Storey { get; set; }
 	}
 }

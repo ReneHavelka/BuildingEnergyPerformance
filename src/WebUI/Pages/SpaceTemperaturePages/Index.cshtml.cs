@@ -4,7 +4,7 @@ using Application.SpaceTemperatureCQR.Queries;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.SpaceTemperaturesPages
+namespace WebUI.Pages.SpaceTemperaturePages
 {
 	public class IndexModel : PageModel
 	{

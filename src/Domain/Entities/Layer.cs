@@ -10,6 +10,6 @@ namespace Domain.Entities
 		public float? ThermalResistance { get; set; }
 
 		public int BuildingElementId { get; set; }
-		public BuildingElement BuildingElement { get; set; }
+		public virtual BuildingElement BuildingElement { get; set; }
 	}
 }

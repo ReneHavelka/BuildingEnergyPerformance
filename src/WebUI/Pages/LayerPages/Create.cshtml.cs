@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace WebUI.Pages.LayersPages
+namespace WebUI.Pages.LayerPages
 {
 	public class CreateModel : PageModel
 	{

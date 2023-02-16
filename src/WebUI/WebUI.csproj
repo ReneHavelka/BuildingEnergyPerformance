@@ -30,19 +30,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Pages\SpacesPages\Create.cshtml">
+    <Content Update="Pages\SpacePages\Create.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Update="Pages\SpacesPages\Delete.cshtml">
+    <Content Update="Pages\SpacePages\Delete.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Update="Pages\SpacesPages\Edit.cshtml">
+    <Content Update="Pages\SpacePages\Edit.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Update="Pages\SpacesPages\Index.cshtml">
+    <Content Update="Pages\SpacePages\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

@@ -2,7 +2,7 @@ using Application.BuildingElementCQR.Queries;
 using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.BuildingElementsPages
+namespace WebUI.Pages.BuildingElementPages
 {
 	public class IndexModel : PageModel
 	{

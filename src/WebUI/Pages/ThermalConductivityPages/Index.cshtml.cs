@@ -4,7 +4,7 @@ using Application.ThermalConductivityCQR.Queries;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.ThermalConductivitiesPages
+namespace WebUI.Pages.ThermalConductivityPages
 {
 	public class IndexModel : PageModel
 	{

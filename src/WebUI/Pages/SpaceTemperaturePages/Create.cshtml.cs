@@ -5,7 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.SpaceTemperaturesPages
+namespace WebUI.Pages.SpaceTemperaturePages
 {
 	public class CreateModel : PageModel
 	{

@@ -5,7 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.SpacesPages
+namespace WebUI.Pages.SpacePages
 {
 	public class DeleteModel : PageModel
 	{

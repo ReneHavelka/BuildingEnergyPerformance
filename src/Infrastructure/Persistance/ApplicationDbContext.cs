@@ -6,15 +6,15 @@ namespace Infrastructure.Persistance
 {
 	public class ApplicationDbContext : DbContext, IApplicationDbContext
 	{
-		public DbSet<Storey> Storeys { get; set; }
-		public DbSet<Space> Spaces { get; set; }
-		public DbSet<BuildingElement> BuildingElements { get; set; }
-		public DbSet<Layer> Layers { get; set; }
-		public DbSet<SpaceTemperature> SpaceTemperatures { get; set; }
-		public DbSet<ThermalResistance> ThermalResistances { get; set; }
-		public DbSet<ThermalConductivity> ThermalConductivities { get; set; }
+		public virtual DbSet<Storey> Storeys { get; set; }
+		public virtual DbSet<Space> Spaces { get; set; }
+		public virtual DbSet<BuildingElement> BuildingElements { get; set; }
+		public virtual DbSet<Layer> Layers { get; set; }
+		public virtual DbSet<SpaceTemperature> SpaceTemperatures { get; set; }
+		public virtual DbSet<ThermalResistance> ThermalResistances { get; set; }
+		public virtual DbSet<ThermalConductivity> ThermalConductivities { get; set; }
 
-		public async Task<int> SaveChangesAsync()
+		public virtual async Task<int> SaveChangesAsync()
 		{
 			return await base.SaveChangesAsync();
 		}
@@ -24,9 +24,5 @@ namespace Infrastructure.Persistance
 			optionsBuilder.UseSqlServer(
 				@"Server=(localdb)\mssqllocaldb;Database=BuildingEnergyPeformance;Trusted_Connection=True");
 		}
-
-		//public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-		//{
-		//}
 	}
 }

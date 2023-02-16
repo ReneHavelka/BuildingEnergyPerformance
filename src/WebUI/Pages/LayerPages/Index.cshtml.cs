@@ -2,7 +2,7 @@ using Application.Common.Interfaces;
 using Application.LayerCQR.Queries;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.LayersPages
+namespace WebUI.Pages.LayerPages
 {
 	public class IndexModel : PageModel
 	{

@@ -3,6 +3,7 @@ using Application.Common.Models;
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
+using System.Diagnostics;
 
 namespace Application.StoreyCQR.Commands
 {
@@ -23,6 +24,7 @@ namespace Application.StoreyCQR.Commands
 			await storeyCommandValidator.ValidateAndThrowAsync(storeyDto);
 
 			Storey storey = _mapper.Map<Storey>(storeyDto);
+
 			await _context.Storeys.AddAsync(storey);
 			await _context.SaveChangesAsync();
 		}

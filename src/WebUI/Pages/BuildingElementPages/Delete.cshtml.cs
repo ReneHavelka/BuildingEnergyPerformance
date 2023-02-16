@@ -4,7 +4,7 @@ using Application.Common.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.BuildingElementsPages
+namespace WebUI.Pages.BuildingElementPages
 {
 	public class DeleteModel : PageModel
 	{

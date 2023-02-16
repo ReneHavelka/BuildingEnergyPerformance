@@ -1,34 +1,37 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Common.Mappings;
 using AutoMapper;
-using BuildingEnergyPerformanceTests.Common;
 using Domain.Entities;
+using Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Moq;
+using System.Diagnostics;
 
-namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPages
+namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreyPages
 {
 	[TestClass]
 	public class CreateTests
 	{
-		Mock<IApplicationDbContext> mockContext;
-		IMapper mapper;
-		public CreateTests()
-		{
-			var getContextMapper = new GetContexMapper();
-			mockContext = getContextMapper.MockContext;
-			mapper = getContextMapper.Mapper;
-		}
-
 		internal async Task<string> TryOutNameAsync(string? name)
 		{
-			var createModel = new WebUI.Pages.StoreysPages.CreateModel(mockContext.Object, mapper);
-			//var createModel = new WebUI.Pages.StoreysPages.CreateModel(context, mapper);
-			createModel.StoreyDto = new() { Name = name };
-			string exMessage = "OK";
+			var mockSet = new Mock<DbSet<Storey>>();
+			var mockContext = new Mock<ApplicationDbContext>();
+			mockContext.Setup(m => m.Storeys).Returns(mockSet.Object);
 
+			var mappingProfile = new MappingProfile();
+			var config = new MapperConfiguration(cfg => cfg.AddProfile(mappingProfile));
+			var mapper = new Mapper(config);
+
+			var service = new WebUI.Pages.StoreyPages.CreateModel(mockContext.Object, mapper);
+			service.StoreyDto = new() { Name = name };
+
+			string exMessage = String.Empty;
 			try
 			{
-				await createModel.OnPostAsync();
+				await service.OnPostAsync();
+
+				mockSet.Verify(m => m.AddAsync(It.IsAny<Storey>(), default), Times.Once());
+				mockContext.Verify(m => m.SaveChangesAsync(), Times.Once());
 			}
 			catch (Exception ex)
 			{
@@ -81,33 +84,13 @@ namespace BuildingEnergyPerformanceTests.Application.IntegrationTests.StoreysPag
 			Assert.IsTrue(exMessage.Contains("Meno musí mať maximálne 20 znakov."));
 		}
 
-		//The name must be distinct from the others. Take out the last name and try to add.
-		[TestMethod]
-		public async Task DistinctNameAsync()
-		{
-			//Take last record.
-			//var lastName = context.Storeys.OrderBy(x => x.Id).Select(x => x.Name).LastOrDefault();
-			//var exMessage = await TryOutNameAsync(lastName);
-			//Assert.IsTrue(exMessage.Contains("Toto meno je už použité. Zadajte iné."));
-		}
-
 		//Regular adding
 		[TestMethod]
 		public async Task RegularAddingAsync()
 		{
-			//Add item.
-			var exMessage = await TryOutNameAsync("Abcde");
-
-			Assert.IsTrue(exMessage.Contains("OK"));
-			
-
-			////Delete last record.
-			//var lastRecord = context.Storeys.OrderBy(x => x.Id).LastOrDefault();
-			//var lastRecordName = lastRecord.Name;
-			//Assert.AreEqual("Abcde", lastRecordName);
-
-			//context.Storeys.Remove(lastRecord);
-			//await context.SaveChangesAsync();
+			//Name is correct.
+			var exMessage = await TryOutNameAsync("Abcd");
+			Assert.AreEqual(exMessage, String.Empty);
 		}
 	}
 }

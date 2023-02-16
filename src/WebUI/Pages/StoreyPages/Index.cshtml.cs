@@ -5,7 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
-namespace WebUI.Pages.StoreysPages
+namespace WebUI.Pages.StoreyPages
 {
 	public class IndexModel : PageModel
 	{

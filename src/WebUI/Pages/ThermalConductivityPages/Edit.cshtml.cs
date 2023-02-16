@@ -6,7 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.ThermalConductivitiesPages
+namespace WebUI.Pages.ThermalConductivityPages
 {
 	public class EditModel : PageModel
 	{

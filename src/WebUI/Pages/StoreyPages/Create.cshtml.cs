@@ -6,7 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebUI.Pages.StoreysPages
+namespace WebUI.Pages.StoreyPages
 {
 	public class CreateModel : PageModel
 	{
