@@ -21,7 +21,6 @@ namespace Application.StoreyCQR.Commands
 			StoreyCommandValidator storeyCommandValidator = new(storeyDto, _context);
 			await storeyCommandValidator.ValidateAndThrowAsync(storeyDto);
 
-
 			Storey storey = _mapper.Map<Storey>(storeyDto);
 			_context.Storeys.Update(storey);
 			Task updateStorey = _context.SaveChangesAsync();

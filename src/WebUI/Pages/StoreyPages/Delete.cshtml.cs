@@ -21,7 +21,7 @@ namespace WebUI.Pages.StoreyPages
 			_mapper = mapper;
 		}
 
-		public async Task OnGet(int id)
+		public async Task OnGetAsync(int id)
 		{
 			var getStorey = new GetStorey(_context, _mapper);
 			StoreyDto = await getStorey.GetStoreyDtoAsync(id);
@@ -34,9 +34,9 @@ namespace WebUI.Pages.StoreyPages
 			Page();
 		}
 
-		public async Task<IActionResult> OnPost()
+		public async Task<IActionResult> OnPostAsync()
 		{
-			var deleteStorey = new DeleteStorey(_context);
+			var deleteStorey = new DeleteStorey(_context, _mapper);
 			await deleteStorey.RemoveStoreyAsync(StoreyDto);
 
 			return RedirectToPage("Index");

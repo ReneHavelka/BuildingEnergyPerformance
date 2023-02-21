@@ -26,7 +26,7 @@ namespace WebUI.Pages.BuildingElementPages
 			_mapper = mapper;
 		}
 
-		public async Task OnGet()
+		public async Task OnGetAsync()
 		{
 			var getStoreys = new GetStoreys(_context, _mapper);
 			var storeysDtoList = await getStoreys.GetStoreyDtoListAsync();
@@ -49,7 +49,7 @@ namespace WebUI.Pages.BuildingElementPages
 			return new JsonResult(temperature);
 		}
 
-		public async Task<IActionResult> OnPost(BuildingElementDto BuildingElementDto)
+		public async Task<IActionResult> OnPostAsync(BuildingElementDto BuildingElementDto)
 		{
 			var createBuildingElement = new CreateBuildingElement(_context, _mapper);
 			await createBuildingElement.AddBuildingElement(BuildingElementDto);
