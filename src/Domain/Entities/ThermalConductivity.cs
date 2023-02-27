@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-	public record ThermalConductivity : ThermalProperty
-	{
-	}
+    public record ThermalConductivity : ThermalProperty
+    {
+    }
 }

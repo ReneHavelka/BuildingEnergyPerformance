@@ -2,7 +2,7 @@
 
 namespace Application.Common.Models
 {
-	public abstract record IdNameDto : IdName
-	{
-	}
+    public abstract record IdNameDto : IdName
+    {
+    }
 }

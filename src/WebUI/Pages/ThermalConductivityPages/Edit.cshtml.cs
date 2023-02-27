@@ -8,33 +8,33 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.ThermalConductivityPages
 {
-	public class EditModel : PageModel
-	{
-		[BindProperty]
-		public ThermalConductivitieDto ThermalConductivityDto { get; set; }
+    public class EditModel : PageModel
+    {
+        [BindProperty]
+        public ThermalConductivitieDto ThermalConductivityDto { get; set; }
 
-		IApplicationDbContext _context;
-		IMapper _mapper;
+        IApplicationDbContext _context;
+        IMapper _mapper;
 
-		public EditModel(IApplicationDbContext context, IMapper mapper)
-		{
-			_context = context;
-			_mapper = mapper;
-		}
+        public EditModel(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-		public void OnGet(int id)
-		{
-			var getThermalConductivity = new GetThermalConductivity(_context, _mapper);
-			ThermalConductivityDto = getThermalConductivity.GetThermalConductivityDto(id);
-		}
+        public void OnGet(int id)
+        {
+            var getThermalConductivity = new GetThermalConductivity(_context, _mapper);
+            ThermalConductivityDto = getThermalConductivity.GetThermalConductivityDto(id);
+        }
 
-		public async Task<IActionResult> OnPost()
-		{
-			var editThermalConductivity = new EditThermalConductivity(_context, _mapper);
-			await editThermalConductivity.ModifyThermalConductivity(ThermalConductivityDto);
+        public async Task<IActionResult> OnPost()
+        {
+            var editThermalConductivity = new EditThermalConductivity(_context, _mapper);
+            await editThermalConductivity.ModifyThermalConductivity(ThermalConductivityDto);
 
-			return RedirectToPage("Index");
-		}
+            return RedirectToPage("Index");
+        }
 
-	}
+    }
 }

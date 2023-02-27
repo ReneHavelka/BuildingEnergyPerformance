@@ -8,38 +8,38 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.StoreyPages
 {
-	public class DeleteModel : PageModel
-	{
-		[BindProperty]
-		public StoreyDto StoreyDto { get; set; }
-		private IApplicationDbContext _context;
-		private IMapper _mapper;
+    public class DeleteModel : PageModel
+    {
+        [BindProperty]
+        public StoreyDto StoreyDto { get; set; }
+        private IApplicationDbContext _context;
+        private IMapper _mapper;
 
-		public DeleteModel(IApplicationDbContext context, IMapper mapper)
-		{
-			_context = context;
-			_mapper = mapper;
-		}
+        public DeleteModel(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-		public async Task OnGetAsync(int id)
-		{
-			var getStorey = new GetStorey(_context, _mapper);
-			StoreyDto = await getStorey.GetStoreyDtoAsync(id);
+        public async Task OnGetAsync(int id)
+        {
+            var getStorey = new GetStorey(_context, _mapper);
+            StoreyDto = await getStorey.GetStoreyDtoAsync(id);
 
-			if (StoreyDto == null)
-			{
-				RedirectToPage("Index");
-			}
+            if (StoreyDto == null)
+            {
+                RedirectToPage("Index");
+            }
 
-			Page();
-		}
+            Page();
+        }
 
-		public async Task<IActionResult> OnPostAsync()
-		{
-			var deleteStorey = new DeleteStorey(_context, _mapper);
-			await deleteStorey.RemoveStoreyAsync(StoreyDto);
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var deleteStorey = new DeleteStorey(_context, _mapper);
+            await deleteStorey.RemoveStoreyAsync(StoreyDto);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }

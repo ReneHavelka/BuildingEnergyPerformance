@@ -7,27 +7,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.ThermalResistancePages
 {
-	public class CreateModel : PageModel
-	{
-		[BindProperty]
-		public ThermalResistanceDto ThermalResistanceDto { get; set; }
+    public class CreateModel : PageModel
+    {
+        [BindProperty]
+        public ThermalResistanceDto ThermalResistanceDto { get; set; }
 
-		IApplicationDbContext _context;
-		IMapper _mapper;
+        IApplicationDbContext _context;
+        IMapper _mapper;
 
 
-		public CreateModel(IApplicationDbContext context, IMapper mapper)
-		{
-			_context = context;
-			_mapper = mapper;
-		}
+        public CreateModel(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-		public async Task<IActionResult> OnPostAsync(ThermalResistanceDto ThermalResistanceDto)
-		{
-			var createThermalResistance = new CreateThermalResistance(_context, _mapper);
-			await createThermalResistance.AddThermalResistanceAsync(ThermalResistanceDto);
+        public async Task<IActionResult> OnPostAsync(ThermalResistanceDto ThermalResistanceDto)
+        {
+            var createThermalResistance = new CreateThermalResistance(_context, _mapper);
+            await createThermalResistance.AddThermalResistanceAsync(ThermalResistanceDto);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }

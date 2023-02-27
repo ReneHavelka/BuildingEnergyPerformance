@@ -7,27 +7,27 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.ThermalConductivityPages
 {
-	public class CreateModel : PageModel
-	{
-		[BindProperty]
-		public ThermalConductivitieDto ThermalConductivityDto { get; set; }
+    public class CreateModel : PageModel
+    {
+        [BindProperty]
+        public ThermalConductivitieDto ThermalConductivityDto { get; set; }
 
-		IApplicationDbContext _context;
-		IMapper _mapper;
+        IApplicationDbContext _context;
+        IMapper _mapper;
 
 
-		public CreateModel(IApplicationDbContext context, IMapper mapper)
-		{
-			_context = context;
-			_mapper = mapper;
-		}
+        public CreateModel(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-		public async Task<IActionResult> OnPost(ThermalConductivitieDto ThermalConductivityDto)
-		{
-			var createThermalConductivity = new CreateThermalConductivity(_context, _mapper);
-			await createThermalConductivity.AddThermalConductivity(ThermalConductivityDto);
+        public async Task<IActionResult> OnPost(ThermalConductivitieDto ThermalConductivityDto)
+        {
+            var createThermalConductivity = new CreateThermalConductivity(_context, _mapper);
+            await createThermalConductivity.AddThermalConductivity(ThermalConductivityDto);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }

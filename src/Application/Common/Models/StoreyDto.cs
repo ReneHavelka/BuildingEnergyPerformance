@@ -1,6 +1,6 @@
 ﻿namespace Application.Common.Models
 {
-	public record StoreyDto : IdNameDto
-	{
-	}
+    public record StoreyDto : IdNameDto
+    {
+    }
 }

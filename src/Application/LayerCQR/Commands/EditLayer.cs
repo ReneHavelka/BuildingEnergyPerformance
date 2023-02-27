@@ -5,23 +5,23 @@ using Domain.Entities;
 
 namespace Application.LayerCQR.Commands
 {
-	public class EditLayer
-	{
-		IApplicationDbContext _context;
-		IMapper _mapper;
+    public class EditLayer
+    {
+        IApplicationDbContext _context;
+        IMapper _mapper;
 
-		public EditLayer(IApplicationDbContext conext, IMapper mapper)
-		{
-			_context = conext;
-			_mapper = mapper;
-		}
+        public EditLayer(IApplicationDbContext conext, IMapper mapper)
+        {
+            _context = conext;
+            _mapper = mapper;
+        }
 
-		public async Task ModifyLayer(LayerDto layerDto)
-		{
-			var layer = _mapper.Map<Layer>(layerDto);
-			_context.Layers.Update(layer);
-			await _context.SaveChangesAsync();
+        public async Task ModifyLayer(LayerDto layerDto)
+        {
+            var layer = _mapper.Map<Layer>(layerDto);
+            _context.Layers.Update(layer);
+            await _context.SaveChangesAsync();
 
-		}
-	}
+        }
+    }
 }

@@ -1,7 +1,7 @@
 ﻿namespace Application.Common.Interfaces
 {
-	public interface IIndex
-	{
-		IEnumerable<KeyValuePair<string, string>>? IssueKeyValue { get; }
-	}
+    public interface IIndex
+    {
+        IEnumerable<KeyValuePair<string, string>>? IssueKeyValue { get; }
+    }
 }

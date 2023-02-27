@@ -6,40 +6,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.LayerPages
 {
-	public class DeleteModel : PageModel
-	{
-		[BindProperty]
-		public GetLayersWithBuildingElements LayerWithBuildingElement { get; set; }
+    public class DeleteModel : PageModel
+    {
+        [BindProperty]
+        public GetLayersWithBuildingElements LayerWithBuildingElement { get; set; }
 
-		IApplicationDbContext _context;
+        IApplicationDbContext _context;
 
-		public DeleteModel(IApplicationDbContext context)
-		{
-			_context = context;
-		}
+        public DeleteModel(IApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-		public IActionResult OnGet(int id)
-		{
-			var getLayer = new GetLayerWithBuildingElement(_context, id);
-			LayerWithBuildingElement = getLayer.GetLayerWithBuildingElementDto();
+        public IActionResult OnGet(int id)
+        {
+            var getLayer = new GetLayerWithBuildingElement(_context, id);
+            LayerWithBuildingElement = getLayer.GetLayerWithBuildingElementDto();
 
-			if (LayerWithBuildingElement == null)
-			{
-				return RedirectToPage("Index");
-			}
+            if (LayerWithBuildingElement == null)
+            {
+                return RedirectToPage("Index");
+            }
 
-			//?
-			LayerWithBuildingElement.ContiguousSpaceName = "--Vonkajší priestor--";
-			//?
-			return Page();
-		}
+            //?
+            LayerWithBuildingElement.ContiguousSpaceName = "--Vonkajší priestor--";
+            //?
+            return Page();
+        }
 
-		public async Task<IActionResult> OnPost()
-		{
-			var deleteLayer = new DeleteLayer(_context);
-			await deleteLayer.RemoveLayer(LayerWithBuildingElement);
+        public async Task<IActionResult> OnPost()
+        {
+            var deleteLayer = new DeleteLayer(_context);
+            await deleteLayer.RemoveLayer(LayerWithBuildingElement);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }

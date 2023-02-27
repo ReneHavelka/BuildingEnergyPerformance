@@ -6,40 +6,40 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.BuildingElementPages
 {
-	public class DeleteModel : PageModel
-	{
-		[BindProperty]
-		public GetBuildingElementsWithSpaces BuildingElementWithSpace { get; set; }
+    public class DeleteModel : PageModel
+    {
+        [BindProperty]
+        public GetBuildingElementsWithSpaces BuildingElementWithSpace { get; set; }
 
-		IApplicationDbContext _context;
+        IApplicationDbContext _context;
 
-		public DeleteModel(IApplicationDbContext context)
-		{
-			_context = context;
-		}
+        public DeleteModel(IApplicationDbContext context)
+        {
+            _context = context;
+        }
 
-		public IActionResult OnGet(int id)
-		{
-			var getBuildingElement = new GetBuildingElementWithSpace(_context, id);
-			BuildingElementWithSpace = getBuildingElement.GetBuildingElementWithSpaceDto();
+        public IActionResult OnGet(int id)
+        {
+            var getBuildingElement = new GetBuildingElementWithSpace(_context, id);
+            BuildingElementWithSpace = getBuildingElement.GetBuildingElementWithSpaceDto();
 
-			if (BuildingElementWithSpace == null)
-			{
-				return RedirectToPage("Index");
-			}
-			//?
-			BuildingElementWithSpace.ContiguousSpaceName = "--Vonkajší priestor--";
-			//?
+            if (BuildingElementWithSpace == null)
+            {
+                return RedirectToPage("Index");
+            }
+            //?
+            BuildingElementWithSpace.ContiguousSpaceName = "--Vonkajší priestor--";
+            //?
 
-			return Page();
-		}
+            return Page();
+        }
 
-		public async Task<IActionResult> OnPost()
-		{
-			var deleteBuildingElement = new DeleteBuildingElement(_context);
-			await deleteBuildingElement.RemoveBuildingElement(BuildingElementWithSpace);
+        public async Task<IActionResult> OnPost()
+        {
+            var deleteBuildingElement = new DeleteBuildingElement(_context);
+            await deleteBuildingElement.RemoveBuildingElement(BuildingElementWithSpace);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }

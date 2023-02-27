@@ -2,8 +2,8 @@
 
 namespace Domain.Entities
 {
-	public record SpaceTemperature : IdName
-	{
-		public float Temperature { get; set; }
-	}
+    public record SpaceTemperature : IdName
+    {
+        public float Temperature { get; set; }
+    }
 }

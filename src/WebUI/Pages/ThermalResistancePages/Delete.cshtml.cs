@@ -8,38 +8,38 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.ThermalResistancePages
 {
-	public class DeleteModel : PageModel
-	{
-		[BindProperty]
-		public ThermalResistanceDto ThermalResistanceDto { get; set; }
-		private IApplicationDbContext _context;
-		private IMapper _mapper;
+    public class DeleteModel : PageModel
+    {
+        [BindProperty]
+        public ThermalResistanceDto ThermalResistanceDto { get; set; }
+        private IApplicationDbContext _context;
+        private IMapper _mapper;
 
-		public DeleteModel(IApplicationDbContext context, IMapper mapper)
-		{
-			_context = context;
-			_mapper = mapper;
-		}
+        public DeleteModel(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
-		public async Task OnGet(int id)
-		{
-			var getThermalResistance = new GetThermalResistance(_context, _mapper);
-			ThermalResistanceDto = await getThermalResistance.GetThermalResistanceDtoAsync(id);
+        public async Task OnGet(int id)
+        {
+            var getThermalResistance = new GetThermalResistance(_context, _mapper);
+            ThermalResistanceDto = await getThermalResistance.GetThermalResistanceDtoAsync(id);
 
-			if (ThermalResistanceDto == null)
-			{
-				RedirectToPage("Index");
-			}
+            if (ThermalResistanceDto == null)
+            {
+                RedirectToPage("Index");
+            }
 
-			Page();
-		}
+            Page();
+        }
 
-		public async Task<IActionResult> OnPost()
-		{
-			var deleteThermalResistance = new DeleteThermalResistance(_context);
-			await deleteThermalResistance.RemoveThermalResistanceAsync(ThermalResistanceDto);
+        public async Task<IActionResult> OnPost()
+        {
+            var deleteThermalResistance = new DeleteThermalResistance(_context);
+            await deleteThermalResistance.RemoveThermalResistanceAsync(ThermalResistanceDto);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }

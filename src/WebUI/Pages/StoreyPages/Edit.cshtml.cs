@@ -9,33 +9,33 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace WebUI.Pages.StoreyPages
 {
-	public class EditModel : PageModel
-	{
-		[BindProperty]
-		public StoreyDto StoreyDto { get; set; }
-		private IApplicationDbContext _context;
-		private IMapper _mapper;
+    public class EditModel : PageModel
+    {
+        [BindProperty]
+        public StoreyDto StoreyDto { get; set; }
+        private IApplicationDbContext _context;
+        private IMapper _mapper;
 
-		public EditModel(IApplicationDbContext context, IMapper mapper)
-		{
-			_context = context;
-			_mapper = mapper;
-		}
-		public async Task OnGetAsync(int id)
-		{
-			var getStorey = new GetStorey(_context, _mapper);
-			StoreyDto = await getStorey.GetStoreyDtoAsync(id);
-		}
+        public EditModel(IApplicationDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
+        public async Task OnGetAsync(int id)
+        {
+            var getStorey = new GetStorey(_context, _mapper);
+            StoreyDto = await getStorey.GetStoreyDtoAsync(id);
+        }
 
-		public async Task<IActionResult> OnPostAsync()
-		{
-			StoreyCommandValidator storeyCommandValidator = new(StoreyDto, _context);
-			await storeyCommandValidator.ValidateAndThrowAsync(StoreyDto);
+        public async Task<IActionResult> OnPostAsync()
+        {
+            StoreyCommandValidator storeyCommandValidator = new(StoreyDto, _context);
+            await storeyCommandValidator.ValidateAndThrowAsync(StoreyDto);
 
-			var editStoreys = new EditStorey(_context, _mapper);
-			await editStoreys.ModifyStoreyAsync(StoreyDto);
+            var editStoreys = new EditStorey(_context, _mapper);
+            await editStoreys.ModifyStoreyAsync(StoreyDto);
 
-			return RedirectToPage("Index");
-		}
-	}
+            return RedirectToPage("Index");
+        }
+    }
 }
