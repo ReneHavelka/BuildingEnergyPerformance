@@ -13,12 +13,9 @@ namespace Application.StoreyCQR.Commands
             if (sameStorey != null) sameName = sameStorey.Name;
 
             RuleFor(storeyDto => storeyDto.Name)
-                .NotEmpty().WithMessage("Meno je povinné.");
-            RuleFor(storeyDto => storeyDto.Name)
-                .MinimumLength(4).WithMessage("Meno musí pozostávať minimálne zo 4 znakov.");
-            RuleFor(storeyDto => storeyDto.Name)
-                .Matches(@"^[A-Z]").WithMessage("Meno musí začínať veľkým písmenom.");
-            RuleFor(storeyDto => storeyDto.Name)
+                .NotEmpty().WithMessage("Meno je povinné.")
+                .MinimumLength(4).WithMessage("Meno musí pozostávať minimálne zo 4 znakov.")
+                .Matches(@"^[A-Z]").WithMessage("Meno musí začínať veľkým písmenom.")
                 .MaximumLength(20).WithMessage("Meno musí mať maximálne 20 znakov.");
             RuleFor(storeyDto => storeyDto.Name)
                 .NotEqual(sameName).When(storeyDto => storeyDto.Name != null).WithMessage("Toto meno je už použité. Zadaj iné.");
