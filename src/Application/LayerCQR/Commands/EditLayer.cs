@@ -21,7 +21,6 @@ namespace Application.LayerCQR.Commands
             var layer = _mapper.Map<Layer>(layerDto);
             _context.Layers.Update(layer);
             await _context.SaveChangesAsync();
-
         }
     }
 }
